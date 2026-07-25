@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tanoa Systems — Fiche offre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0c1410;
+      --muted: #5c6b62;
+      --paper: #f0f4f1;
+      --line: rgba(12, 20, 16, 0.14);
+      --lagoon: #0f7a5a;
+      --lagoon-wash: rgba(15, 122, 90, 0.11);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #d8e0db;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--lagoon); text-decoration: none; font-weight: 600; }
+
+    .sheet {
+      width: min(210mm, calc(100% - 1.5rem));
+      min-height: 297mm;
+      margin: 1rem auto;
+      padding: 14mm 14mm 12mm;
+      background: var(--paper);
+      box-shadow: 0 12px 40px rgba(12, 20, 16, 0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .sheet::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 40% at 100% 0%, var(--lagoon-wash), transparent 55%);
+      pointer-events: none;
+    }
+    .sheet > * { position: relative; z-index: 1; }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.35rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      font-family: "Fraunces", serif;
+      font-weight: 800;
+      font-size: 1.55rem;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .brand span { color: var(--lagoon); }
+    .top-meta {
+      text-align: right;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .lang-switch {
+      display: inline-flex;
+      margin-top: 0.45rem;
+      border: 1px solid var(--line);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.65rem;
+    }
+    .lang-switch button {
+      appearance: none;
+      border: 0;
+      margin: 0;
+      padding: 0.3rem 0.5rem;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      cursor: pointer;
+    }
+    .lang-switch button[aria-pressed="true"] {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .hero-line {
+      margin: 0 0 0.55rem;
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: 1.55rem;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      max-width: 28ch;
+    }
+    .hero-support {
+      margin: 0 0 1.25rem;
+      color: var(--muted);
+      max-width: 52ch;
+      font-size: 0.95rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1.1rem 1.4rem;
+      flex: 1;
+    }
+
+    .kicker {
+      margin: 0 0 0.35rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--lagoon);
+    }
+    h2 {
+      margin: 0 0 0.55rem;
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .block {
+      padding: 0.75rem 0 0.9rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .deliveries { margin: 0; padding: 0; list-style: none; }
+    .deliveries li {
+      display: grid;
+      grid-template-columns: 1.6rem 1fr;
+      gap: 0.45rem;
+      padding: 0.4rem 0;
+    }
+    .deliveries li + li { border-top: 1px solid var(--line); }
+    .deliveries .n {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      color: var(--lagoon);
+      padding-top: 0.15rem;
+    }
+    .deliveries strong {
+      display: block;
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: 0.95rem;
+      margin-bottom: 0.1rem;
+    }
+    .deliveries p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .fit {
+      background: var(--ink);
+      color: rgba(232, 239, 234, 0.78);
+      padding: 0.85rem 0.95rem;
+      margin-top: 0.15rem;
+    }
+    .fit .kicker { color: #17a379; }
+    .fit h2 { color: #fff; }
+    .fit ul { margin: 0; padding: 0; list-style: none; }
+    .fit li {
+      padding: 0.35rem 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.82rem;
+    }
+    .fit li:first-child { border-top: 0; padding-top: 0; }
+    .fit strong { color: #fff; font-weight: 600; }
+
+    .proof p { margin: 0 0 0.45rem; color: var(--muted); font-size: 0.82rem; }
+    .proof p:last-child { margin-bottom: 0; }
+    .proof strong { color: var(--ink); }
+
+    .audience ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .audience li {
+      padding: 0.28rem 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding-left: 0.85rem;
+      position: relative;
+    }
+    .audience li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      width: 0.4rem;
+      height: 2px;
+      background: var(--lagoon);
+    }
+
+    .foot {
+      margin-top: 1rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+    }
+    .foot-cta {
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+    .foot-cta p {
+      margin: 0.25rem 0 0;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 400;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .foot-mail {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .screen-hint {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin: 0.75rem auto 1.5rem;
+      max-width: 40rem;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .sheet {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0;
+        padding: 12mm 14mm;
+        box-shadow: none;
+      }
+      .lang-switch, .screen-hint { display: none !important; }
+      a { color: var(--ink); }
+      @page { size: A4; margin: 0; }
+    }
+
+    @media (max-width: 700px) {
+      .sheet { min-height: auto; padding: 1.25rem; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .top { flex-direction: column; }
+      .top-meta { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <article class="sheet">
+    <header class="top">
+      <div class="brand">Tanoa <span>Systems</span></div>
+      <div class="top-meta">
+        <div data-i18n="doc.label"></div>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <p class="hero-line" data-i18n="hero.line"></p>
+    <p class="hero-support" data-i18n="hero.support"></p>
+
+    <div class="grid-2">
+      <div>
+        <section class="block">
+          <p class="kicker" data-i18n="who.kicker"></p>
+          <h2 data-i18n="who.title"></h2>
+          <div class="audience">
+            <ul>
+              <li data-i18n="who.1"></li>
+              <li data-i18n="who.2"></li>
+              <li data-i18n="who.3"></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="block">
+          <p class="kicker" data-i18n="work.kicker"></p>
+          <h2 data-i18n="work.title"></h2>
+          <ul class="deliveries">
+            <li>
+              <span class="n">01</span>
+              <div>
+                <strong data-i18n="work.1.title"></strong>
+                <p data-i18n="work.1.body"></p>
+              </div>
+            </li>
+            <li>
+              <span class="n">02</span>
+              <div>
+                <strong data-i18n="work.2.title"></strong>
+                <p data-i18n="work.2.body"></p>
+              </div>
+            </li>
+            <li>
+              <span class="n">03</span>
+              <div>
+                <strong data-i18n="work.3.title"></strong>
+                <p data-i18n="work.3.body"></p>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <div>
+        <section class="block" style="border-top: 0; padding-top: 0;">
+          <div class="fit">
+            <p class="kicker" data-i18n="fit.kicker"></p>
+            <h2 data-i18n="fit.title"></h2>
+            <ul>
+              <li data-i18n-html="fit.1"></li>
+              <li data-i18n-html="fit.2"></li>
+              <li data-i18n-html="fit.3"></li>
+              <li data-i18n-html="fit.4"></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="block proof">
+          <p class="kicker" data-i18n="proof.kicker"></p>
+          <h2 data-i18n="proof.title"></h2>
+          <p data-i18n-html="proof.body"></p>
+          <p>
+            <a href="https://kontiki-org.github.io/" target="_blank" rel="noreferrer">kontiki-org.github.io</a>
+            ·
+            <a href="https://github.com/kontiki-org/boomerang" target="_blank" rel="noreferrer">Boomerang</a>
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <div class="foot-cta">
+        <span data-i18n="cta.title"></span>
+        <p data-i18n="cta.body"></p>
+      </div>
+      <a class="foot-mail" href="mailto:hello@tanoa.systems">hello@tanoa.systems</a>
+    </footer>
+  </article>
+
+  <p class="screen-hint" data-i18n="hint"></p>
+
+  <script>
+    (function () {
+      var STRINGS = {
+        fr: {
+          "doc.label": "FICHE OFFRE · FORFAIT",
+          "hero.line": "Des systèmes distribués conçus pour tenir dans la durée.",
+          "hero.support": "Intégration, bus événementiel, traitements asynchrones, plateformes ciblées — livrés au forfait, accélérés par un socle open source.",
+          "who.kicker": "Pour qui",
+          "who.title": "Une demande concrète de système distribué.",
+          "who.1": "Éditeurs, PME tech et startups B2B qui doivent relier des systèmes ou automatiser des flux.",
+          "who.2": "Équipes qui ont un besoin identifiable (brique ou petite plateforme), pas une transformation SI ouverte.",
+          "who.3": "Interlocuteurs prêts à cadrer un résultat, des étapes et des critères d’acceptation.",
+          "work.kicker": "Ce que nous livrons",
+          "work.title": "Des briques et plateformes prêtes à exploiter.",
+          "work.1.title": "Services distribués",
+          "work.1.body": "Briques autonomes : événements, RPC, persistance, APIs, tests, documentation.",
+          "work.2.title": "Intégrations",
+          "work.2.body": "Connecteurs et flux : normalisation, reprises, orchestration entre applications.",
+          "work.3.title": "Plateformes ciblées",
+          "work.3.body": "Automatisation événementielle, collecte de flux, orchestration — documenté et mis en route.",
+          "fit.kicker": "Filtre commercial",
+          "fit.title": "La demande colle si…",
+          "fit.1": "Le résultat est une <strong>brique ou plateforme identifiable</strong>.",
+          "fit.2": "Le sujet touche messages, services ou <strong>flux asynchrones</strong>.",
+          "fit.3": "On peut livrer <strong>par étapes</strong>, avec critères et documentation.",
+          "fit.4": "Le rythme repose sur des <strong>échanges planifiés</strong> (forfait).",
+          "proof.kicker": "Preuve",
+          "proof.title": "Un socle qu’on peut inspecter.",
+          "proof.body": "<strong>Suite Kontiki</strong> (framework, registry, TUI, monitor) — notre accélérateur. <strong>Boomerang</strong> : un exemple de plateforme construite dessus.",
+          "cta.title": "Parlons de votre prochain système.",
+          "cta.body": "Décrivez le résultat attendu — nous dirons comment le découper et le livrer.",
+          "hint": "Astuce : Fichier → Imprimer → « Enregistrer au format PDF » pour une fiche A4."
+        },
+        en: {
+          "doc.label": "OFFER ONE-PAGER · FIXED SCOPE",
+          "hero.line": "Distributed systems built to last.",
+          "hero.support": "Integration, event buses, async processing, focused platforms — delivered as fixed-scope projects, accelerated by an open-source foundation.",
+          "who.kicker": "Who it's for",
+          "who.title": "A concrete distributed-systems need.",
+          "who.1": "Software vendors, tech SMEs and B2B startups that need to connect systems or automate flows.",
+          "who.2": "Teams with an identifiable need (building block or small platform), not an open-ended IT overhaul.",
+          "who.3": "Stakeholders ready to frame an outcome, stages, and acceptance criteria.",
+          "work.kicker": "What we deliver",
+          "work.title": "Building blocks and platforms ready to run.",
+          "work.1.title": "Distributed services",
+          "work.1.body": "Autonomous services: events, RPC, persistence, APIs, tests, documentation.",
+          "work.2.title": "Integrations",
+          "work.2.body": "Connectors and flows: normalisation, retries, orchestration across apps.",
+          "work.3.title": "Focused platforms",
+          "work.3.body": "Event-driven automation, stream processing, orchestration — documented and brought online.",
+          "fit.kicker": "Commercial filter",
+          "fit.title": "A good fit when…",
+          "fit.1": "The outcome is an <strong>identifiable building block or platform</strong>.",
+          "fit.2": "The work involves messaging, services, or <strong>async flows</strong>.",
+          "fit.3": "Delivery can happen <strong>in stages</strong>, with criteria and docs.",
+          "fit.4": "The cadence is based on <strong>planned check-ins</strong> (fixed scope).",
+          "proof.kicker": "Proof",
+          "proof.title": "A foundation you can inspect.",
+          "proof.body": "<strong>Kontiki suite</strong> (framework, registry, TUI, monitor) — our accelerator. <strong>Boomerang</strong>: one example of a platform built on it.",
+          "cta.title": "Let’s talk about your next system.",
+          "cta.body": "Describe the outcome you need — we’ll say how to slice it and ship it.",
+          "hint": "Tip: File → Print → “Save as PDF” for a clean A4 one-pager."
+        }
+      };
+
+      var KEY = "tanoa-offer-lang";
+
+      function apply(lang) {
+        var dict = STRINGS[lang] || STRINGS.fr;
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          var k = el.getAttribute("data-i18n");
+          if (dict[k] != null) el.textContent = dict[k];
+        });
+        document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+          var k = el.getAttribute("data-i18n-html");
+          if (dict[k] != null) el.innerHTML = dict[k];
+        });
+        document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+          btn.setAttribute("aria-pressed", btn.getAttribute("data-lang") === lang ? "true" : "false");
+        });
+        try { localStorage.setItem(KEY, lang); } catch (e) {}
+      }
+
+      function detect() {
+        try {
+          var s = localStorage.getItem(KEY) || localStorage.getItem("tanoa-lang");
+          if (s === "en" || s === "fr") return s;
+        } catch (e) {}
+        return ((navigator.language || "fr").toLowerCase().indexOf("fr") === 0) ? "fr" : "en";
+      }
+
+      document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+        btn.addEventListener("click", function () { apply(btn.getAttribute("data-lang")); });
+      });
+      apply(detect());
+    })();
+  </script>
+</body>
+</html>

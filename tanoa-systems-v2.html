@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" id="meta-desc" content="" />
+  <title>Tanoa Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0c1410;
+      --ink-soft: #1a2820;
+      --muted: #5c6b62;
+      --paper: #f0f4f1;
+      --paper-deep: #e2ebe5;
+      --line: rgba(12, 20, 16, 0.14);
+      --lagoon: #0f7a5a;
+      --lagoon-bright: #17a379;
+      --lagoon-wash: rgba(15, 122, 90, 0.11);
+      --max: 1120px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--lagoon); }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(12px);
+      background: rgba(240, 244, 241, 0.88);
+      border-bottom: 1px solid transparent;
+    }
+    .top.is-scrolled { border-bottom-color: var(--line); }
+    .top-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.95rem 0;
+    }
+    .top-brand {
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+    .top-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .top nav {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .top nav a:hover { color: var(--ink); }
+
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .lang-switch button {
+      appearance: none;
+      border: 0;
+      margin: 0;
+      padding: 0.45rem 0.65rem;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      cursor: pointer;
+      transition: background 160ms var(--ease), color 160ms var(--ease);
+    }
+    .lang-switch button[aria-pressed="true"] {
+      background: var(--ink);
+      color: #fff;
+    }
+    .lang-switch button:hover:not([aria-pressed="true"]) {
+      color: var(--ink);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 2.75rem;
+      padding: 0 1.15rem;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #fff;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 180ms var(--ease), color 180ms var(--ease), transform 180ms var(--ease);
+    }
+    .btn:hover { background: var(--lagoon); border-color: var(--lagoon); color: #fff; transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+    }
+    .btn-ghost:hover { background: var(--ink); color: #fff; }
+
+    .hero {
+      position: relative;
+      padding: 4.5rem 0 5rem;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0 -50vw;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 70% 60% at 85% 20%, var(--lagoon-wash), transparent 65%),
+        radial-gradient(ellipse 50% 45% at 10% 80%, rgba(15, 122, 90, 0.06), transparent 60%);
+    }
+    .hero-copy {
+      max-width: 36rem;
+      animation: rise 0.8s var(--ease) both;
+    }
+    .hero-brand {
+      margin: 0 0 1.25rem;
+      font-family: "Fraunces", serif;
+      font-weight: 800;
+      font-size: clamp(3.4rem, 9.5vw, 6.4rem);
+      line-height: 0.92;
+      letter-spacing: -0.045em;
+    }
+    .hero-brand span {
+      display: block;
+      color: var(--lagoon);
+    }
+    .hero-line {
+      margin: 0 0 1.5rem;
+      font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+      font-weight: 500;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      max-width: 28rem;
+    }
+    .hero-support {
+      margin: 0 0 1.75rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 26rem;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    section { padding: 5.5rem 0; }
+    .kicker {
+      margin: 0 0 0.85rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--lagoon);
+    }
+    .section-title {
+      margin: 0 0 2.5rem;
+      max-width: 18ch;
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: clamp(2.1rem, 4.5vw, 3.35rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .deliver-list { border-top: 1px solid var(--line); }
+    .deliver-row {
+      display: grid;
+      grid-template-columns: 4.5rem 1fr;
+      gap: 1.25rem;
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .deliver-row .n {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--lagoon);
+      padding-top: 0.35rem;
+    }
+    .deliver-row h3 {
+      margin: 0 0 0.4rem;
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.45rem, 2.5vw, 1.85rem);
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+    .deliver-row p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 40rem;
+    }
+
+    .fit {
+      background: var(--ink);
+      color: #e8efea;
+      padding: 5rem 0;
+    }
+    .fit .kicker { color: var(--lagoon-bright); }
+    .fit .section-title { color: #fff; max-width: 16ch; }
+    .fit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .fit-list { margin: 0; padding: 0; list-style: none; }
+    .fit-list li {
+      padding: 1.15rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      color: rgba(232, 239, 234, 0.72);
+      font-size: 1.05rem;
+    }
+    .fit-list li:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+    .fit-list strong { color: #fff; font-weight: 600; }
+
+    .proof-intro {
+      margin: -1.25rem 0 2.5rem;
+      max-width: 36rem;
+      color: var(--muted);
+    }
+    .proof-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .proof-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr) auto;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--line);
+      transition: background 200ms var(--ease);
+    }
+    .proof-item:hover { background: var(--lagoon-wash); }
+    .proof-item h3 {
+      margin: 0 0 0.35rem;
+      font-family: "Fraunces", serif;
+      font-size: 1.55rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+    .proof-item p { margin: 0; color: var(--muted); font-size: 0.98rem; }
+    .proof-meta {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+    .proof-link {
+      font-weight: 600;
+      color: var(--lagoon);
+      white-space: nowrap;
+    }
+    .proof-link span { display: inline-block; transition: transform 180ms var(--ease); }
+    .proof-item:hover .proof-link span { transform: translateX(4px); }
+
+    .socle {
+      margin-top: 3rem;
+      padding: 1.75rem 0 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: end;
+    }
+    .socle p {
+      margin: 0;
+      max-width: 36rem;
+      color: var(--muted);
+    }
+    .socle strong { color: var(--ink); font-weight: 600; }
+
+    .manifesto {
+      text-align: left;
+      padding: 6rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .manifesto blockquote {
+      margin: 0;
+      max-width: 18ch;
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .manifesto p {
+      margin: 1.5rem 0 0;
+      max-width: 32rem;
+      color: var(--muted);
+    }
+
+    .contact-band {
+      background: var(--lagoon);
+      color: #fff;
+      padding: 4rem 0;
+    }
+    .contact-band h2 {
+      margin: 0 0 1rem;
+      max-width: 14ch;
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .contact-band p {
+      margin: 0 0 1.75rem;
+      max-width: 28rem;
+      opacity: 0.9;
+    }
+    .contact-band .btn {
+      background: var(--ink);
+      border-color: var(--ink);
+    }
+    .contact-band .btn:hover {
+      background: #fff;
+      border-color: #fff;
+      color: var(--ink);
+    }
+
+    footer {
+      padding: 1.75rem 0 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    footer .mono {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 880px) {
+      .top nav { display: none; }
+      .hero { padding: 3rem 0 3.5rem; }
+      .fit-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .proof-item {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+      }
+      .socle { grid-template-columns: 1fr; }
+      .deliver-row { grid-template-columns: 3rem 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top" id="site-top">
+    <div class="wrap top-inner">
+      <a class="top-brand" href="#top">Tanoa Systems</a>
+      <div class="top-right">
+        <nav aria-label="Primary">
+          <a href="#work" data-i18n="nav.work"></a>
+          <a href="#method" data-i18n="nav.method"></a>
+          <a href="#proof" data-i18n="nav.proof"></a>
+        </nav>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn" href="mailto:hello@tanoa.systems" data-i18n="nav.contact"></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <h1 class="hero-brand">Tanoa <span>Systems</span></h1>
+        <p class="hero-line" data-i18n="hero.line"></p>
+        <p class="hero-support" data-i18n="hero.support"></p>
+        <div class="hero-actions">
+          <a class="btn" href="mailto:hello@tanoa.systems" data-i18n="hero.cta"></a>
+          <a class="btn btn-ghost" href="#proof" data-i18n="hero.secondary"></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="wrap">
+        <p class="kicker" data-i18n="work.kicker"></p>
+        <h2 class="section-title" data-i18n="work.title"></h2>
+        <div class="deliver-list">
+          <div class="deliver-row">
+            <span class="n">01</span>
+            <div>
+              <h3 data-i18n="work.1.title"></h3>
+              <p data-i18n="work.1.body"></p>
+            </div>
+          </div>
+          <div class="deliver-row">
+            <span class="n">02</span>
+            <div>
+              <h3 data-i18n="work.2.title"></h3>
+              <p data-i18n="work.2.body"></p>
+            </div>
+          </div>
+          <div class="deliver-row">
+            <span class="n">03</span>
+            <div>
+              <h3 data-i18n="work.3.title"></h3>
+              <p data-i18n="work.3.body"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fit" id="method">
+      <div class="wrap fit-grid">
+        <div>
+          <p class="kicker" data-i18n="method.kicker"></p>
+          <h2 class="section-title" data-i18n="method.title"></h2>
+        </div>
+        <ul class="fit-list">
+          <li data-i18n-html="method.1"></li>
+          <li data-i18n-html="method.2"></li>
+          <li data-i18n-html="method.3"></li>
+          <li data-i18n-html="method.4"></li>
+          <li data-i18n-html="method.5"></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="proof">
+      <div class="wrap">
+        <p class="kicker" data-i18n="proof.kicker"></p>
+        <h2 class="section-title" data-i18n="proof.title"></h2>
+        <p class="proof-intro" data-i18n="proof.intro"></p>
+
+        <div class="proof-list">
+          <a class="proof-item" href="https://kontiki-org.github.io/" target="_blank" rel="noreferrer">
+            <div>
+              <h3 data-i18n="proof.suite.title"></h3>
+              <p data-i18n="proof.suite.body"></p>
+            </div>
+            <div class="proof-meta">kontiki-org.github.io</div>
+            <div class="proof-link"><span data-i18n="proof.suite.link"></span> <span aria-hidden="true">→</span></div>
+          </a>
+          <a class="proof-item" href="https://github.com/kontiki-org/boomerang" target="_blank" rel="noreferrer">
+            <div>
+              <h3>Boomerang</h3>
+              <p data-i18n="proof.boomerang"></p>
+            </div>
+            <div class="proof-meta" data-i18n="proof.boomerang.meta"></div>
+            <div class="proof-link">GitHub <span aria-hidden="true">→</span></div>
+          </a>
+        </div>
+
+        <div class="socle">
+          <p data-i18n-html="proof.socle"></p>
+          <a class="btn btn-ghost" href="https://github.com/kontiki-org/kontiki" target="_blank" rel="noreferrer" data-i18n="proof.github"></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="manifesto wrap">
+      <blockquote data-i18n="manifesto.quote"></blockquote>
+      <p data-i18n="manifesto.body"></p>
+    </section>
+
+    <section class="contact-band" id="contact">
+      <div class="wrap">
+        <h2 data-i18n="contact.title"></h2>
+        <p data-i18n="contact.body"></p>
+        <a class="btn" href="mailto:hello@tanoa.systems">hello@tanoa.systems</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>© 2026 Tanoa Systems</span>
+    <span class="mono" data-i18n="footer"></span>
+  </footer>
+
+  <script>
+    (function () {
+      var STRINGS = {
+        fr: {
+          "meta.desc": "Tanoa Systems réalise des systèmes distribués au forfait : intégration, bus événementiel, traitements asynchrones et plateformes ciblées — accélérés par un socle open source.",
+          "nav.work": "Réalisations",
+          "nav.method": "Méthode",
+          "nav.proof": "Preuve",
+          "nav.contact": "Nous écrire",
+          "hero.line": "Des systèmes distribués conçus pour tenir dans la durée.",
+          "hero.support": "Intégration, bus événementiel, traitements asynchrones, plateformes ciblées — livrés au forfait, avec un socle open source qui accélère la mise en production.",
+          "hero.cta": "Discuter d'un projet",
+          "hero.secondary": "Voir ce qui tourne",
+          "work.kicker": "Ce que nous livrons",
+          "work.title": "Des briques et plateformes prêtes à exploiter.",
+          "work.1.title": "Services distribués",
+          "work.1.body": "Une ou plusieurs briques autonomes autour d’un besoin métier : événements, RPC, persistance, APIs, tests et documentation.",
+          "work.2.title": "Intégrations",
+          "work.2.body": "Connecteurs et flux pour faire communiquer des applications ou des sources externes — normalisation, reprises, orchestration.",
+          "work.3.title": "Plateformes ciblées",
+          "work.3.body": "Automatisation événementielle, collecte et traitement de flux, orchestration de services — un système complet, documenté et mis en route.",
+          "method.kicker": "Comment on travaille",
+          "method.title": "Un forfait clair, une équipe engagée sur le résultat.",
+          "method.1": "Un <strong>périmètre identifiable</strong> : brique ou petite plateforme, avec des livrables nommés.",
+          "method.2": "Un rythme d’<strong>échanges planifiés</strong> pour avancer vite sans friction quotidienne.",
+          "method.3": "Une expertise sur les <strong>architectures événementielles</strong> : messages, services, flux asynchrones.",
+          "method.4": "Une livraison <strong>par étapes</strong>, avec critères d’acceptation et documentation.",
+          "method.5": "Les personnes qui <strong>conçoivent</strong> le système sont celles qui le <strong>développent</strong>.",
+          "proof.kicker": "Preuve",
+          "proof.title": "Des systèmes ouverts que vous pouvez inspecter.",
+          "proof.intro": "Notre capital technique open source montre comment nous concevons et opérons des services distribués — la même approche que sur vos projets.",
+          "proof.suite.title": "Suite Kontiki",
+          "proof.suite.body": "Framework de services, registry, TUI et monitor — la stack open source qui accélère, standardise et observe nos livraisons.",
+          "proof.suite.link": "Voir la suite",
+          "proof.boomerang": "Un exemple de plateforme construite avec Kontiki : pipeline d’alerting bout-en-bout (démo séisme USGS). Une illustration parmi d’autres de ce que le socle permet de livrer.",
+          "proof.boomerang.meta": "exemple · built with Kontiki",
+          "proof.socle": "<strong>Kontiki est notre accélérateur.</strong> Sur vos projets, il réduit le code répétitif, fiabilise les tests et raccourcit le chemin jusqu’à une plateforme exploitable.",
+          "proof.github": "Kontiki sur GitHub",
+          "manifesto.quote": "Un résultat net, un périmètre tenu, une plateforme qui reste simple à faire évoluer.",
+          "manifesto.body": "Dès le départ : livrables, rythme et critères d’acceptation. Ensuite : une réalisation que votre équipe peut reprendre et prolonger.",
+          "contact.title": "Parlons de votre prochain système.",
+          "contact.body": "Décrivez le résultat attendu. Nous vous dirons comment le découper et le livrer.",
+          "footer": "systèmes distribués · forfait · socle open source"
+        },
+        en: {
+          "meta.desc": "Tanoa Systems builds fixed-scope distributed systems: integration, event buses, async processing, and focused platforms — accelerated by an open-source foundation.",
+          "nav.work": "What we build",
+          "nav.method": "How we work",
+          "nav.proof": "Proof",
+          "nav.contact": "Get in touch",
+          "hero.line": "Distributed systems built to last.",
+          "hero.support": "Integration, event buses, async processing, focused platforms — delivered as fixed-scope projects, accelerated by an open-source foundation that gets you to production faster.",
+          "hero.cta": "Discuss a project",
+          "hero.secondary": "See what runs",
+          "work.kicker": "What we deliver",
+          "work.title": "Building blocks and platforms ready to run.",
+          "work.1.title": "Distributed services",
+          "work.1.body": "One or more autonomous services around a clear business need: events, RPC, persistence, APIs, tests, and documentation.",
+          "work.2.title": "Integrations",
+          "work.2.body": "Connectors and flows that make applications and external sources talk — normalisation, retries, orchestration.",
+          "work.3.title": "Focused platforms",
+          "work.3.body": "Event-driven automation, stream collection and processing, service orchestration — a complete system, documented and brought online.",
+          "method.kicker": "How we work",
+          "method.title": "A clear fixed scope, a team committed to the outcome.",
+          "method.1": "An <strong>identifiable scope</strong>: a building block or small platform, with named deliverables.",
+          "method.2": "A cadence of <strong>planned check-ins</strong> so progress stays fast without day-to-day friction.",
+          "method.3": "Deep focus on <strong>event-driven architecture</strong>: messaging, services, async flows.",
+          "method.4": "Delivery <strong>in stages</strong>, with acceptance criteria and documentation.",
+          "method.5": "The people who <strong>design</strong> the system are the ones who <strong>build</strong> it.",
+          "proof.kicker": "Proof",
+          "proof.title": "Open systems you can inspect.",
+          "proof.intro": "Our open-source technical capital shows how we design and operate distributed services — the same approach we bring to your projects.",
+          "proof.suite.title": "Kontiki suite",
+          "proof.suite.body": "Service framework, registry, TUI, and monitor — the open-source stack that speeds up, standardises, and observes our deliveries.",
+          "proof.suite.link": "See the suite",
+          "proof.boomerang": "One example of a platform built with Kontiki: an end-to-end alerting pipeline (USGS earthquake demo). One illustration among others of what the foundation can ship.",
+          "proof.boomerang.meta": "example · built with Kontiki",
+          "proof.socle": "<strong>Kontiki is our accelerator.</strong> On your projects, it cuts repetitive code, strengthens testing, and shortens the path to a production-ready platform.",
+          "proof.github": "Kontiki on GitHub",
+          "manifesto.quote": "A clear outcome, a held scope, a platform that stays easy to evolve.",
+          "manifesto.body": "From day one: deliverables, cadence, and acceptance criteria. Then: a system your team can own and extend.",
+          "contact.title": "Let’s talk about your next system.",
+          "contact.body": "Describe the outcome you need. We’ll tell you how to slice it and ship it.",
+          "footer": "distributed systems · fixed scope · open-source foundation"
+        }
+      };
+
+      var STORAGE_KEY = "tanoa-lang";
+
+      function applyLang(lang) {
+        var dict = STRINGS[lang] || STRINGS.fr;
+        document.documentElement.lang = lang;
+
+        var meta = document.getElementById("meta-desc");
+        if (meta) meta.setAttribute("content", dict["meta.desc"]);
+
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          var key = el.getAttribute("data-i18n");
+          if (dict[key] != null) el.textContent = dict[key];
+        });
+        document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+          var key = el.getAttribute("data-i18n-html");
+          if (dict[key] != null) el.innerHTML = dict[key];
+        });
+
+        document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+          btn.setAttribute("aria-pressed", btn.getAttribute("data-lang") === lang ? "true" : "false");
+        });
+
+        try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+        try {
+          history.replaceState(null, "", lang === "en" ? "#en" : "#fr");
+        } catch (e) {}
+      }
+
+      function detectLang() {
+        var hash = (location.hash || "").replace("#", "").toLowerCase();
+        if (hash === "en" || hash === "fr") return hash;
+        try {
+          var stored = localStorage.getItem(STORAGE_KEY);
+          if (stored === "en" || stored === "fr") return stored;
+        } catch (e) {}
+        var nav = (navigator.language || "fr").toLowerCase();
+        return nav.indexOf("fr") === 0 ? "fr" : "en";
+      }
+
+      document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          applyLang(btn.getAttribute("data-lang"));
+        });
+      });
+
+      applyLang(detectLang());
+
+      var top = document.getElementById("site-top");
+      if (top) {
+        var onScroll = function () {
+          top.classList.toggle("is-scrolled", window.scrollY > 8);
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+      }
+    })();
+  </script>
+</body>
+</html>
