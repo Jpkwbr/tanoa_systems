@@ -33,14 +33,22 @@
 
 -
 
-## 5. Instructions de recette
+## 5. Candidats capital technique (réutilisation)
+
+| Brique | Obligatoire critères client ? | Destination envisagée | Effort extraction | Statut |
+|--------|-------------------------------|------------------------|-------------------|--------|
+| | oui / non | interne / OSS / plus tard | ~N j | noté / extrait / abandonné |
+
+Rappel : version client d’abord ; généricisation OSS en marge ou post-recette — voir [flow-client.md](../flow-client.md).
+
+## 6. Instructions de recette
 
 1. […]
 2. […]
 
 Jeux d’essai / comptes fournis : […]
 
-## 6. Suite
+## 7. Suite
 
 - Recette client : voir `05-recette-lot.md` / mail associé  
 - Lot suivant prévu : [Lot N+1 / clôture]

@@ -1,6 +1,6 @@
 # Flow client — étapes, inputs, livrables
 
-Processus commercial et de livraison Tanoa Systems (forfait).  
+Processus commercial et de livraison Tanoa Systems (forfait).
 À utiliser dès qu’un contact entre, y compris en phase 0.
 
 Templates prêts à copier : [`templates/`](templates/).

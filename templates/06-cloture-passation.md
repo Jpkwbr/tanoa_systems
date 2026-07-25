@@ -49,3 +49,12 @@
 
 - [ ] Facturation finale émise / soldée  
 - [ ] Demande de retour client envoyée (`06-demande-retour-client.md`)  
+
+## 8. Capital technique (suite interne)
+
+| Candidat (réf. livraisons de lots) | Action | Responsable | Échéance |
+|------------------------------------|--------|-------------|----------|
+| | playbook / PR OSS / drop | | |
+
+- [ ] Aucun secret / règle métier client dans une éventuelle PR publique  
+- [ ] Accord client obtenu si réutilisation directe de son code (sinon réécriture)
