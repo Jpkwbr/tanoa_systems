@@ -15,23 +15,47 @@
     <a class="nav-back" href="index.html">← Templates</a>
     <header class="top">
       <div class="brand">Tanoa <span>Systems</span></div>
-      <div class="badge">Interne · Go / No-go</div>
+      <div class="badge">Interne · 2</div>
     </header>
     <h1>Grille d’évaluation — mission</h1>
-    <p class="lede">Évaluation go / no-go après découverte.</p>
+    <p class="lede">Évaluation go / no-go après découverte. Annexe : signaux pour le commercial.</p>
     <p class="note">À remplir après l’appel découverte (voire en fin de cadrage).<br />
-    Référence : <a href="../principes-fondateurs.html">principes-fondateurs.html</a> · <a href="../flow-client.html">flow-client.html</a></p>
+    Ligne directrice : <a href="../principes-fondateurs.html">principes-fondateurs.html</a> ·
+    Process : <a href="../flow-client.html">flow-client.html</a><br />
+    Survolez le <strong>?</strong> pour l’aide à la saisie.</p>
 
     <table class="meta">
-      <tr><th>Client / projet</th><td class="blank">[…]</td></tr>
-      <tr><th>Date</th><td class="blank">[…]</td></tr>
-      <tr><th>Évaluateurs</th><td class="blank">[…]</td></tr>
-      <tr><th>Réf. notes découverte</th><td class="blank">[…]</td></tr>
+      <tr>
+        <th>Client / projet
+          <span class="tip" tabindex="0" data-tip="Même id que le dossier / pipeline Phase 0 si déjà créé.">?</span>
+        </th>
+        <td class="blank">[…]</td>
+      </tr>
+      <tr>
+        <th>Date
+          <span class="tip" tabindex="0" data-tip="Date de l’évaluation (souvent juste après la découverte).">?</span>
+        </th>
+        <td class="blank">[…]</td>
+      </tr>
+      <tr>
+        <th>Évaluateurs
+          <span class="tip" tabindex="0" data-tip="Les deux rôles si possible. Go/no-go n’est pas une décision solo commercial.">?</span>
+        </th>
+        <td class="blank">[…]</td>
+      </tr>
+      <tr>
+        <th>Réf. notes découverte
+          <span class="tip" tabindex="0" data-tip="Lien ou chemin vers le template 01 rempli / dossier 01-decouverte.">?</span>
+        </th>
+        <td class="blank">[…]</td>
+      </tr>
     </table>
 
     <section>
       <p class="kicker">01 · Éliminatoire</p>
-      <h2>Filtre principes</h2>
+      <h2>Filtre principes
+        <span class="tip" tabindex="0" data-tip="Ligne directrice : principes fondateurs. Au moins Exploitation ou Investissement réel. Sinon no-go, même si le ticket est joli.">?</span>
+      </h2>
       <table>
         <thead><tr><th>Critère</th><th>Oui / Non / Partiel</th><th>Commentaire</th></tr></thead>
         <tbody>
@@ -45,7 +69,9 @@
 
     <section>
       <p class="kicker">02 · Éliminatoire</p>
-      <h2>Fit offre</h2>
+      <h2>Fit offre
+        <span class="tip" tabindex="0" data-tip="Barème 0–2. No-go si 0 sur forfait possible ou dispo, ou total &lt; 6/10. Cœur de métier = intégrations, bus, async, petite plateforme backend.">?</span>
+      </h2>
       <table>
         <thead><tr><th>Critère</th><th>0–2</th><th>Commentaire</th></tr></thead>
         <tbody>
@@ -62,7 +88,9 @@
 
     <section>
       <p class="kicker">03 · Discriminant</p>
-      <h2>Attractivité</h2>
+      <h2>Attractivité
+        <span class="tip" tabindex="0" data-tip="Ne bloque pas seul le go, mais tranche entre deux missions ou oriente le découpage en lots. Risque de scope : 2 = risque bas.">?</span>
+      </h2>
       <table>
         <thead><tr><th>Critère</th><th>0–2</th><th>Commentaire</th></tr></thead>
         <tbody>
@@ -78,7 +106,9 @@
 
     <section>
       <p class="kicker">04</p>
-      <h2>Synthèse</h2>
+      <h2>Synthèse
+        <span class="tip" tabindex="0" data-tip="Motif obligatoire si no-go (capitalisation Phase 0). Qui suit = owner de la prochaine action. Archiver la grille dans le dossier opportunité.">?</span>
+      </h2>
       <table class="meta">
         <tr><th>Score fit offre</th><td class="blank">/10</td></tr>
         <tr><th>Score attractivité</th><td class="blank">/10</td></tr>
@@ -96,7 +126,7 @@
 
     <section>
       <p class="kicker">Aide</p>
-      <h2>Signaux rapides</h2>
+      <h2>Signaux rapides (après scoring)</h2>
       <table>
         <thead><tr><th>Signal</th><th>Lecture</th></tr></thead>
         <tbody>
@@ -106,6 +136,57 @@
           <tr><td>Client vend la solution, refuse le besoin</td><td>Recadrer ou no-go</td></tr>
         </tbody>
       </table>
+    </section>
+
+    <section>
+      <p class="kicker">Annexe</p>
+      <h2>Signaux pour reconnaître un fit
+        <span class="tip" tabindex="0" data-tip="Aide commercial en découverte. Ce n’est pas le scoring : renvoyer ici pendant l’appel, puis confirmer sur la grille ci-dessus.">?</span>
+      </h2>
+      <p class="note">
+        Bille pour le commercial (découverte / premier contact).
+        Ligne directrice : <a href="../principes-fondateurs.html">principes fondateurs</a>.
+        Ici : indices concrets pour qualifier vite — pas une checklist d’architecture.
+      </p>
+
+      <h3>Verts — approfondir</h3>
+      <ul>
+        <li>« Nos applications ne se parlent pas » / fichiers, FTP, copier-coller entre systèmes</li>
+        <li>Traitements longs, asynchrones, files d’attente, jobs qui plantent ou qu’on relance à la main</li>
+        <li>Besoin de bus / événements / découplage entre services</li>
+        <li>Alertes, monitoring, notifications quand un service ou un flux casse</li>
+        <li>Intégrer un outil métier (LIS, device, API tierce…) dans le SI existant</li>
+        <li>« On a déjà des services, on veut fiabiliser / industrialiser »</li>
+        <li>Décideur technique accessible + problème bornable en lots</li>
+      </ul>
+
+      <h3>Jaunes — cadrer fort avant devis</h3>
+      <ul>
+        <li>Gros SI + demande vague (« digitaliser », « moderniser la plateforme »)</li>
+        <li>Solution imposée (Kafka, microservices, outil X) sans besoin reformulé</li>
+        <li>Beaucoup de front / UX mélangé au besoin d’intégration</li>
+        <li>Pas d’interlocuteur tech — seulement achats ou direction générale</li>
+      </ul>
+
+      <h3>Rouges — écarter ou reformuler</h3>
+      <ul>
+        <li>Régie / renfort d’équipe sans livrable forfait</li>
+        <li>Refonte applicative générale hors intégrations / petite plateforme backend</li>
+        <li>Achat de licence ou support d’un produit (Kontiki vendu comme tel)</li>
+        <li>Mission one-shot sans levier : n’exploite ni n’enrichit le patrimoine</li>
+      </ul>
+
+      <h3>Pont vers les principes</h3>
+      <table>
+        <thead><tr><th>Ce que dit le client</th><th>Lecture Tanoa</th></tr></thead>
+        <tbody>
+          <tr><td>« Brancher X à Y, de façon fiable »</td><td>Exploitation probable</td></tr>
+          <tr><td>« On reconstruit toujours les mêmes briques »</td><td>Investissement possible</td></tr>
+          <tr><td>« Deux devs six mois chez nous »</td><td>No-fit (régie)</td></tr>
+          <tr><td>« On veut votre framework »</td><td>Recadrer sur le livrable, sinon no-fit</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Le commercial qualifie avec ces signaux. Le fit technique (Exploitation / Investissement) se confirme à deux sur cette grille.</p>
     </section>
 
     <footer class="foot">

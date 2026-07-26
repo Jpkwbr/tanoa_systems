@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tanoa Systems — Discours 2 minutes (interne)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="templates/internal.css" />
+</head>
+<body>
+  <article class="page">
+    <header class="top">
+      <div class="brand">Tanoa <span>Systems</span></div>
+      <div class="top-right">
+        <div class="badge" data-i18n="badge"></div>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <h1 data-i18n="title"></h1>
+    <p class="lede" data-i18n="lede"></p>
+    <p class="note" data-i18n="disclaimer"></p>
+
+    <section>
+      <p class="kicker" data-i18n="sig.kicker"></p>
+      <h2 data-i18n="sig.title"></h2>
+      <p data-i18n="sig.intro"></p>
+      <blockquote data-i18n="sig.body"></blockquote>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="ex.kicker"></p>
+      <h2 data-i18n="ex.title"></h2>
+      <p data-i18n="ex.intro"></p>
+      <blockquote data-i18n="ex.body"></blockquote>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="beats.kicker"></p>
+      <h2 data-i18n="beats.title"></h2>
+      <p data-i18n="beats.intro"></p>
+      <ol>
+        <li data-i18n-html="beats.1"></li>
+        <li data-i18n-html="beats.2"></li>
+        <li data-i18n-html="beats.3"></li>
+        <li data-i18n-html="beats.4"></li>
+      </ol>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="esn.kicker"></p>
+      <h2 data-i18n="esn.title"></h2>
+      <p data-i18n="esn.q"></p>
+      <p data-i18n="esn.intro"></p>
+      <blockquote data-i18n="esn.body"></blockquote>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="use.kicker"></p>
+      <h2 data-i18n="use.title"></h2>
+      <ul>
+        <li data-i18n="use.1"></li>
+        <li data-i18n-html="use.2"></li>
+        <li data-i18n-html="use.3"></li>
+        <li data-i18n-html="use.4"></li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <span data-i18n="foot.left"></span>
+      <span data-i18n="foot.right"></span>
+    </footer>
+  </article>
+
+  <script>
+    (function () {
+      var STRINGS = {
+        fr: {
+          "badge": "Document interne",
+          "title": "Discours 2 minutes",
+          "lede": "Trame orale pour répondre à « vous faites quoi ? » — ~2 minutes.",
+          "disclaimer": "C’est un support, pas un script. Adapter au contexte, à l’interlocuteur et au temps dispo — pas forcément à suivre à la lettre.",
+          "sig.kicker": "À figer",
+          "sig.title": "Phrase signature",
+          "sig.intro": "À ressortir à chaque fois — même wording commercial et tech.",
+          "sig.body": "Tanoa Systems réalise des systèmes distribués au forfait, en s’appuyant sur un socle open source qui accélère la livraison — le client paie le livrable, pas le framework.",
+          "ex.kicker": "À dire",
+          "ex.title": "Version parlée",
+          "ex.intro": "Exemple continu qui enchaîne les 4 temps — à adapter, pas à réciter.",
+          "ex.body": "Tanoa Systems réalise des systèmes distribués au forfait, en s’appuyant sur un socle open source qui accélère la livraison — le client paie le livrable, pas le framework. On est spécialisés : on fait moins de choses, et on les fait bien. Forfait, lots, critères d’acceptation ; ceux qui conçoivent développent. Si on n’a pas de vraie plus-value sur un sujet — autant passer par une ESN classique — on le dit et on refuse. Concrètement, on intervient quand des applications métier doivent se parler de façon fiable, quand il faut des traitements asynchrones, un bus d’événements, des alertes sur les flux, ou intégrer un outil métier / une API tierce dans le SI — jusqu’à industrialiser des services déjà en place autour d’une petite plateforme backend. Si votre besoin ressemble à ça, décrivez-le : on vous dira comment le cadrer — ou si ce n’est pas pour nous.",
+          "beats.kicker": "Pense-bête",
+          "beats.title": "Quatre temps",
+          "beats.intro": "Ordre fixe. Les cas d’usage illustrent — ils ne définissent pas.",
+          "beats.1": "<strong>Phrase signature</strong> (~10 s) — la phrase ci-dessus, à l’identique.",
+          "beats.2": "<strong>Différenciation</strong> (~20–30 s) — spécialisés : moins de choses, bien faites ; forfait + concepteurs = développeurs ; on assume de refuser quand on n’a pas de plus-value (une ESN classique suffit).",
+          "beats.3": "<strong>Terrain</strong> (~40–50 s) — 2–3 signaux verts : applis qui se parlent ; async / files / jobs ; bus & événements ; alertes ; intégration outil / API ; industrialiser des services existants. Détail : <a href=\"templates/02-evaluation-mission.html\">annexe évaluation</a>.",
+          "beats.4": "<strong>Ouverture</strong> (~10 s) — décrivez le besoin ; on dit si ça se cadre — ou si ce n’est pas pour nous.",
+          "esn.kicker": "Objection fréquente",
+          "esn.title": "Réponse type — ESN",
+          "esn.q": "« Qu’est-ce qui vous différencie des ESN ? »",
+          "esn.intro": "Le cœur : spécialisation + refus assumé. Le forfait vient en appui, pas en ouverture.",
+          "esn.body": "On est spécialisés : on fait moins de choses, et on les fait bien — systèmes distribués, intégrations, petites plateformes backend. On assume de refuser une mission si on n’y apporte pas plus qu’une ESN classique. Quand on dit oui, c’est au forfait, avec les mêmes personnes en conception et en développement, et un socle open source qui accélère vraiment la livraison.",
+          "use.kicker": "Usage",
+          "use.title": "Quand s’en servir",
+          "use.1": "Networking, intro, premier échange oral.",
+          "use.2": "Alignement binôme — même phrase signature, même différenciation.",
+          "use.3": "Support écrit client : <a href=\"fiche-offre.html\">fiche offre</a> (PJ) · <a href=\"tanoa-systems-v2.html\">vitrine</a>.",
+          "use.4": "Signaux concrets (verts / jaunes / rouges) : <a href=\"templates/02-evaluation-mission.html\">annexe évaluation mission</a>.",
+          "foot.left": "TANOA SYSTEMS · DISCOURS 2 MIN",
+          "foot.right": "USAGE INTERNE · NON PUBLIC"
+        },
+        en: {
+          "badge": "Internal document",
+          "title": "2-minute talk track",
+          "lede": "Oral outline for “what do you do?” — about 2 minutes.",
+          "disclaimer": "This is a support outline, not a script. Adapt to context, audience, and time available — not meant to be followed word for word.",
+          "sig.kicker": "Lock this",
+          "sig.title": "Signature line",
+          "sig.intro": "Reuse every time — same wording for sales and tech.",
+          "sig.body": "Tanoa Systems delivers distributed systems at a fixed price, backed by an open-source foundation that speeds up delivery — the client pays for the deliverable, not the framework.",
+          "ex.kicker": "What to say",
+          "ex.title": "Spoken version",
+          "ex.intro": "Continuous sample that runs the four beats — adapt it, don’t recite it.",
+          "ex.body": "Tanoa Systems delivers distributed systems at a fixed price, backed by an open-source foundation that speeds up delivery — the client pays for the deliverable, not the framework. We’re specialized: we do fewer things, and we do them well. Fixed scope, lots, acceptance criteria; the people who design are the ones who build. If we have no real edge on a topic — a classic IT firm is the better fit — we say so and we decline. Concretely, we step in when business applications need to talk reliably, when you need async processing, an event bus, flow alerts, or to integrate a business tool / third-party API into the landscape — through to hardening existing services around a focused backend platform. If your need looks like that, describe it — we’ll tell you how to frame it, or whether it’s not for us.",
+          "beats.kicker": "Cheat sheet",
+          "beats.title": "Four beats",
+          "beats.intro": "Fixed order. Use cases illustrate — they don’t define.",
+          "beats.1": "<strong>Signature line</strong> (~10 s) — the line above, word for word.",
+          "beats.2": "<strong>Differentiation</strong> (~20–30 s) — specialized: fewer things, done well; fixed scope + designers = builders; we own declining when we have no edge (a classic IT firm is enough).",
+          "beats.3": "<strong>Terrain</strong> (~40–50 s) — 2–3 green signals: apps that must talk; async / queues / jobs; bus & events; alerts; tool / API integration; harden existing services. Detail: <a href=\"templates/02-evaluation-mission.html\">evaluation annex</a>.",
+          "beats.4": "<strong>Open</strong> (~10 s) — describe the need; we say if it frames — or if it’s not for us.",
+          "esn.kicker": "Common pushback",
+          "esn.title": "Model answer — IT services firms",
+          "esn.q": "“How are you different from a classic IT services firm?”",
+          "esn.intro": "Core: specialization + owned refusal. Fixed scope supports — it doesn’t open.",
+          "esn.body": "We’re specialized: we do fewer things, and we do them well — distributed systems, integrations, focused backend platforms. We own declining a mission if we wouldn’t add more than a classic IT firm. When we say yes, it’s fixed-scope, with the same people designing and building, and an open-source foundation that truly speeds delivery.",
+          "use.kicker": "Usage",
+          "use.title": "When to use it",
+          "use.1": "Networking, intro, first oral exchange.",
+          "use.2": "Pair alignment — same signature line, same differentiation.",
+          "use.3": "Written client support: <a href=\"fiche-offre.html\">offer sheet</a> (attachment) · <a href=\"tanoa-systems-v2.html\">site</a>.",
+          "use.4": "Concrete signals (green / yellow / red): <a href=\"templates/02-evaluation-mission.html\">mission evaluation annex</a>.",
+          "foot.left": "TANOA SYSTEMS · 2-MIN TALK TRACK",
+          "foot.right": "INTERNAL USE · NOT PUBLIC"
+        }
+      };
+
+      var KEY = "tanoa-discours-lang";
+      var TITLE = {
+        fr: "Tanoa Systems — Discours 2 minutes (interne)",
+        en: "Tanoa Systems — 2-minute talk track (internal)"
+      };
+
+      function apply(lang) {
+        var dict = STRINGS[lang] || STRINGS.fr;
+        document.documentElement.lang = lang;
+        document.title = TITLE[lang] || TITLE.fr;
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          var k = el.getAttribute("data-i18n");
+          if (dict[k] != null) el.textContent = dict[k];
+        });
+        document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+          var k = el.getAttribute("data-i18n-html");
+          if (dict[k] != null) el.innerHTML = dict[k];
+        });
+        document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+          btn.setAttribute("aria-pressed", btn.getAttribute("data-lang") === lang ? "true" : "false");
+        });
+        try { localStorage.setItem(KEY, lang); } catch (e) {}
+      }
+
+      function detect() {
+        try {
+          var s = localStorage.getItem(KEY) || localStorage.getItem("tanoa-lang") || localStorage.getItem("tanoa-feuille-lang");
+          if (s === "en" || s === "fr") return s;
+        } catch (e) {}
+        return ((navigator.language || "fr").toLowerCase().indexOf("fr") === 0) ? "fr" : "en";
+      }
+
+      document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+        btn.addEventListener("click", function () { apply(btn.getAttribute("data-lang")); });
+      });
+      apply(detect());
+    })();
+  </script>
+</body>
+</html>

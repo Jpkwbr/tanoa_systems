@@ -62,6 +62,7 @@
       <a href="templates/index.html">Templates mission</a>
       <a href="principes-fondateurs.html">Principes fondateurs</a>
       <a href="feuille-de-route.html">Feuille de route</a>
+      <a href="pipeline-opportunites.html">Pipeline opportunités</a>
     </div>
 
     <section>
@@ -77,40 +78,44 @@ flowchart TD
 
   D --> E{Fit Tanoa ?}
   E -->|No-fit| Z2[Poli refus + motif]
-  E -->|Flou / risque| F[2. Cadrage<br/>inputs client requis]
+  E -->|Flou / risque| F[2. Évaluation go/no-go]
   E -->|Fit clair + inputs OK| F
 
-  F --> G{Inputs bloquants<br/>fournis ?}
-  G -->|Non| Z3[Pause / relance<br/>pas de devis ferme]
-  G -->|Oui| H[Cadrage : scope, lots,<br/>critères, chiffrage]
+  F --> G{Go ?}
+  G -->|No-go| Z2
+  G -->|Go| H[3. Cadrage<br/>inputs client requis]
 
-  H --> I{Client valide<br/>le cadrage ?}
-  I -->|Non| Z4[Fin ou reboucle cadrage]
-  I -->|Oui| J[3. Proposition forfait]
+  H --> I{Inputs bloquants<br/>fournis ?}
+  I -->|Non| Z3[Pause / relance<br/>pas de devis ferme]
+  I -->|Oui| J[Cadrage : scope, lots,<br/>critères, chiffrage]
 
-  J --> K{Client signe ?}
-  K -->|Non / expire| Z5[Classement + date relance]
-  K -->|Oui| L[4. Kickoff lot 1]
+  J --> K{Client valide<br/>le cadrage ?}
+  K -->|Non| Z4[Fin ou reboucle cadrage]
+  K -->|Oui| L[4. Proposition forfait]
 
-  L --> M{Accès et contacts<br/>prêts ?}
-  M -->|Non| L2[Bloquer démarrage<br/>actions kickoff]
-  L2 --> M
-  M -->|Oui| N[5. Delivery lot N]
+  L --> M{Client signe ?}
+  M -->|Non / expire| Z5[Classement + date relance]
+  M -->|Oui| N[5. Kickoff lot 1]
 
-  N --> O[Livraison + demande recette]
-  O --> P{Recette lot ?}
-  P -->|Refus vs critères| N2[Corrections dans forfait]
+  N --> O{Accès et contacts<br/>prêts ?}
+  O -->|Non| N2[Bloquer démarrage<br/>actions kickoff]
   N2 --> O
-  P -->|Réserves hors critères| AV[Avenant chiffré]
-  AV --> N
-  P -->|Accepté| Q{Dernier lot ?}
+  O -->|Oui| P[6. Delivery lot N]
 
-  Q -->|Non| N
-  Q -->|Oui| R[6. Clôture + passation]
-  R --> S[Demande retour client]
-  S --> T{Nouveau besoin ?}
-  T -->|Oui| F
-  T -->|Non| Z6[Fin mission]
+  P --> Q[Livraison + demande recette]
+  Q --> R{Recette lot ?}
+  R -->|Refus vs critères| P2[Corrections dans forfait]
+  P2 --> Q
+  R -->|Réserves hors critères| AV[Avenant chiffré]
+  AV --> P
+  R -->|Accepté| S{Dernier lot ?}
+
+  S -->|Non| P
+  S -->|Oui| T[7. Clôture + passation]
+  T --> U[Demande retour client]
+  U --> V{Nouveau besoin ?}
+  V -->|Oui| H
+  V -->|Non| Z6[Fin mission]
         </pre>
       </div>
     </section>
@@ -138,45 +143,52 @@ flowchart TD
           </tr>
           <tr>
             <td><strong>1. Appel découverte</strong></td>
-            <td>Comprendre le <strong>besoin</strong> ; filtrer fit / no-fit</td>
+            <td>Comprendre le <strong>besoin</strong> ; préparer le go / no-go</td>
             <td>Contexte métier ; systèmes ; contraintes ; critère de succès ; décideur &amp; timing</td>
-            <td>Notes internes ; go / no-go / cadrage nécessaire</td>
-            <td><a href="templates/01-notes-appel-decouverte.html">01</a> · <a href="templates/07-evaluation-mission.html">07</a></td>
+            <td>Notes internes</td>
+            <td><a href="templates/01-notes-appel-decouverte.html">01</a></td>
           </tr>
           <tr>
-            <td><strong>2. Cadrage</strong></td>
+            <td><strong>2. Évaluation</strong></td>
+            <td>Décision go / no-go / go conditionnel</td>
+            <td>Notes découverte ; contraintes dispo</td>
+            <td>Grille remplie ; motif si no-go</td>
+            <td><a href="templates/02-evaluation-mission.html">02</a></td>
+          </tr>
+          <tr>
+            <td><strong>3. Cadrage</strong></td>
             <td>Périmètre et chiffrage fiables</td>
             <td>Docs / APIs / schémas ; exemples de flux ; interlocuteur technique ; environnements</td>
             <td>Besoin reformulé ; périmètre in/out ; lots + critères ; hypothèses ; chiffrage</td>
-            <td><a href="templates/02-cadrage.html">02</a></td>
+            <td><a href="templates/03-cadrage.html">03</a></td>
           </tr>
           <tr>
-            <td><strong>3. Proposition</strong></td>
+            <td><strong>4. Proposition</strong></td>
             <td>Décision client</td>
             <td>Validation écrite du périmètre ; circuit de signature / facturation</td>
             <td>Proposition forfait ; conditions de facturation</td>
-            <td><a href="templates/03-proposition.html">03</a></td>
+            <td><a href="templates/04-proposition.html">04</a></td>
           </tr>
           <tr>
-            <td><strong>4. Kickoff</strong></td>
+            <td><strong>5. Kickoff</strong></td>
             <td>Démarrer le lot 1 sans ambiguïté</td>
             <td>Accès repo / VPN / environnements ; contacts ops ; rythme de points</td>
             <td>CR kickoff ; planning lot 1 ; canaux &amp; rituels</td>
-            <td><a href="templates/04-compte-rendu-kickoff.html">04</a></td>
+            <td><a href="templates/05-compte-rendu-kickoff.html">05</a></td>
           </tr>
           <tr>
-            <td><strong>5. Delivery</strong></td>
+            <td><strong>6. Delivery</strong></td>
             <td>Livrer et faire recetter</td>
             <td>Retours sous délai ; décisions bloquantes ; jeux d’essai si besoin</td>
             <td>Code / config / doc ; démo ; PV ou mail de recette</td>
-            <td><a href="templates/05-livraison-lot.html">05 liv.</a> · <a href="templates/05-recette-lot.html">05 rec.</a></td>
+            <td><a href="templates/06-livraison-lot.html">06 liv.</a> · <a href="templates/06-recette-lot.html">06 rec.</a></td>
           </tr>
           <tr>
-            <td><strong>6. Clôture</strong></td>
+            <td><strong>7. Clôture</strong></td>
             <td>Clore le forfait ; capitaliser</td>
             <td>Recette finale ; éventuel retour d’expérience</td>
             <td>Passation ; inventaire ; demande de retour ; suite éventuelle</td>
-            <td><a href="templates/06-cloture-passation.html">06</a> · <a href="templates/06-demande-retour-client.html">retour</a></td>
+            <td><a href="templates/07-cloture-passation.html">07</a> · <a href="templates/07-demande-retour-client.html">retour</a></td>
           </tr>
         </tbody>
       </table>
@@ -186,7 +198,7 @@ flowchart TD
       <p class="kicker">Règles</p>
       <h2>Non négociables</h2>
       <ul class="rules">
-        <li>Pas de devis <strong>ferme</strong> sans étape 2 (périmètre + critères d’acceptation).</li>
+        <li>Pas de devis <strong>ferme</strong> sans étape 3 (périmètre + critères d’acceptation).</li>
         <li>Tout hors périmètre après signature → <strong>avenant</strong>, pas absorption silencieuse.</li>
         <li>Priorité au <strong>besoin</strong> ; une solution technique dictée par le client se reformule en besoin avant chiffrage.</li>
         <li>Fit interne (go / no-go) : la mission <strong>exploite</strong> et/ou <strong>enrichit</strong> le système de production (voir <a href="principes-fondateurs.html">principes fondateurs</a>). Sinon, écarter.</li>

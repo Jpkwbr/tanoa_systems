@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tanoa Systems — Pipeline opportunités</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="templates/internal.css" />
+</head>
+<body>
+  <article class="page">
+    <header class="top">
+      <div class="brand">Tanoa <span>Systems</span></div>
+      <div class="badge">Document interne</div>
+    </header>
+
+    <h1>Pipeline opportunités</h1>
+    <p class="lede">
+      Organisation minimale pour suivre les opportunités et capitaliser —
+      y compris les missions avortées : tableur + dossiers.
+    </p>
+    <p class="note">
+      Complète <a href="flow-client.html">flow-client.html</a> (process commercial / livraison)
+      et <a href="templates/02-evaluation-mission.html">02 évaluation</a> (go / no-go).
+      Owner pipeline : rôle Commercial &amp; cadre.
+    </p>
+
+    <section>
+      <p class="kicker">Principe</p>
+      <h2>Deux artefacts, une règle</h2>
+      <ul>
+        <li><strong>Pipeline</strong> — une ligne par opportunité (vue d’ensemble).</li>
+        <li><strong>Dossier</strong> — un répertoire par opportunité (preuves et docs).</li>
+      </ul>
+      <p class="note">
+        Pas de statut dans le pipeline sans dossier.
+        Pas de no-go / silence classé sans motif écrit dans le dossier.
+      </p>
+    </section>
+
+    <section>
+      <p class="kicker">Pipeline</p>
+      <h2>Tableur (1 onglet suffit)</h2>
+      <p>Outil libre : Google Sheet, Calc, Notion table — l’important est le partage binôme.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Colonne</th>
+            <th>Contenu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Id</td><td>Court, stable — ex. <code>2026-03-acme</code></td></tr>
+          <tr><td>Client / contact</td><td>Nom + canal</td></tr>
+          <tr><td>Besoin (1 ligne)</td><td>Reformulation métier, pas la stack</td></tr>
+          <tr><td>Étape flow</td><td>Voir statuts ci-dessous</td></tr>
+          <tr><td>Prochaine action</td><td>Qui · quoi · date</td></tr>
+          <tr><td>Issue</td><td>Ouvert / Go / No-go / Silence / Gagné</td></tr>
+          <tr><td>Motif (si clos)</td><td>Une phrase</td></tr>
+          <tr><td>Lien dossier</td><td>URL ou chemin</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Statuts étape (alignés flow-client)</h3>
+      <table>
+        <thead><tr><th>Statut</th><th>Signifie</th></tr></thead>
+        <tbody>
+          <tr><td>0 Contact</td><td>Premier échange / réponse envoyée</td></tr>
+          <tr><td>1 Découverte</td><td>Appel fait ou planifié</td></tr>
+          <tr><td>2 Éval</td><td>Grille go/no-go en cours ou faite</td></tr>
+          <tr><td>3 Cadrage</td><td>Inputs / périmètre</td></tr>
+          <tr><td>4 Proposition</td><td>Devis / proposition envoyée</td></tr>
+          <tr><td>5+ Mission</td><td>Signé → suite flow-client</td></tr>
+          <tr><td>Z Classé</td><td>Clos sans mission (no-go, silence, refus)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <p class="kicker">Dossier</p>
+      <h2>Arborescence type</h2>
+      <p>Un dossier partagé (Drive, Nextcloud, etc.) :</p>
+      <pre style="margin:0.5rem 0 0.75rem;padding:0.85rem 1rem;background:#fff;border:1px solid var(--line);font-family:'IBM Plex Mono',monospace;font-size:0.78rem;line-height:1.45;overflow-x:auto;">opportunites/
+  _pipeline.ods          ← ou lien vers le sheet
+  2026-03-acme/
+    00-mails/            ← EML / PDF / captures utiles
+    01-decouverte/       ← notes (template 01)
+    02-evaluation/       ← grille 02 + motif
+    03-cadrage/          ← si atteint
+    04-proposition/      ← si atteint
+    README.md            ← 5 lignes : contexte, issue, motif</pre>
+      <p class="note">
+        Même si ça s’arrête à l’étape 0 ou 1 : on crée le dossier et on écrit le motif.
+        C’est ça, capitaliser sur une mission avortée.
+      </p>
+    </section>
+
+    <section>
+      <p class="kicker">Déclencheurs</p>
+      <h2>Quand créer / mettre à jour</h2>
+      <table>
+        <thead><tr><th>Événement</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Contact entrant ou premier message sortant utile</td>
+            <td>Ligne pipeline + dossier + <code>00-mails</code></td>
+          </tr>
+          <tr>
+            <td>Appel découverte</td>
+            <td>Notes 01 dans le dossier ; statut → 1</td>
+          </tr>
+          <tr>
+            <td>Fin découverte / doute de fit</td>
+            <td>Grille 02 ; statut → 2 puis Go / No-go</td>
+          </tr>
+          <tr>
+            <td>No-go, refus client, ou silence après 1 relance</td>
+            <td>Issue + motif dans pipeline <em>et</em> README dossier ; statut → Z</td>
+          </tr>
+          <tr>
+            <td>Proposition envoyée</td>
+            <td>Doc 04 archivé ; statut → 4</td>
+          </tr>
+          <tr>
+            <td>Signature</td>
+            <td>Issue = Gagné ; bascule sur flow-client livraison</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="foot">
+      <span>TANOA SYSTEMS · PIPELINE OPPORTUNITÉS</span>
+      <span>USAGE INTERNE · NON PUBLIC</span>
+    </footer>
+  </article>
+</body>
+</html>
