@@ -6,6 +6,9 @@
   --line: rgba(12, 20, 16, 0.14);
   --lagoon: #0f7a5a;
   --lagoon-wash: rgba(15, 122, 90, 0.11);
+  /* Kontiki Forge — même encre, accent cyan/azur (distinct du vert Systems) */
+  --forge: #1289a3;
+  --forge-wash: rgba(18, 137, 163, 0.12);
 }
 
 * { box-sizing: border-box; }
@@ -55,6 +58,30 @@ a { color: var(--lagoon); font-weight: 600; text-decoration: none; }
   line-height: 1;
 }
 .brand span { color: var(--lagoon); }
+.brand.forge span { color: var(--forge); }
+
+/* Wordmarks 2 couleurs — même police que le brand en tête */
+.name,
+.forge-name {
+  font-family: "Fraunces", serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.name span { color: var(--lagoon); }
+.forge-name span { color: var(--forge); }
+
+/* Wordmarks sur fond encre : la partie noire passe en blanc */
+.on-ink .name,
+.on-ink .forge-name,
+.question .name,
+.question .forge-name {
+  color: #fff;
+}
+.on-ink .name span,
+.question .name span { color: var(--lagoon); }
+.on-ink .forge-name span,
+.question .forge-name span { color: #5ec8dc; }
 .top-right {
   display: flex;
   flex-direction: column;
@@ -101,7 +128,7 @@ h1 {
   line-height: 1.15;
 }
 .lede { margin: 0 0 1.5rem; color: var(--muted); max-width: 38rem; font-size: 0.95rem; }
-.lede .name { color: var(--ink); font-weight: 650; }
+.lede .name { color: var(--ink); font-weight: 800; }
 .lede .name span { color: var(--lagoon); }
 
 .kicker {

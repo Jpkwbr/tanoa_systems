@@ -18,6 +18,8 @@
       --lagoon: #0f7a5a;
       --lagoon-bright: #17a379;
       --lagoon-wash: rgba(15, 122, 90, 0.11);
+      --forge: #1289a3;
+      --forge-wash: rgba(18, 137, 163, 0.12);
     }
 
     * { box-sizing: border-box; }
@@ -67,6 +69,16 @@
       line-height: 1;
     }
     .brand span { color: var(--lagoon); }
+    .brand.forge span { color: var(--forge); }
+    .name,
+    .forge-name {
+      font-family: "Fraunces", serif;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .name span { color: var(--lagoon); }
+    .forge-name span { color: var(--forge); }
     .top-right {
       display: flex;
       flex-direction: column;
@@ -260,6 +272,12 @@
       font-size: 0.85rem;
       color: rgba(232, 239, 234, 0.72);
     }
+    .question .name,
+    .question .forge-name {
+      color: #fff;
+    }
+    .question .name span { color: var(--lagoon-bright); }
+    .question .forge-name span { color: #5ec8dc; }
 
     .foot {
       margin-top: 1.75rem;
@@ -307,9 +325,9 @@
 
     <section>
       <p class="kicker" data-i18n="vision.kicker"></p>
-      <h2 data-i18n="vision.title"></h2>
+      <h2 data-i18n-html="vision.title"></h2>
       <p data-i18n-html="vision.p1"></p>
-      <p data-i18n="vision.p2"></p>
+      <p data-i18n-html="vision.p2"></p>
     </section>
 
     <section>
@@ -401,7 +419,7 @@
     <section>
       <p class="kicker" data-i18n="plan.kicker"></p>
       <h2 data-i18n="plan.title"></h2>
-      <p data-i18n="plan.p1"></p>
+      <p data-i18n-html="plan.p1"></p>
       <p data-i18n="plan.p2"></p>
       <ul class="assets">
         <li data-i18n="plan.why.1"></li>
@@ -433,12 +451,12 @@
           "title": "Principes fondateurs",
           "lede": "Constitution interne : comment on choisit les missions, comment on cultive l’avantage de production, et vers quoi on convertit la productivité.",
           "vision.kicker": "Vision",
-          "vision.title": "Un système de production, pas une ESN généraliste",
-          "vision.p1": "L’objectif est de construire un <strong>système de production logicielle</strong> qui améliore continuellement sa capacité à délivrer des logiciels de qualité, rapidement, avec un faible coût cognitif.",
-          "vision.p2": "Le framework Kontiki, les méthodes de travail, les conventions d’ingénierie et l’utilisation de l’IA constituent ensemble cet actif de production.",
+          "vision.title": "<span class=\"name\">Tanoa <span>Systems</span></span> — pas une ESN généraliste",
+          "vision.p1": "<span class=\"name\">Tanoa <span>Systems</span></span> réalise des systèmes distribués au forfait, en s’appuyant sur un socle open source qui accélère la livraison — le client paie le livrable, pas le framework.",
+          "vision.p2": "Ce levier s’appelle <span class=\"forge-name\">Kontiki <span>Forge</span></span> : le framework Kontiki, les méthodes de travail, les conventions d’ingénierie et l’utilisation de l’IA — un système de production qui s’améliore mission après mission.",
           "overview.kicker": "Vue d’ensemble",
           "overview.title": "De la mission au capital — et à la liberté",
-          "overview.body": "Le client achète le <strong>livrable</strong>. Kontiki et le reste du système restent l’avantage de production interne. Une mission n’est retenue que si elle <strong>investit</strong> dans ce système ou l’<strong>exploite</strong> pleinement — pour produire plus de valeur par heure, et convertir ce gain en liberté, autonomie et marge.",
+          "overview.body": "Le client achète le <strong>livrable</strong>. <span class=\"forge-name\">Kontiki <span>Forge</span></span> reste l’avantage de production interne. Une mission n’est retenue que si elle <strong>investit</strong> dans cet actif ou l’<strong>exploite</strong> pleinement — pour produire plus de valeur par heure, et convertir ce gain en liberté, autonomie et marge.",
           "accept.kicker": "Acceptation",
           "accept.title": "Une mission est retenue si elle satisfait au moins un critère",
           "accept.inv.title": "1. Investissement",
@@ -452,9 +470,9 @@
           "accept.exp.3": "bénéficie directement du patrimoine accumulé",
           "accept.footer": "Les missions qui ne font ni l’un ni l’autre doivent être évitées.",
           "assets.kicker": "Actifs",
-          "assets.title": "Ce qui différencie le système",
+          "assets.title": "Ce qui compose Kontiki Forge",
           "assets.1.title": "Kontiki",
-          "assets.1.body": "Framework et runtime",
+          "assets.1.body": "Framework et runtime (cœur technique)",
           "assets.2.title": "Méthode de spécification",
           "assets.2.body": "Markdown → Gherkin → implémentation → revue → tests",
           "assets.3.title": "Règles IA et conventions",
@@ -466,21 +484,21 @@
           "adv.kicker": "Avantage",
           "adv.title": "Deux façons de cultiver",
           "adv.exp.title": "Exploitation",
-          "adv.exp.body": "La mission tire pleinement parti du système déjà en place. Elle va vite et bien grâce au patrimoine existant.",
+          "adv.exp.body": "La mission tire pleinement parti de Kontiki Forge. Elle va vite et bien grâce au patrimoine existant.",
           "adv.inv.title": "Investissement",
-          "adv.inv.body": "Lorsque le besoin le justifie, la mission enrichit le système — sans compromettre la livraison client.",
-          "adv.footer": "Sur la durée, le patrimoine technique progresse plus vite que le temps de travail.",
+          "adv.inv.body": "Lorsque le besoin le justifie, la mission enrichit Kontiki Forge — sans compromettre la livraison client.",
+          "adv.footer": "Sur la durée, Kontiki Forge progresse plus vite que le temps de travail.",
           "end.kicker": "Finalité",
           "end.title": "Plus de valeur par heure — pas plus d’heures vendues",
-          "end.body": "L’objectif est d’augmenter continuellement la valeur produite par heure grâce à un système de production toujours meilleur.",
+          "end.body": "L’objectif est d’augmenter continuellement la valeur produite par heure grâce à Kontiki Forge toujours meilleur.",
           "end.1": "<strong>Liberté</strong>davantage de choix",
           "end.2": "<strong>Autonomie</strong>maîtrise du cap",
           "end.3": "<strong>Temps</strong>disponible pour vivre",
           "end.4": "<strong>Revenu</strong>suffisant, choisi",
           "plan.kicker": "Plan interne",
-          "plan.title": "Kontiki au cœur — invisible côté vente",
-          "plan.p1": "Les clients achètent une solution à leur problème. Kontiki reste l’avantage de production : ce n’est pas le produit vendu.",
-          "plan.p2": "Il est au cœur du système parce qu’il :",
+          "plan.title": "Kontiki Forge — invisible côté vente",
+          "plan.p1": "Les clients achètent une solution à leur problème. <span class=\"forge-name\">Kontiki <span>Forge</span></span> reste l’avantage de production : ce n’est pas le produit vendu.",
+          "plan.p2": "Kontiki (le framework) est au cœur de la Forge parce qu’il :",
           "plan.why.1": "capitalise sur plusieurs années de réflexion architecturale ;",
           "plan.why.2": "permet une forte réutilisation des composants ;",
           "plan.why.3": "fournit un cadre où les assistants IA sont beaucoup plus efficaces ;",
@@ -488,8 +506,8 @@
           "plan.why.5": "facilite le refactoring continu et l’évolution des services ;",
           "plan.why.6": "peut s’enrichir à chaque nouvelle mission.",
           "plan.q.kicker": "Question avant d’accepter",
-          "plan.q.body": "Cette mission renforce-t-elle ou exploite-t-elle efficacement notre système de production basé sur Kontiki&nbsp;?",
-          "plan.q.note": "Si la réponse est non, la mission est probablement hors du positionnement recherché. Kontiki sert à livrer plus vite, avec une meilleure qualité et une meilleure marge — pour convertir ce gain en liberté et en autonomie.",
+          "plan.q.body": "Cette mission renforce-t-elle ou exploite-t-elle efficacement <span class=\"forge-name\">Kontiki <span>Forge</span></span>&nbsp;?",
+          "plan.q.note": "Si la réponse est non, la mission est probablement hors du positionnement recherché. Kontiki Forge sert à livrer plus vite, avec une meilleure qualité et une meilleure marge — pour convertir ce gain en liberté et en autonomie.",
           "foot.left": "TANOA SYSTEMS · PRINCIPES FONDATEURS",
           "foot.right": "USAGE INTERNE · NON PUBLIC"
         },
@@ -498,12 +516,12 @@
           "title": "Founding principles",
           "lede": "Internal constitution: how we choose missions, how we grow our production advantage, and what we convert productivity into.",
           "vision.kicker": "Vision",
-          "vision.title": "A production system, not a generalist IT services firm",
-          "vision.p1": "The goal is to build a <strong>software production system</strong> that continuously improves its ability to deliver quality software, quickly, with low cognitive cost.",
-          "vision.p2": "The Kontiki framework, working methods, engineering conventions, and use of AI together make up this production asset.",
+          "vision.title": "<span class=\"name\">Tanoa <span>Systems</span></span> — not a generalist IT services firm",
+          "vision.p1": "<span class=\"name\">Tanoa <span>Systems</span></span> delivers fixed-scope distributed systems, backed by an open-source foundation that speeds up delivery — the client pays for the deliverable, not the framework.",
+          "vision.p2": "That lever is called <span class=\"forge-name\">Kontiki <span>Forge</span></span>: the Kontiki framework, working methods, engineering conventions, and use of AI — a production system that improves mission after mission.",
           "overview.kicker": "Overview",
           "overview.title": "From mission to capital — and to freedom",
-          "overview.body": "The client buys the <strong>deliverable</strong>. Kontiki and the rest of the system remain the internal production advantage. A mission is only taken if it <strong>invests</strong> in that system or fully <strong>exploits</strong> it — to produce more value per hour, and convert that gain into freedom, autonomy, and margin.",
+          "overview.body": "The client buys the <strong>deliverable</strong>. <span class=\"forge-name\">Kontiki <span>Forge</span></span> remains the internal production advantage. A mission is only taken if it <strong>invests</strong> in that asset or fully <strong>exploits</strong> it — to produce more value per hour, and convert that gain into freedom, autonomy, and margin.",
           "accept.kicker": "Acceptance",
           "accept.title": "A mission is kept if it meets at least one criterion",
           "accept.inv.title": "1. Investment",
@@ -517,9 +535,9 @@
           "accept.exp.3": "benefits directly from accumulated capital",
           "accept.footer": "Missions that do neither should be avoided.",
           "assets.kicker": "Assets",
-          "assets.title": "What differentiates the system",
+          "assets.title": "What makes up Kontiki Forge",
           "assets.1.title": "Kontiki",
-          "assets.1.body": "Framework and runtime",
+          "assets.1.body": "Framework and runtime (technical core)",
           "assets.2.title": "Specification method",
           "assets.2.body": "Markdown → Gherkin → implementation → review → tests",
           "assets.3.title": "AI rules and conventions",
@@ -531,21 +549,21 @@
           "adv.kicker": "Advantage",
           "adv.title": "Two ways to cultivate it",
           "adv.exp.title": "Exploitation",
-          "adv.exp.body": "The mission fully leverages the system already in place. It ships fast and well thanks to existing capital.",
+          "adv.exp.body": "The mission fully leverages Kontiki Forge. It ships fast and well thanks to existing capital.",
           "adv.inv.title": "Investment",
-          "adv.inv.body": "When the need justifies it, the mission enriches the system — without compromising client delivery.",
-          "adv.footer": "Over time, technical capital progresses faster than time worked.",
+          "adv.inv.body": "When the need justifies it, the mission enriches Kontiki Forge — without compromising client delivery.",
+          "adv.footer": "Over time, Kontiki Forge progresses faster than time worked.",
           "end.kicker": "Purpose",
           "end.title": "More value per hour — not more hours sold",
-          "end.body": "The goal is to continuously increase value produced per hour through an ever-better production system.",
+          "end.body": "The goal is to continuously increase value produced per hour through an ever-better Kontiki Forge.",
           "end.1": "<strong>Freedom</strong>more choice",
           "end.2": "<strong>Autonomy</strong>control of direction",
           "end.3": "<strong>Time</strong>available to live",
           "end.4": "<strong>Income</strong>enough, chosen",
           "plan.kicker": "Internal plan",
-          "plan.title": "Kontiki at the core — invisible in sales",
-          "plan.p1": "Clients buy a solution to their problem. Kontiki remains the production advantage: it is not the product sold.",
-          "plan.p2": "It sits at the heart of the system because it:",
+          "plan.title": "Kontiki Forge — invisible in sales",
+          "plan.p1": "Clients buy a solution to their problem. <span class=\"forge-name\">Kontiki <span>Forge</span></span> remains the production advantage: it is not the product sold.",
+          "plan.p2": "Kontiki (the framework) sits at the heart of the Forge because it:",
           "plan.why.1": "builds on years of architectural thinking;",
           "plan.why.2": "enables strong component reuse;",
           "plan.why.3": "provides a coherent frame where AI assistants are far more effective;",
@@ -553,8 +571,8 @@
           "plan.why.5": "supports continuous refactoring and service evolution;",
           "plan.why.6": "can be enriched on each new mission.",
           "plan.q.kicker": "Question before accepting",
-          "plan.q.body": "Does this mission strengthen or efficiently exploit our Kontiki-based production system?",
-          "plan.q.note": "If the answer is no, the mission is probably outside the intended positioning. Kontiki is there to deliver faster, at higher quality and margin — to convert that gain into freedom and autonomy.",
+          "plan.q.body": "Does this mission strengthen or efficiently exploit <span class=\"forge-name\">Kontiki <span>Forge</span></span>?",
+          "plan.q.note": "If the answer is no, the mission is probably outside the intended positioning. Kontiki Forge is there to deliver faster, at higher quality and margin — to convert that gain into freedom and autonomy.",
           "foot.left": "TANOA SYSTEMS · FOUNDING PRINCIPLES",
           "foot.right": "INTERNAL USE · NOT PUBLIC"
         }
