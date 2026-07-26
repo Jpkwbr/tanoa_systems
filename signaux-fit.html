@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tanoa Systems — Signaux de fit (interne)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="templates/internal.css" />
+</head>
+<body>
+  <article class="page">
+    <header class="top">
+      <div class="brand">Tanoa <span>Systems</span></div>
+      <div class="badge">Document interne · brouillon</div>
+    </header>
+
+    <h1>Signaux de fit</h1>
+    <p class="lede">
+      Indices pour qualifier un besoin en découverte / premier contact.
+      Un seul service ou connecteur suffit s’il entre dans une catégorie verte.
+      Décision go / no-go : grille <a href="templates/02-evaluation-mission.html">02-evaluation-mission</a>
+      (ce document ne la remplace pas).
+    </p>
+    <p class="note">Usage interne. Ne pas envoyer au client. Synthèse aussi en annexe de la grille 02.</p>
+
+    <section>
+      <p class="kicker">Lecture</p>
+      <h2>Vert · jaune · rouge</h2>
+      <ul>
+        <li><strong>Vert</strong> — approfondir ; forfait bornable probable.</li>
+        <li><strong>Jaune</strong> — reformuler ou borner avant tout devis.</li>
+        <li><strong>Rouge</strong> — écarter, ou reformuler jusqu’à sortir du rouge.</li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="kicker">Verts</p>
+      <h2>Approfondir</h2>
+
+      <h3>Applications / outils qui doivent se parler</h3>
+      <ul>
+        <li>« On exporte un CSV du LIMS, quelqu’un le retape dans l’ERP. »</li>
+        <li>« Deux logiciels métier : on copie-colle des identifiants. »</li>
+        <li>« Des fichiers arrivent sur un partage / FTP ; on ne sait pas si le traitement a réussi. »</li>
+        <li>« Il faut brancher un outil de labo / un automate / une API partenaire sur le SI. »</li>
+        <li>« Les données divergent entre A et B ; on s’en aperçoit trop tard. »</li>
+      </ul>
+
+      <h3>Traitements asynchrones, files, jobs fragiles</h3>
+      <ul>
+        <li>« Un batch de nuit plante ; on le relance à la main. »</li>
+        <li>« Les imports bloquent l’interface pendant longtemps. »</li>
+        <li>« Des événements arrivent en rafale ; on en perd sans le savoir. »</li>
+        <li>« Quand une commande est validée, plusieurs systèmes doivent réagir sans s’attendre en chaîne. »</li>
+        <li>« On a une file, mais personne n’est prévenu quand elle sature ou échoue. »</li>
+      </ul>
+
+      <h3>Travaux périodiques / polling</h3>
+      <ul>
+        <li>« Toutes les X minutes on interroge une source et on pousse les nouveautés. »</li>
+        <li>« Réconciliation horaire ou quotidienne entre deux référentiels. »</li>
+        <li>« Surveiller une condition métier (échéance, quota, état) et déclencher une action. »</li>
+      </ul>
+
+      <h3>Fiabiliser / industrialiser une petite chaîne de services</h3>
+      <ul>
+        <li>« Ça marche en démo, sans reprises ni tests. »</li>
+        <li>« Chaque nouveau flux est un script one-shot. »</li>
+        <li>« On veut un modèle commun pour démarrer, configurer et faire tourner quelques workers. »</li>
+        <li>« On a déjà des services ; on veut les rendre fiables et observables ensemble. »</li>
+      </ul>
+
+      <h3>Être prévenu quand un flux ou un service demande une action</h3>
+      <ul>
+        <li>« Personne n’est alerté tant qu’un utilisateur ne s’en plaint. »</li>
+        <li>« Notification si le connecteur échoue plusieurs fois de suite. »</li>
+        <li>« Des règles différentes selon la gravité et les destinataires. »</li>
+        <li>« Pouvoir brancher d’autres sources d’alerte plus tard sans tout reconstruire. »</li>
+      </ul>
+
+      <h3>Conditions commerciales (toujours)</h3>
+      <ul>
+        <li>Décideur technique joignable ; besoin exprimable en lots.</li>
+        <li>Client ouvert au forfait + critères d’acceptation.</li>
+        <li>Phase 0 : charge du lot 1 compatible avec la dispo.</li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="kicker">Jaunes</p>
+      <h2>Cadrer fort avant devis</h2>
+      <table>
+        <thead><tr><th>Signal</th><th>Exemple</th><th>Lecture</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Demande vague</td>
+            <td>« Digitaliser » ; « moderniser toute la plateforme »</td>
+            <td>Recadrer 1–2 flux concrets, ou no-go</td>
+          </tr>
+          <tr>
+            <td>Solution imposée</td>
+            <td>« Il nous faut Kafka / microservices / l’outil X »</td>
+            <td>Repartir du besoin métier</td>
+          </tr>
+          <tr>
+            <td>API HTTP comme besoin principal</td>
+            <td>« Une API REST / un CRUD, c’est le projet »</td>
+            <td>
+              Peu de terrain différenciant. Vert seulement si l’HTTP est la porte d’entrée
+              d’un flux (callback → traitement → système métier + fiabilité).
+            </td>
+          </tr>
+          <tr>
+            <td>Supervision / « savoir si c’est up » comme besoin principal</td>
+            <td>« On veut juste voir l’état des services »</td>
+            <td>
+              Ce n’est pas le cœur d’une mission. Demander quel flux / quel métier derrière ;
+              sinon risque de hors positionnement.
+            </td>
+          </tr>
+          <tr>
+            <td>Front / UX dominant</td>
+            <td>« Refonte du portail + un peu d’intégration »</td>
+            <td>Extraire un lot backend/flux ou décliner le front</td>
+          </tr>
+          <tr>
+            <td>Pas d’interlocuteur technique</td>
+            <td>Achats ou direction seule</td>
+            <td>Conditionner à un référent SI</td>
+          </tr>
+          <tr>
+            <td>Périmètre trop large</td>
+            <td>« Tous les sites, tous les flux »</td>
+            <td>Lot 1 = un site / un connecteur</td>
+          </tr>
+          <tr>
+            <td>Astreinte / délais extrêmes</td>
+            <td>« Intervention en cinq minutes, 24×7 »</td>
+            <td>Hors Phase 0 sauf canal et horaires explicitement bornés</td>
+          </tr>
+          <tr>
+            <td>Grosse console métier de règles</td>
+            <td>« Les users doivent tout configurer eux-mêmes dans une UI »</td>
+            <td>Bornage : config d’exploitation vs produit applicatif</td>
+          </tr>
+          <tr>
+            <td>Accès ou exemples absents</td>
+            <td>« Les APIs, on verra plus tard »</td>
+            <td>Pas de devis ferme</td>
+          </tr>
+          <tr>
+            <td>Enrichir le socle sans livrable clair</td>
+            <td>« D’abord le framework, ensuite le métier »</td>
+            <td>Uniquement si un livrable client reste net</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <p class="kicker">Rouges</p>
+      <h2>Écarter ou reformuler</h2>
+      <table>
+        <thead><tr><th>Signal</th><th>Exemple</th><th>Pourquoi</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Régie / renfort d’équipe</td>
+            <td>« Deux développeurs pendant six mois chez nous »</td>
+            <td>Pas de livrable forfait</td>
+          </tr>
+          <tr>
+            <td>Achat de licence / support d’un framework</td>
+            <td>« On veut votre socle / votre produit tel quel »</td>
+            <td>On vend le résultat, pas le framework</td>
+          </tr>
+          <tr>
+            <td>Refonte applicative générale</td>
+            <td>« Réécrire toute l’application métier »</td>
+            <td>Hors cœur intégrations / petite plateforme backend</td>
+          </tr>
+          <tr>
+            <td>Mission sans levier</td>
+            <td>Script jetable, hors flux, hors industrialisation</td>
+            <td>Ni exploitation ni enrichissement du système de production</td>
+          </tr>
+          <tr>
+            <td>Observabilité SI globale comme objet unique</td>
+            <td>« Remplacez notre stack de monitoring d’entreprise »</td>
+            <td>Hors offre</td>
+          </tr>
+          <tr>
+            <td>Mobile, pure UI, data platform comme cœur</td>
+            <td>Application store, design system seul, entrepôt décisionnel</td>
+            <td>Sauf petit connecteur d’alimentation clairement borné</td>
+          </tr>
+          <tr>
+            <td>Fourniture de profils</td>
+            <td>« Vous staffez, on manage »</td>
+            <td>Contradiction avec concepteurs = développeurs</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <p class="kicker">Phrases</p>
+      <h2>Pont rapide</h2>
+      <table>
+        <thead><tr><th>Ce que dit le client</th><th>Couleur</th><th>Suite</th></tr></thead>
+        <tbody>
+          <tr><td>« Brancher X à Y de façon fiable »</td><td>Vert</td><td>Connecteur — un service peut suffire</td></tr>
+          <tr><td>« Jobs qu’on relance à la main »</td><td>Vert</td><td>Async / reprises ; alerte souvent utile</td></tr>
+          <tr><td>« Interroger une source toutes les N minutes »</td><td>Vert</td><td>Service périodique / connecteur</td></tr>
+          <tr><td>« Prévenez-nous si le flux casse »</td><td>Vert</td><td>Alerte liée au livrable</td></tr>
+          <tr><td>« Industrialiser nos petits workers »</td><td>Vert</td><td>Petite chaîne de services operable</td></tr>
+          <tr><td>« On reconstruit toujours les mêmes briques »</td><td>Vert / jaune</td><td>Investissement possible si livrable client net</td></tr>
+          <tr><td>« Juste une API REST »</td><td>Jaune / rouge</td><td>Chercher le flux derrière, sinon peu de fit</td></tr>
+          <tr><td>« Juste voir si les services sont up »</td><td>Jaune / rouge</td><td>Chercher le métier / le flux derrière</td></tr>
+          <tr><td>« Digitaliser tout le SI »</td><td>Jaune</td><td>Un lot pilote ou no-go</td></tr>
+          <tr><td>« Il nous faut telle techno »</td><td>Jaune</td><td>Reformuler le besoin</td></tr>
+          <tr><td>« Des gens en régie »</td><td>Rouge</td><td>No-fit</td></tr>
+          <tr><td>« On veut votre framework »</td><td>Rouge</td><td>Recadrer sur le livrable, sinon no-fit</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <p class="kicker">Forme de mission</p>
+      <h2>Un service ou plusieurs</h2>
+      <table>
+        <thead><tr><th>Forme</th><th>OK ?</th><th>Condition</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Un connecteur / un worker</td>
+            <td>Oui</td>
+            <td>Catégorie verte</td>
+          </tr>
+          <tr>
+            <td>Plusieurs services qui collaborent + exploitabilité</td>
+            <td>Oui</td>
+            <td>Système distribué modeste, périmètre tenu</td>
+          </tr>
+          <tr>
+            <td>Besoin réduit à une brique hors catégorie (API seule, monitoring SI seul…)</td>
+            <td>Non comme cœur</td>
+            <td>Reformuler ou décliner</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <p class="kicker">Exploitation / investissement</p>
+      <h2>Exemples de lecture</h2>
+      <table>
+        <thead><tr><th>Mission</th><th>Type probable</th></tr></thead>
+        <tbody>
+          <tr><td>Connecteur A→B + alerte sur échec</td><td>Exploitation</td></tr>
+          <tr><td>Petite chaîne de services + règles d’alerte</td><td>Exploitation</td></tr>
+          <tr><td>Nouveau type de connecteur réutilisable + livraison client</td><td>Investissement (si livrable net)</td></tr>
+          <tr><td>Travail sur le socle sans livrable métier</td><td>Hors offre client</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="foot">
+      <span>TANOA SYSTEMS · SIGNAUX DE FIT</span>
+      <span>USAGE INTERNE · NON RÉFÉRENCÉ</span>
+    </footer>
+  </article>
+</body>
+</html>

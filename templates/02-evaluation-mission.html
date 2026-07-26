@@ -141,52 +141,60 @@
     <section>
       <p class="kicker">Annexe</p>
       <h2>Signaux pour reconnaître un fit
-        <span class="tip" tabindex="0" data-tip="Aide commercial en découverte. Ce n’est pas le scoring : renvoyer ici pendant l’appel, puis confirmer sur la grille ci-dessus.">?</span>
+        <span class="tip" tabindex="0" data-tip="Aide commercial en découverte. Ce n’est pas le scoring. Détail : signaux-fit.html.">?</span>
       </h2>
       <p class="note">
-        Bille pour le commercial (découverte / premier contact).
-        Ligne directrice : <a href="../principes-fondateurs.html">principes fondateurs</a>.
-        Ici : indices concrets pour qualifier vite — pas une checklist d’architecture.
+        Synthèse pour l’appel. Catalogue détaillé :
+        <a href="../signaux-fit.html">signaux-fit.html</a>.
+        Principes : <a href="../principes-fondateurs.html">principes fondateurs</a>.
+        Un seul connecteur / service suffit s’il est dans une catégorie verte.
       </p>
 
       <h3>Verts — approfondir</h3>
       <ul>
-        <li>« Nos applications ne se parlent pas » / fichiers, FTP, copier-coller entre systèmes</li>
-        <li>Traitements longs, asynchrones, files d’attente, jobs qui plantent ou qu’on relance à la main</li>
-        <li>Besoin de bus / événements / découplage entre services</li>
-        <li>Alertes, monitoring, notifications quand un service ou un flux casse</li>
-        <li>Intégrer un outil métier (LIS, device, API tierce…) dans le SI existant</li>
-        <li>« On a déjà des services, on veut fiabiliser / industrialiser »</li>
-        <li>Décideur technique accessible + problème bornable en lots</li>
+        <li>Applications / outils qui doivent se parler (fichiers, FTP, ressaisie, API tierce, LIS…)</li>
+        <li>Async, files, jobs fragiles, traitements qui bloquent ou se relancent à la main</li>
+        <li>Travaux périodiques / polling métier</li>
+        <li>Fiabiliser / industrialiser une petite chaîne de services</li>
+        <li>Être prévenu quand un <strong>flux</strong> (ou le service qu’on livre) demande une action</li>
+        <li>Décideur technique accessible + problème bornable en lots / forfait</li>
       </ul>
 
       <h3>Jaunes — cadrer fort avant devis</h3>
       <ul>
-        <li>Gros SI + demande vague (« digitaliser », « moderniser la plateforme »)</li>
-        <li>Solution imposée (Kafka, microservices, outil X) sans besoin reformulé</li>
-        <li>Beaucoup de front / UX mélangé au besoin d’intégration</li>
-        <li>Pas d’interlocuteur tech — seulement achats ou direction générale</li>
+        <li>Demande vague (« digitaliser », « moderniser la plateforme »)</li>
+        <li>Solution imposée sans besoin reformulé</li>
+        <li>API HTTP / CRUD comme <strong>cœur</strong> du besoin (chercher le flux derrière)</li>
+        <li>« Juste voir si les services sont up » comme besoin principal (pas une offre isolée)</li>
+        <li>Beaucoup de front / UX mélangé à l’intégration</li>
+        <li>Pas d’interlocuteur tech — seulement achats ou direction</li>
       </ul>
 
       <h3>Rouges — écarter ou reformuler</h3>
       <ul>
         <li>Régie / renfort d’équipe sans livrable forfait</li>
         <li>Refonte applicative générale hors intégrations / petite plateforme backend</li>
-        <li>Achat de licence ou support d’un produit (Kontiki vendu comme tel)</li>
-        <li>Mission one-shot sans levier : n’exploite ni n’enrichit le patrimoine</li>
+        <li>Achat de licence ou support du socle / framework</li>
+        <li>Mission one-shot hors catégorie : n’exploite ni n’enrichit le système de production</li>
+        <li>Observabilité SI globale comme objet unique</li>
       </ul>
 
-      <h3>Pont vers les principes</h3>
+      <h3>Pont rapide</h3>
       <table>
         <thead><tr><th>Ce que dit le client</th><th>Lecture Tanoa</th></tr></thead>
         <tbody>
-          <tr><td>« Brancher X à Y, de façon fiable »</td><td>Exploitation probable</td></tr>
-          <tr><td>« On reconstruit toujours les mêmes briques »</td><td>Investissement possible</td></tr>
+          <tr><td>« Brancher X à Y, de façon fiable »</td><td>Vert — Exploitation probable (un service OK)</td></tr>
+          <tr><td>« Prévenez-nous si le flux casse »</td><td>Vert — alerte liée au livrable</td></tr>
+          <tr><td>« Juste une API REST »</td><td>Jaune / rouge — peu de différenciant sans flux</td></tr>
+          <tr><td>« On reconstruit toujours les mêmes briques »</td><td>Investissement possible si livrable client net</td></tr>
           <tr><td>« Deux devs six mois chez nous »</td><td>No-fit (régie)</td></tr>
           <tr><td>« On veut votre framework »</td><td>Recadrer sur le livrable, sinon no-fit</td></tr>
         </tbody>
       </table>
-      <p class="note">Le commercial qualifie avec ces signaux. Le fit technique (Exploitation / Investissement) se confirme à deux sur cette grille.</p>
+      <p class="note">
+        Le commercial qualifie avec ces signaux.
+        Le fit Exploitation / Investissement se confirme à deux sur cette grille.
+      </p>
     </section>
 
     <footer class="foot">
