@@ -112,6 +112,8 @@
       max-width: 52ch;
       font-size: 0.95rem;
     }
+    .hero-support .name { color: var(--ink); font-weight: 650; }
+    .hero-support .name span { color: var(--lagoon); }
 
     .grid-2 {
       display: grid;
@@ -283,7 +285,7 @@
     </header>
 
     <p class="hero-line" data-i18n="hero.line"></p>
-    <p class="hero-support" data-i18n="hero.support"></p>
+    <p class="hero-support" data-i18n-html="hero.support"></p>
 
     <div class="grid-2">
       <div>
@@ -371,8 +373,8 @@
       var STRINGS = {
         fr: {
           "doc.label": "FICHE OFFRE · FORFAIT",
-          "hero.line": "Quand vos applications doivent communiquer.",
-          "hero.support": "Intégrer des systèmes, construire une plateforme backend, faire circuler des flux asynchrones — au forfait, en s’appuyant sur un patrimoine open source.",
+          "hero.line": "Connecter vos systèmes, automatiser vos traitements, construire votre plateforme backend.",
+          "hero.support": "<span class=\"name\">Tanoa <span>Systems</span></span> réalise des systèmes distribués au forfait, en s’appuyant sur un socle open source qui accélère la livraison — le client paie le livrable, pas le framework.",
           "who.kicker": "Votre situation",
           "who.title": "Vous vous reconnaissez si…",
           "who.1": "Plusieurs applications doivent échanger des données ou des événements.",
@@ -401,8 +403,8 @@
         },
         en: {
           "doc.label": "OFFER ONE-PAGER · FIXED SCOPE",
-          "hero.line": "When your applications need to talk.",
-          "hero.support": "Integrating systems, building a backend platform, moving async flows — fixed scope, backed by open-source capital.",
+          "hero.line": "Connect your systems, automate your workloads, build your backend platform.",
+          "hero.support": "<span class=\"name\">Tanoa <span>Systems</span></span> delivers fixed-scope distributed systems, backed by an open-source foundation that speeds up delivery — the client pays for the deliverable, not the framework.",
           "who.kicker": "Your situation",
           "who.title": "This is for you if…",
           "who.1": "Several applications need to exchange data or events.",
@@ -417,7 +419,7 @@
           "work.3.title": "Focused platforms",
           "work.3.body": "Event bus, async processing, orchestration — documented and brought online.",
           "fit.kicker": "How we work",
-          "fit.title": "Design and deliver, fixed scope.",
+          "fit.title": "Design and deliver, fixed-scope.",
           "fit.1": "The people who <strong>design</strong> the system are the ones who <strong>build</strong> it.",
           "fit.2": "<strong>Fixed-scope</strong> work, on a clearly defined perimeter.",
           "fit.3": "<strong>Incremental</strong> delivery, with explicit acceptance criteria.",

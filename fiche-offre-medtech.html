@@ -112,6 +112,8 @@
       max-width: 52ch;
       font-size: 0.95rem;
     }
+    .hero-support .name { color: var(--ink); font-weight: 650; }
+    .hero-support .name span { color: var(--lagoon); }
 
     .grid-2 {
       display: grid;
@@ -283,7 +285,7 @@
     </header>
 
     <p class="hero-line" data-i18n="hero.line"></p>
-    <p class="hero-support" data-i18n="hero.support"></p>
+    <p class="hero-support" data-i18n-html="hero.support"></p>
 
     <div class="grid-2">
       <div>
@@ -372,7 +374,7 @@
         fr: {
           "doc.label": "FICHE OFFRE · MEDTECH",
           "hero.line": "Quand vos systèmes médicaux doivent communiquer.",
-          "hero.support": "Relier un LIS, un middleware, un dispositif ou un SI métier ; construire une plateforme d’analyse ou de traitements asynchrones — au forfait, en s’appuyant sur un patrimoine open source.",
+          "hero.support": "<span class=\"name\">Tanoa <span>Systems</span></span> réalise des systèmes distribués au forfait, en s’appuyant sur un socle open source qui accélère la livraison — le client paie le livrable, pas le framework.",
           "who.kicker": "Votre situation",
           "who.title": "Vous vous reconnaissez si…",
           "who.1": "Un LIS, un middleware, un appareil ou un logiciel métier doivent échanger des données de façon fiable.",
@@ -402,7 +404,7 @@
         en: {
           "doc.label": "OFFER ONE-PAGER · MEDTECH",
           "hero.line": "When your medical systems need to talk.",
-          "hero.support": "Connecting a LIS, middleware, device, or clinical IT system; building an analysis or async processing platform — fixed scope, backed by open-source capital.",
+          "hero.support": "<span class=\"name\">Tanoa <span>Systems</span></span> delivers fixed-scope distributed systems, backed by an open-source foundation that speeds up delivery — the client pays for the deliverable, not the framework.",
           "who.kicker": "Your situation",
           "who.title": "This is for you if…",
           "who.1": "A LIS, middleware, device, or clinical application needs to exchange data reliably.",
@@ -417,7 +419,7 @@
           "work.3.title": "Focused platforms",
           "work.3.body": "Async pipelines, event bus, processing follow-up — documented and brought online.",
           "fit.kicker": "How we work",
-          "fit.title": "Design and deliver, fixed scope.",
+          "fit.title": "Design and deliver, fixed-scope.",
           "fit.1": "The people who <strong>design</strong> the system are the ones who <strong>build</strong> it.",
           "fit.2": "<strong>Fixed-scope</strong> work, on a clearly defined perimeter.",
           "fit.3": "<strong>Incremental</strong> delivery, with explicit acceptance criteria.",

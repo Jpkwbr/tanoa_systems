@@ -172,6 +172,8 @@
       font-size: 1.05rem;
       max-width: 26rem;
     }
+    .hero-support .name { color: var(--ink); font-weight: 650; }
+    .hero-support .name span { color: var(--lagoon); }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
     @keyframes rise {
@@ -404,7 +406,7 @@
       <div class="hero-copy">
         <h1 class="hero-brand">Tanoa <span>Systems</span></h1>
         <p class="hero-line" data-i18n="hero.line"></p>
-        <p class="hero-support" data-i18n="hero.support"></p>
+        <p class="hero-support" data-i18n-html="hero.support"></p>
         <div class="hero-actions">
           <a class="btn" href="mailto:hello@tanoa.systems" data-i18n="hero.cta"></a>
           <a class="btn btn-ghost" href="#proof" data-i18n="hero.secondary"></a>
@@ -512,13 +514,13 @@
     (function () {
       var STRINGS = {
         fr: {
-          "meta.desc": "Tanoa Systems réalise au forfait des plateformes backend, des intégrations et des systèmes qui font communiquer vos applications — en s’appuyant sur un patrimoine technique open source.",
+          "meta.desc": "Tanoa Systems réalise des systèmes distribués au forfait, en s’appuyant sur un socle open source qui accélère la livraison — le client paie le livrable, pas le framework.",
           "nav.work": "Besoins",
           "nav.method": "Méthode",
           "nav.proof": "Efficacité",
           "nav.contact": "Nous écrire",
           "hero.line": "Faire communiquer vos systèmes, automatiser vos traitements, construire votre plateforme backend.",
-          "hero.support": "Nous livrons au forfait les intégrations et plateformes backend dont vous avez besoin — avec un périmètre clair et une équipe qui conçoit et développe.",
+          "hero.support": "<span class=\"name\">Tanoa <span>Systems</span></span> réalise des systèmes distribués au forfait, en s’appuyant sur un socle open source qui accélère la livraison — le client paie le livrable, pas le framework.",
           "hero.cta": "Discuter d'un projet",
           "hero.secondary": "Pourquoi nous allons vite",
           "work.kicker": "Ce que nous réalisons",
@@ -528,7 +530,7 @@
           "work.2.title": "Automatiser des traitements",
           "work.2.body": "Des tâches longues ou déclenchées par des événements doivent tourner sans intervention manuelle — avec suivi, erreurs gérées et documentation.",
           "work.3.title": "Construire une plateforme backend",
-          "work.3.body": "Un cœur de services pour porter vos processus : APIs, messages, persistance, tests — livré exploitable et repris par votre équipe.",
+          "work.3.body": "Un cœur de services pour porter vos processus : APIs, messages, persistance, tests — livré exploitable.",
           "method.kicker": "Comment nous travaillons",
           "method.title": "Forfait, périmètre clair, mêmes interlocuteurs du début à la fin.",
           "method.1": "Les personnes qui <strong>conçoivent</strong> le système sont celles qui le <strong>développent</strong> — pas de relais opaque entre architecture et code.",
@@ -546,19 +548,19 @@
           "proof.socle": "<strong>Kontiki n’est pas ce que nous vendons.</strong> C’est l’outil visible de notre manière de capitaliser : accélérer la livraison, fiabiliser les tests, garder du temps pour le métier.",
           "proof.github": "Kontiki sur GitHub",
           "manifesto.quote": "Moins de fondations à reconstruire. Plus de temps sur votre besoin.",
-          "manifesto.body": "Forfait, périmètre tenu, livraisons par étapes. Les mêmes personnes conçoivent et développent — jusqu’à un système que votre équipe peut s’approprier.",
+          "manifesto.body": "Forfait, périmètre tenu, livraisons par étapes. Les mêmes personnes conçoivent et développent.",
           "contact.title": "Un système à faire communiquer, automatiser ou construire\u00a0?",
           "contact.body": "Décrivez votre besoin. Nous vous dirons comment le cadrer et le livrer au forfait.",
           "footer": "forfait · plateformes & intégrations · patrimoine technique"
         },
         en: {
-          "meta.desc": "Tanoa Systems builds fixed-scope backend platforms, integrations, and systems that connect your applications — backed by an open-source technical foundation.",
+          "meta.desc": "Tanoa Systems delivers fixed-scope distributed systems, backed by an open-source foundation that speeds up delivery — the client pays for the deliverable, not the framework.",
           "nav.work": "Needs",
           "nav.method": "How we work",
           "nav.proof": "Why we’re fast",
           "nav.contact": "Get in touch",
           "hero.line": "Connect your systems, automate your workloads, build your backend platform.",
-          "hero.support": "We deliver fixed-scope integrations and backend platforms — with a clear perimeter, and the same people designing and building.",
+          "hero.support": "<span class=\"name\">Tanoa <span>Systems</span></span> delivers fixed-scope distributed systems, backed by an open-source foundation that speeds up delivery — the client pays for the deliverable, not the framework.",
           "hero.cta": "Discuss a project",
           "hero.secondary": "Why we’re fast",
           "work.kicker": "What we build",
@@ -568,9 +570,9 @@
           "work.2.title": "Automate processing",
           "work.2.body": "Long-running or event-triggered work should run without manual babysitting — with monitoring, error handling, and documentation.",
           "work.3.title": "Build a backend platform",
-          "work.3.body": "A service core for your processes: APIs, messaging, persistence, tests — delivered ready to run and ownable by your team.",
+          "work.3.body": "A service core for your processes: APIs, messaging, persistence, tests — delivered ready to run.",
           "method.kicker": "How we work",
-          "method.title": "Fixed scope, clear perimeter, the same people from design to delivery.",
+          "method.title": "Fixed-scope, clear perimeter, the same people from design to delivery.",
           "method.1": "The people who <strong>design</strong> the system are the ones who <strong>build</strong> it — no opaque handoff between architecture and code.",
           "method.2": "We work <strong>fixed-scope</strong>, with a clear perimeter and named deliverables from day one.",
           "method.3": "We deliver <strong>progressively</strong>, with explicit acceptance criteria at each stage.",
@@ -586,10 +588,10 @@
           "proof.socle": "<strong>Kontiki is not what we sell.</strong> It is the visible tool of how we capitalise: faster delivery, stronger tests, more time left for the business problem.",
           "proof.github": "Kontiki on GitHub",
           "manifesto.quote": "Less foundation to rebuild. More time on your need.",
-          "manifesto.body": "Fixed scope, held perimeter, staged delivery. The same people design and build — until you have a system your team can own.",
+          "manifesto.body": "Fixed-scope, held perimeter, staged delivery. The same people design and build.",
           "contact.title": "A system to connect, automate, or build?",
           "contact.body": "Describe the need. We’ll tell you how to frame it and deliver it fixed-scope.",
-          "footer": "fixed scope · platforms & integrations · technical foundation"
+          "footer": "fixed-scope · platforms & integrations · technical foundation"
         }
       };
 
