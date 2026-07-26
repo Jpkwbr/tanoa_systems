@@ -17,56 +17,164 @@
       <div class="brand">Tanoa <span>Systems</span></div>
       <div class="badge">Interne · 1</div>
     </header>
-    <h1>Notes — découverte</h1>
-    <p class="note">Survolez ou focus le <strong>?</strong> pour l’aide à la saisie.</p>
+
+    <h1>Appel découverte — guide &amp; notes</h1>
+    <p class="lede">
+      Document <strong>commercial</strong> (ouvert pendant l’appel).
+      Objectif : ramener les inputs nécessaires à la <a href="02-evaluation-mission.html">grille 02</a>
+      et au <a href="03-cadrage.html">cadrage</a> — pas figer la solution, pas chiffrer en live.
+    </p>
+    <p class="note">
+      Signaux verts / jaunes / rouges : <a href="02-evaluation-mission.html">annexe évaluation</a>.
+      Pitch court si besoin : <a href="../discours-2-min.html">discours 2 min</a>.
+    </p>
 
     <table class="meta">
       <tr>
-        <th>Date / client
-          <span class="tip" tabindex="0" data-tip="Date de l’appel + nom du compte. Un id pipeline (ex. 2026-03-acme) si le dossier Phase 0 existe déjà.">?</span>
+        <th>Date / client / id pipeline
+          <span class="tip" tabindex="0" data-tip="Ex. 2026-03-acme — créer ou mettre à jour le dossier opportunité.">?</span>
         </th>
         <td class="blank">[…]</td>
       </tr>
       <tr>
         <th>Présents
-          <span class="tip" tabindex="0" data-tip="Côté client : qui décide, qui est technique. Côté Tanoa : commercial ± tech. Noter le rôle de chacun.">?</span>
+          <span class="tip" tabindex="0" data-tip="Client : décideur ? tech ? Tanoa : commercial ± tech.">?</span>
         </th>
         <td class="blank">[…]</td>
       </tr>
+      <tr>
+        <th>Durée</th>
+        <td class="blank">30–45 min typique</td>
+      </tr>
     </table>
+
     <section>
-      <h2>Besoin
-        <span class="tip" tabindex="0" data-tip="Reformuler le problème métier en une phrase. Pas la stack demandée (« on veut du Kafka »). Critère de succès : comment sauront-ils que c’est résolu ?">?</span>
+      <p class="kicker">Avant / pendant l’appel</p>
+      <h2>Inputs à ramener pour la suite
+        <span class="tip" tabindex="0" data-tip="Checklist commerciale. Cocher mentalement ou ici. Les trous = questions à poser, pas des cases client à faire remplir.">?</span>
       </h2>
-      <blockquote>[Reformulation métier — pas la stack]</blockquote>
+      <table>
+        <thead><tr><th>Input</th><th>Pour quoi ensuite</th><th>OK ?</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Problème métier</strong> (reformulé, pas la stack)</td>
+            <td>Fit offre · cadrage besoin</td>
+            <td class="blank">&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Résultat attendu</strong> (concret, observable)</td>
+            <td>Critères d’acceptation plus tard</td>
+            <td class="blank">&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Systèmes / flux</strong> en jeu (noms + sens approx.)</td>
+            <td>Exp/Inv · lot 1</td>
+            <td class="blank">&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Décideur</strong> + <strong>référent technique</strong> joignable</td>
+            <td>Grille 02 · kickoff futur</td>
+            <td class="blank">&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Pièces / accès en vue</strong> (doc API, bac à sable, exemples… ou « rien encore »)</td>
+            <td>Cadrage chiffrable (pas devis ferme sans ça)</td>
+            <td class="blank">&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Qui prévenir</strong> si un flux casse (canal)</td>
+            <td>Périmètre alertes / out explicite</td>
+            <td class="blank">&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Calendrier</strong> / contrainte de date</td>
+            <td>Attractivité · dispo Phase 0</td>
+            <td class="blank">&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Budget</strong> ordre de grandeur (facultatif)</td>
+            <td>C dans chiffrage — ne fixe pas le devis</td>
+            <td class="blank">&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Signaux fit</strong> (vert / jaune / rouge)</td>
+            <td>Go / no-go sur grille 02</td>
+            <td class="blank">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
+
     <section>
-      <h2>Systèmes concernés
-        <span class="tip" tabindex="0" data-tip="Quels logiciels / flux échangent déjà ou doivent échanger ? Volumes ou criticité si mentionnés. Lister, ne pas concevoir la solution ici.">?</span>
-      </h2>
-      <p class="blank">[…]</p>
+      <p class="kicker">Questions utiles</p>
+      <h2>Fil de discussion (pas un script figé)</h2>
+      <ul>
+        <li>Qu’est-ce qui pose problème aujourd’hui ? Qu’est-ce qui casse ou coûte du temps ?</li>
+        <li>Quels logiciels / outils sont concernés ? Qu’est-ce qui doit aller de A vers B ?</li>
+        <li>À quoi verrez-vous que c’est bon ?</li>
+        <li>Qui décide du budget / de la signature ? Qui connaît les accès et les APIs ?</li>
+        <li>Avez-vous doc, environnement de test, exemples de messages — ou pas encore ?</li>
+        <li>Si ça plante en prod, qui doit être prévenu, comment ?</li>
+        <li>Y a-t-il une échéance ? Une enveloppe en tête ? (facultatif)</li>
+      </ul>
+      <p class="note">
+        Si le client impose une solution (« on veut du Kafka ») : reformuler en <strong>besoin</strong> avant de poursuivre.
+        Pas de devis ferme sur cet appel.
+      </p>
     </section>
+
     <section>
-      <h2>Contraintes
-        <span class="tip" tabindex="0" data-tip="Délai réel, hébergement (cloud / on-prem), sécu / conformité, budget d’ordre de grandeur, contraintes CDI / dispo Phase 0.">?</span>
-      </h2>
-      <p class="blank">Délai · hébergement · sécu · budget : […]</p>
+      <p class="kicker">Notes</p>
+      <h2>Problème &amp; résultat attendu</h2>
+      <blockquote class="blank">[Reformulation métier — pas la stack]</blockquote>
+      <p><strong>Résultat attendu :</strong> <span class="blank">[…]</span></p>
     </section>
+
     <section>
-      <h2>Fit
-        <span class="tip" tabindex="0" data-tip="Première lecture seulement. Cases = hypothèses à confirmer sur la grille 02. Signaux verts/rouges : annexe de 02-evaluation. Décision finale = grille, pas ces notes.">?</span>
+      <h2>Systèmes &amp; flux</h2>
+      <p class="blank">[Noms · sens des échanges · criticité / volume si dit]</p>
+    </section>
+
+    <section>
+      <h2>Contacts, pièces, alertes, contraintes</h2>
+      <table>
+        <thead><tr><th>Sujet</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Décideur</td><td class="blank">&nbsp;</td></tr>
+          <tr><td>Référent métier</td><td class="blank">&nbsp;</td></tr>
+          <tr><td>Référent technique / SI</td><td class="blank">&nbsp;</td></tr>
+          <tr><td>Pièces / accès (ou « rien encore »)</td><td class="blank">&nbsp;</td></tr>
+          <tr><td>Alertes (qui / canal)</td><td class="blank">&nbsp;</td></tr>
+          <tr><td>Calendrier</td><td class="blank">&nbsp;</td></tr>
+          <tr><td>Budget (facultatif)</td><td class="blank">&nbsp;</td></tr>
+          <tr><td>Hébergement / sécu / autre</td><td class="blank">&nbsp;</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <p class="kicker">Fin d’appel</p>
+      <h2>Lecture fit (provisoire)
+        <span class="tip" tabindex="0" data-tip="Hypothèses seulement. Décision = grille 02 à deux. Annexe 02 pour les signaux.">?</span>
       </h2>
       <ul class="check">
-        <li>Exploitation et/ou investissement patrimoine</li>
-        <li>Forfait borné possible</li>
-        <li>Dispo / phase 0 OK</li>
+        <li>Signal dominant : vert / jaune / rouge — […]</li>
+        <li>Exploitation et/ou investissement Forge envisageable</li>
+        <li>Forfait / lot 1 bornable en vue</li>
+        <li>Dispo Phase 0 OK</li>
       </ul>
-      <p><strong>Décision :</strong> Go / Cadrage / No-go — […] · <strong>Suite :</strong> […]</p>
-      <p class="note"><a href="02-evaluation-mission.html">Grille 02</a> pour trancher.</p>
+      <p>
+        <strong>Suite proposée :</strong>
+        <span class="blank">grille 02 · cadrage · no-go poli · relance […] </span>
+      </p>
+      <p class="note">
+        Archiver dans le dossier opportunité.
+        Trancher sur la <a href="02-evaluation-mission.html">grille 02</a> — pas sur ces notes seules.
+      </p>
     </section>
 
     <footer class="foot">
-      <span>TANOA SYSTEMS · TEMPLATE</span>
+      <span>TANOA SYSTEMS · DÉCOUVERTE COMMERCIAL</span>
       <span>USAGE INTERNE</span>
     </footer>
   </article>
