@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tanoa Systems — Principes fondateurs (interne)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0c1410;
+      --muted: #5c6b62;
+      --paper: #f0f4f1;
+      --paper-deep: #e2ebe5;
+      --line: rgba(12, 20, 16, 0.14);
+      --lagoon: #0f7a5a;
+      --lagoon-bright: #17a379;
+      --lagoon-wash: rgba(15, 122, 90, 0.11);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #d8e0db;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--lagoon); font-weight: 600; text-decoration: none; }
+
+    .page {
+      width: min(52rem, calc(100% - 2rem));
+      margin: 1.25rem auto 2.5rem;
+      padding: 2rem 2.25rem 2.5rem;
+      background: var(--paper);
+      box-shadow: 0 12px 40px rgba(12, 20, 16, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 40% at 100% 0%, var(--lagoon-wash), transparent 55%);
+      pointer-events: none;
+    }
+    .page > * { position: relative; z-index: 1; }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      font-family: "Fraunces", serif;
+      font-weight: 800;
+      font-size: 1.45rem;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .brand span { color: var(--lagoon); }
+    .top-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.45rem;
+    }
+    .badge {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--ink);
+      padding: 0.35rem 0.55rem;
+    }
+    .lang-switch {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.65rem;
+    }
+    .lang-switch button {
+      appearance: none;
+      border: 0;
+      margin: 0;
+      padding: 0.3rem 0.5rem;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      cursor: pointer;
+    }
+    .lang-switch button[aria-pressed="true"] {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    h1 {
+      margin: 0 0 0.35rem;
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: 1.85rem;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+    }
+    .lede {
+      margin: 0 0 1.75rem;
+      color: var(--muted);
+      max-width: 36rem;
+    }
+
+    .kicker {
+      margin: 0 0 0.35rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--lagoon);
+    }
+    h2 {
+      margin: 0 0 0.65rem;
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+    h3 {
+      margin: 0 0 0.45rem;
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: 1.02rem;
+    }
+
+    section {
+      margin: 0 0 1.6rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid var(--line);
+    }
+    section > p { margin: 0 0 0.75rem; }
+    section > p:last-child { margin-bottom: 0; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin: 0.75rem 0;
+    }
+    .card {
+      background: var(--paper-deep);
+      padding: 0.85rem 0.95rem;
+      border-top: 3px solid var(--lagoon);
+    }
+    .card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .card li {
+      position: relative;
+      padding: 0.28rem 0 0.28rem 0.85rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.75em;
+      width: 0.4rem;
+      height: 2px;
+      background: var(--lagoon);
+    }
+
+    .assets {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .assets li {
+      padding: 0.45rem 0;
+      border-top: 1px solid var(--line);
+      font-size: 0.95rem;
+    }
+    .assets li:first-child { border-top: 0; padding-top: 0; }
+    .assets strong {
+      display: block;
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: 0.98rem;
+      margin-bottom: 0.1rem;
+    }
+    .assets span { color: var(--muted); font-size: 0.9rem; }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin: 0.75rem 0;
+    }
+    .split article {
+      padding: 0.85rem 0.95rem;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .split p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+
+    .outcomes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin: 0.75rem 0 0;
+      padding: 0;
+    }
+    .outcomes li {
+      list-style: none;
+      background: var(--ink);
+      color: rgba(232, 239, 234, 0.88);
+      padding: 0.7rem 0.65rem;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+    .outcomes strong {
+      display: block;
+      color: #fff;
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .question {
+      margin: 1rem 0 0;
+      padding: 0.95rem 1rem;
+      background: var(--ink);
+      color: rgba(232, 239, 234, 0.88);
+    }
+    .question .kicker { color: var(--lagoon-bright); }
+    .question p {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-weight: 650;
+      font-size: 1.05rem;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+    .question .note {
+      margin: 0.55rem 0 0;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: rgba(232, 239, 234, 0.72);
+    }
+
+    .foot {
+      margin-top: 1.75rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--line);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 720px) {
+      .page { padding: 1.35rem 1.15rem 1.75rem; }
+      .grid-2, .split, .outcomes { grid-template-columns: 1fr; }
+      .top-right { align-items: flex-start; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { box-shadow: none; margin: 0; width: 100%; }
+      .lang-switch { display: none !important; }
+      .badge { color: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <header class="top">
+      <div class="brand">Tanoa <span>Systems</span></div>
+      <div class="top-right">
+        <div class="badge" data-i18n="badge"></div>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <h1 data-i18n="title"></h1>
+    <p class="lede" data-i18n="lede"></p>
+
+    <section>
+      <p class="kicker" data-i18n="vision.kicker"></p>
+      <h2 data-i18n="vision.title"></h2>
+      <p data-i18n-html="vision.p1"></p>
+      <p data-i18n="vision.p2"></p>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="overview.kicker"></p>
+      <h2 data-i18n="overview.title"></h2>
+      <p data-i18n-html="overview.body"></p>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="accept.kicker"></p>
+      <h2 data-i18n="accept.title"></h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3 data-i18n="accept.inv.title"></h3>
+          <ul>
+            <li data-i18n="accept.inv.1"></li>
+            <li data-i18n="accept.inv.2"></li>
+            <li data-i18n="accept.inv.3"></li>
+            <li data-i18n="accept.inv.4"></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 data-i18n="accept.exp.title"></h3>
+          <ul>
+            <li data-i18n="accept.exp.1"></li>
+            <li data-i18n="accept.exp.2"></li>
+            <li data-i18n="accept.exp.3"></li>
+          </ul>
+        </div>
+      </div>
+      <p data-i18n="accept.footer"></p>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="assets.kicker"></p>
+      <h2 data-i18n="assets.title"></h2>
+      <ul class="assets">
+        <li>
+          <strong data-i18n="assets.1.title"></strong>
+          <span data-i18n="assets.1.body"></span>
+        </li>
+        <li>
+          <strong data-i18n="assets.2.title"></strong>
+          <span data-i18n="assets.2.body"></span>
+        </li>
+        <li>
+          <strong data-i18n="assets.3.title"></strong>
+          <span data-i18n="assets.3.body"></span>
+        </li>
+        <li>
+          <strong data-i18n="assets.4.title"></strong>
+          <span data-i18n="assets.4.body"></span>
+        </li>
+        <li>
+          <strong data-i18n="assets.5.title"></strong>
+          <span data-i18n="assets.5.body"></span>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="adv.kicker"></p>
+      <h2 data-i18n="adv.title"></h2>
+      <div class="split">
+        <article>
+          <h3 data-i18n="adv.exp.title"></h3>
+          <p data-i18n="adv.exp.body"></p>
+        </article>
+        <article>
+          <h3 data-i18n="adv.inv.title"></h3>
+          <p data-i18n="adv.inv.body"></p>
+        </article>
+      </div>
+      <p data-i18n="adv.footer"></p>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="end.kicker"></p>
+      <h2 data-i18n="end.title"></h2>
+      <p data-i18n="end.body"></p>
+      <ul class="outcomes">
+        <li data-i18n-html="end.1"></li>
+        <li data-i18n-html="end.2"></li>
+        <li data-i18n-html="end.3"></li>
+        <li data-i18n-html="end.4"></li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="plan.kicker"></p>
+      <h2 data-i18n="plan.title"></h2>
+      <p data-i18n="plan.p1"></p>
+      <p data-i18n="plan.p2"></p>
+      <ul class="assets">
+        <li data-i18n="plan.why.1"></li>
+        <li data-i18n="plan.why.2"></li>
+        <li data-i18n="plan.why.3"></li>
+        <li data-i18n="plan.why.4"></li>
+        <li data-i18n="plan.why.5"></li>
+        <li data-i18n="plan.why.6"></li>
+      </ul>
+
+      <div class="question">
+        <p class="kicker" data-i18n="plan.q.kicker"></p>
+        <p data-i18n-html="plan.q.body"></p>
+        <p class="note" data-i18n="plan.q.note"></p>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span data-i18n="foot.left"></span>
+      <span data-i18n="foot.right"></span>
+    </footer>
+  </article>
+
+  <script>
+    (function () {
+      var STRINGS = {
+        fr: {
+          "badge": "Document interne",
+          "title": "Principes fondateurs",
+          "lede": "Constitution interne : comment on choisit les missions, comment on cultive l’avantage de production, et vers quoi on convertit la productivité.",
+          "vision.kicker": "Vision",
+          "vision.title": "Un système de production, pas une ESN généraliste",
+          "vision.p1": "L’objectif est de construire un <strong>système de production logicielle</strong> qui améliore continuellement sa capacité à délivrer des logiciels de qualité, rapidement, avec un faible coût cognitif.",
+          "vision.p2": "Le framework Kontiki, les méthodes de travail, les conventions d’ingénierie et l’utilisation de l’IA constituent ensemble cet actif de production.",
+          "overview.kicker": "Vue d’ensemble",
+          "overview.title": "De la mission au capital — et à la liberté",
+          "overview.body": "Le client achète le <strong>livrable</strong>. Kontiki et le reste du système restent l’avantage de production interne. Une mission n’est retenue que si elle <strong>investit</strong> dans ce système ou l’<strong>exploite</strong> pleinement — pour produire plus de valeur par heure, et convertir ce gain en liberté, autonomie et marge.",
+          "accept.kicker": "Acceptation",
+          "accept.title": "Une mission est retenue si elle satisfait au moins un critère",
+          "accept.inv.title": "1. Investissement",
+          "accept.inv.1": "enrichit Kontiki ou l’outillage",
+          "accept.inv.2": "crée des composants réutilisables",
+          "accept.inv.3": "améliore les règles IA",
+          "accept.inv.4": "enrichit les conventions",
+          "accept.exp.title": "2. Exploitation",
+          "accept.exp.1": "exploite pleinement les capacités existantes",
+          "accept.exp.2": "permet une livraison très rapide, qualité haute",
+          "accept.exp.3": "bénéficie directement du patrimoine accumulé",
+          "accept.footer": "Les missions qui ne font ni l’un ni l’autre doivent être évitées.",
+          "assets.kicker": "Actifs",
+          "assets.title": "Ce qui différencie le système",
+          "assets.1.title": "Kontiki",
+          "assets.1.body": "Framework et runtime",
+          "assets.2.title": "Méthode de spécification",
+          "assets.2.body": "Markdown → Gherkin → implémentation → revue → tests",
+          "assets.3.title": "Règles IA et conventions",
+          "assets.3.body": "Développement assisté dans un cadre cohérent",
+          "assets.4.title": "Doctrine de simplicité",
+          "assets.4.body": "Refactoring continu",
+          "assets.5.title": "Composants réutilisables",
+          "assets.5.body": "Patrimoine qui s’étend mission après mission",
+          "adv.kicker": "Avantage",
+          "adv.title": "Deux façons de cultiver",
+          "adv.exp.title": "Exploitation",
+          "adv.exp.body": "La mission tire pleinement parti du système déjà en place. Elle va vite et bien grâce au patrimoine existant.",
+          "adv.inv.title": "Investissement",
+          "adv.inv.body": "Lorsque le besoin le justifie, la mission enrichit le système — sans compromettre la livraison client.",
+          "adv.footer": "Sur la durée, le patrimoine technique progresse plus vite que le temps de travail.",
+          "end.kicker": "Finalité",
+          "end.title": "Plus de valeur par heure — pas plus d’heures vendues",
+          "end.body": "L’objectif est d’augmenter continuellement la valeur produite par heure grâce à un système de production toujours meilleur.",
+          "end.1": "<strong>Liberté</strong>davantage de choix",
+          "end.2": "<strong>Autonomie</strong>maîtrise du cap",
+          "end.3": "<strong>Temps</strong>disponible pour vivre",
+          "end.4": "<strong>Revenu</strong>suffisant, choisi",
+          "plan.kicker": "Plan interne",
+          "plan.title": "Kontiki au cœur — invisible côté vente",
+          "plan.p1": "Les clients achètent une solution à leur problème. Kontiki reste l’avantage de production : ce n’est pas le produit vendu.",
+          "plan.p2": "Il est au cœur du système parce qu’il :",
+          "plan.why.1": "capitalise sur plusieurs années de réflexion architecturale ;",
+          "plan.why.2": "permet une forte réutilisation des composants ;",
+          "plan.why.3": "fournit un cadre où les assistants IA sont beaucoup plus efficaces ;",
+          "plan.why.4": "réduit le coût cognitif de chaque nouveau développement ;",
+          "plan.why.5": "facilite le refactoring continu et l’évolution des services ;",
+          "plan.why.6": "peut s’enrichir à chaque nouvelle mission.",
+          "plan.q.kicker": "Question avant d’accepter",
+          "plan.q.body": "Cette mission renforce-t-elle ou exploite-t-elle efficacement notre système de production basé sur Kontiki&nbsp;?",
+          "plan.q.note": "Si la réponse est non, la mission est probablement hors du positionnement recherché. Kontiki sert à livrer plus vite, avec une meilleure qualité et une meilleure marge — pour convertir ce gain en liberté et en autonomie.",
+          "foot.left": "TANOA SYSTEMS · PRINCIPES FONDATEURS",
+          "foot.right": "USAGE INTERNE · NON PUBLIC"
+        },
+        en: {
+          "badge": "Internal document",
+          "title": "Founding principles",
+          "lede": "Internal constitution: how we choose missions, how we grow our production advantage, and what we convert productivity into.",
+          "vision.kicker": "Vision",
+          "vision.title": "A production system, not a generalist IT services firm",
+          "vision.p1": "The goal is to build a <strong>software production system</strong> that continuously improves its ability to deliver quality software, quickly, with low cognitive cost.",
+          "vision.p2": "The Kontiki framework, working methods, engineering conventions, and use of AI together make up this production asset.",
+          "overview.kicker": "Overview",
+          "overview.title": "From mission to capital — and to freedom",
+          "overview.body": "The client buys the <strong>deliverable</strong>. Kontiki and the rest of the system remain the internal production advantage. A mission is only taken if it <strong>invests</strong> in that system or fully <strong>exploits</strong> it — to produce more value per hour, and convert that gain into freedom, autonomy, and margin.",
+          "accept.kicker": "Acceptance",
+          "accept.title": "A mission is kept if it meets at least one criterion",
+          "accept.inv.title": "1. Investment",
+          "accept.inv.1": "enriches Kontiki or the tooling",
+          "accept.inv.2": "creates reusable components",
+          "accept.inv.3": "improves AI rules",
+          "accept.inv.4": "enriches conventions",
+          "accept.exp.title": "2. Exploitation",
+          "accept.exp.1": "fully exploits existing capabilities",
+          "accept.exp.2": "enables very fast delivery at high quality",
+          "accept.exp.3": "benefits directly from accumulated capital",
+          "accept.footer": "Missions that do neither should be avoided.",
+          "assets.kicker": "Assets",
+          "assets.title": "What differentiates the system",
+          "assets.1.title": "Kontiki",
+          "assets.1.body": "Framework and runtime",
+          "assets.2.title": "Specification method",
+          "assets.2.body": "Markdown → Gherkin → implementation → review → tests",
+          "assets.3.title": "AI rules and conventions",
+          "assets.3.body": "Assisted development within a coherent frame",
+          "assets.4.title": "Simplicity doctrine",
+          "assets.4.body": "Continuous refactoring",
+          "assets.5.title": "Reusable components",
+          "assets.5.body": "Capital that grows mission after mission",
+          "adv.kicker": "Advantage",
+          "adv.title": "Two ways to cultivate it",
+          "adv.exp.title": "Exploitation",
+          "adv.exp.body": "The mission fully leverages the system already in place. It ships fast and well thanks to existing capital.",
+          "adv.inv.title": "Investment",
+          "adv.inv.body": "When the need justifies it, the mission enriches the system — without compromising client delivery.",
+          "adv.footer": "Over time, technical capital progresses faster than time worked.",
+          "end.kicker": "Purpose",
+          "end.title": "More value per hour — not more hours sold",
+          "end.body": "The goal is to continuously increase value produced per hour through an ever-better production system.",
+          "end.1": "<strong>Freedom</strong>more choice",
+          "end.2": "<strong>Autonomy</strong>control of direction",
+          "end.3": "<strong>Time</strong>available to live",
+          "end.4": "<strong>Income</strong>enough, chosen",
+          "plan.kicker": "Internal plan",
+          "plan.title": "Kontiki at the core — invisible in sales",
+          "plan.p1": "Clients buy a solution to their problem. Kontiki remains the production advantage: it is not the product sold.",
+          "plan.p2": "It sits at the heart of the system because it:",
+          "plan.why.1": "builds on years of architectural thinking;",
+          "plan.why.2": "enables strong component reuse;",
+          "plan.why.3": "provides a coherent frame where AI assistants are far more effective;",
+          "plan.why.4": "reduces the cognitive cost of each new development;",
+          "plan.why.5": "supports continuous refactoring and service evolution;",
+          "plan.why.6": "can be enriched on each new mission.",
+          "plan.q.kicker": "Question before accepting",
+          "plan.q.body": "Does this mission strengthen or efficiently exploit our Kontiki-based production system?",
+          "plan.q.note": "If the answer is no, the mission is probably outside the intended positioning. Kontiki is there to deliver faster, at higher quality and margin — to convert that gain into freedom and autonomy.",
+          "foot.left": "TANOA SYSTEMS · FOUNDING PRINCIPLES",
+          "foot.right": "INTERNAL USE · NOT PUBLIC"
+        }
+      };
+
+      var KEY = "tanoa-principes-lang";
+      var TITLE = {
+        fr: "Tanoa Systems — Principes fondateurs (interne)",
+        en: "Tanoa Systems — Founding principles (internal)"
+      };
+
+      function apply(lang) {
+        var dict = STRINGS[lang] || STRINGS.fr;
+        document.documentElement.lang = lang;
+        document.title = TITLE[lang] || TITLE.fr;
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          var k = el.getAttribute("data-i18n");
+          if (dict[k] != null) el.textContent = dict[k];
+        });
+        document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+          var k = el.getAttribute("data-i18n-html");
+          if (dict[k] != null) el.innerHTML = dict[k];
+        });
+        document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+          btn.setAttribute("aria-pressed", btn.getAttribute("data-lang") === lang ? "true" : "false");
+        });
+        try { localStorage.setItem(KEY, lang); } catch (e) {}
+      }
+
+      function detect() {
+        try {
+          var s = localStorage.getItem(KEY) || localStorage.getItem("tanoa-lang");
+          if (s === "en" || s === "fr") return s;
+        } catch (e) {}
+        return ((navigator.language || "fr").toLowerCase().indexOf("fr") === 0) ? "fr" : "en";
+      }
+
+      document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+        btn.addEventListener("click", function () { apply(btn.getAttribute("data-lang")); });
+      });
+      apply(detect());
+    })();
+  </script>
+</body>
+</html>

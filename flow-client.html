@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tanoa Systems — Flow client (interne)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="templates/internal.css" />
+  <style>
+    .diagram {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 0.75rem 0.35rem;
+      margin: 0.75rem 0 1rem;
+      overflow-x: auto;
+    }
+    .diagram .mermaid { display: flex; justify-content: center; }
+    .rules { list-style: none; padding: 0; margin: 0.5rem 0 0; }
+    .rules li {
+      position: relative;
+      padding: 0.45rem 0 0.45rem 0.9rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .rules li:first-child { border-top: 0; }
+    .rules li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.9em;
+      width: 0.4rem;
+      height: 2px;
+      background: var(--lagoon);
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      margin: 0 0 1rem;
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <header class="top">
+      <div class="brand">Tanoa <span>Systems</span></div>
+      <div class="badge">Document interne</div>
+    </header>
+
+    <h1>Flow client</h1>
+    <p class="lede">
+      Processus commercial et de livraison Tanoa Systems (forfait).
+      À utiliser dès qu’un contact entre, y compris en phase 0.
+    </p>
+
+    <div class="links">
+      <a href="templates/index.html">Templates mission</a>
+      <a href="principes-fondateurs.html">Principes fondateurs</a>
+      <a href="feuille-de-route.html">Feuille de route</a>
+    </div>
+
+    <section>
+      <p class="kicker">Décision</p>
+      <h2>Diagramme</h2>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart TD
+  A[Contact entrant] --> B[0. Réponse sous 48h<br/>proposer appel découverte]
+  B --> C{Client dispo<br/>pour l'appel ?}
+  C -->|Non / silence| Z1[Relance 1x puis classement]
+  C -->|Oui| D[1. Appel découverte<br/>besoin, pas solution]
+
+  D --> E{Fit Tanoa ?}
+  E -->|No-fit| Z2[Poli refus + motif]
+  E -->|Flou / risque| F[2. Cadrage<br/>inputs client requis]
+  E -->|Fit clair + inputs OK| F
+
+  F --> G{Inputs bloquants<br/>fournis ?}
+  G -->|Non| Z3[Pause / relance<br/>pas de devis ferme]
+  G -->|Oui| H[Cadrage : scope, lots,<br/>critères, chiffrage]
+
+  H --> I{Client valide<br/>le cadrage ?}
+  I -->|Non| Z4[Fin ou reboucle cadrage]
+  I -->|Oui| J[3. Proposition forfait]
+
+  J --> K{Client signe ?}
+  K -->|Non / expire| Z5[Classement + date relance]
+  K -->|Oui| L[4. Kickoff lot 1]
+
+  L --> M{Accès et contacts<br/>prêts ?}
+  M -->|Non| L2[Bloquer démarrage<br/>actions kickoff]
+  L2 --> M
+  M -->|Oui| N[5. Delivery lot N]
+
+  N --> O[Livraison + demande recette]
+  O --> P{Recette lot ?}
+  P -->|Refus vs critères| N2[Corrections dans forfait]
+  N2 --> O
+  P -->|Réserves hors critères| AV[Avenant chiffré]
+  AV --> N
+  P -->|Accepté| Q{Dernier lot ?}
+
+  Q -->|Non| N
+  Q -->|Oui| R[6. Clôture + passation]
+  R --> S[Demande retour client]
+  S --> T{Nouveau besoin ?}
+  T -->|Oui| F
+  T -->|Non| Z6[Fin mission]
+        </pre>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">Étapes</p>
+      <h2>Inputs client &amp; livrables</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Étape</th>
+            <th>Objectif</th>
+            <th>Inputs client</th>
+            <th>Nos livrables</th>
+            <th>Template</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>0. Premier contact</strong></td>
+            <td>Accuser réception, proposer un appel découverte</td>
+            <td>Canal de contact ; disponibilité pour un appel</td>
+            <td>Réponse sous 48 h ; proposition d’appel 30–45 min</td>
+            <td><a href="templates/00-reponse-premier-contact.html">00</a></td>
+          </tr>
+          <tr>
+            <td><strong>1. Appel découverte</strong></td>
+            <td>Comprendre le <strong>besoin</strong> ; filtrer fit / no-fit</td>
+            <td>Contexte métier ; systèmes ; contraintes ; critère de succès ; décideur &amp; timing</td>
+            <td>Notes internes ; go / no-go / cadrage nécessaire</td>
+            <td><a href="templates/01-notes-appel-decouverte.html">01</a> · <a href="templates/07-evaluation-mission.html">07</a></td>
+          </tr>
+          <tr>
+            <td><strong>2. Cadrage</strong></td>
+            <td>Périmètre et chiffrage fiables</td>
+            <td>Docs / APIs / schémas ; exemples de flux ; interlocuteur technique ; environnements</td>
+            <td>Besoin reformulé ; périmètre in/out ; lots + critères ; hypothèses ; chiffrage</td>
+            <td><a href="templates/02-cadrage.html">02</a></td>
+          </tr>
+          <tr>
+            <td><strong>3. Proposition</strong></td>
+            <td>Décision client</td>
+            <td>Validation écrite du périmètre ; circuit de signature / facturation</td>
+            <td>Proposition forfait ; conditions de facturation</td>
+            <td><a href="templates/03-proposition.html">03</a></td>
+          </tr>
+          <tr>
+            <td><strong>4. Kickoff</strong></td>
+            <td>Démarrer le lot 1 sans ambiguïté</td>
+            <td>Accès repo / VPN / environnements ; contacts ops ; rythme de points</td>
+            <td>CR kickoff ; planning lot 1 ; canaux &amp; rituels</td>
+            <td><a href="templates/04-compte-rendu-kickoff.html">04</a></td>
+          </tr>
+          <tr>
+            <td><strong>5. Delivery</strong></td>
+            <td>Livrer et faire recetter</td>
+            <td>Retours sous délai ; décisions bloquantes ; jeux d’essai si besoin</td>
+            <td>Code / config / doc ; démo ; PV ou mail de recette</td>
+            <td><a href="templates/05-livraison-lot.html">05 liv.</a> · <a href="templates/05-recette-lot.html">05 rec.</a></td>
+          </tr>
+          <tr>
+            <td><strong>6. Clôture</strong></td>
+            <td>Clore le forfait ; capitaliser</td>
+            <td>Recette finale ; éventuel retour d’expérience</td>
+            <td>Passation ; inventaire ; demande de retour ; suite éventuelle</td>
+            <td><a href="templates/06-cloture-passation.html">06</a> · <a href="templates/06-demande-retour-client.html">retour</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <p class="kicker">Règles</p>
+      <h2>Non négociables</h2>
+      <ul class="rules">
+        <li>Pas de devis <strong>ferme</strong> sans étape 2 (périmètre + critères d’acceptation).</li>
+        <li>Tout hors périmètre après signature → <strong>avenant</strong>, pas absorption silencieuse.</li>
+        <li>Priorité au <strong>besoin</strong> ; une solution technique dictée par le client se reformule en besoin avant chiffrage.</li>
+        <li>Fit interne (go / no-go) : la mission <strong>exploite</strong> et/ou <strong>enrichit</strong> le système de production (voir <a href="principes-fondateurs.html">principes fondateurs</a>). Sinon, écarter.</li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <span>TANOA SYSTEMS · FLOW CLIENT</span>
+      <span>USAGE INTERNE · NON PUBLIC</span>
+    </footer>
+  </article>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#e2ebe5",
+        primaryTextColor: "#0c1410",
+        primaryBorderColor: "#0f7a5a",
+        lineColor: "#5c6b62",
+        secondaryColor: "#f0f4f1",
+        tertiaryColor: "#ffffff",
+        fontFamily: "IBM Plex Sans, sans-serif"
+      }
+    });
+  </script>
+</body>
+</html>
