@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tanoa Systems — Case study chiffrage (interne)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="templates/internal.css" />
+</head>
+<body>
+  <article class="page">
+    <header class="top">
+      <div class="brand">Tanoa <span>Systems</span></div>
+      <div class="badge">Document interne · brouillon</div>
+    </header>
+
+    <h1>Case study — chiffrage</h1>
+    <p class="lede">
+      Exemple fictif Phase 0 appliquant les règles de
+      <code>chiffrage-forfait.html</code> : filtre, A, coefficient Inv/Exp, budget C, affichage client.
+    </p>
+    <p class="note">Non référencé depuis la feuille de route. Société et chiffres inventés.</p>
+
+    <section>
+      <p class="kicker">Contexte</p>
+      <h2>Client : NutriLab (PME industrielle)</h2>
+      <p>
+        NutriLab a un <strong>ERP</strong> et un <strong>outil LIMS</strong> (labo). Aujourd’hui les résultats d’analyse
+        partent en CSV par e-mail, puis quelqu’un les ressaisit dans l’ERP. Ça casse souvent ;
+        personne n’est alerté tant qu’un commercial ne s’en plaint.
+      </p>
+      <p>
+        Contact entrant via le binôme commercial. Appel découverte 40 min.
+        Décideur technique : le responsable SI (accessible).
+      </p>
+    </section>
+
+    <section>
+      <p class="kicker">01 · Filtre</p>
+      <h2>Signaux &amp; go / no-go</h2>
+      <table>
+        <thead><tr><th>Signal</th><th>Lecture</th></tr></thead>
+        <tbody>
+          <tr><td>Applis qui doivent se parler (LIMS ↔ ERP)</td><td>Vert</td></tr>
+          <tr><td>Flux / reprises / fiabilité</td><td>Vert</td></tr>
+          <tr><td>Alerte quand un flux demande une action</td><td>Vert</td></tr>
+          <tr><td>Forfaitable, lot 1 bornable</td><td>Oui</td></tr>
+          <tr><td>Dispo CDI Phase 0</td><td>OK pour un lot ~15–30 j·h facturés</td></tr>
+        </tbody>
+      </table>
+      <table>
+        <thead><tr><th>Principes</th><th>Décision</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Exploitation</strong></td>
+            <td>Oui — connecteur, bus/événements, alertes : tire pleinement parti du socle</td>
+          </tr>
+          <tr>
+            <td><strong>Investissement</strong></td>
+            <td>Faible sur ce lot (pas d’enrichissement majeur du patrimoine)</td>
+          </tr>
+          <tr>
+            <td><strong>Type retenu pour le coef</strong></td>
+            <td><strong>Exploitation → × 4</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Go / no-go</strong></td>
+            <td><strong>Go</strong> — cadrage léger autorisé</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">Charge filtre : découverte 0,75 j·h + évaluation 0,5 j·h ≈ 1,25 j·h (sous plafonds).</p>
+    </section>
+
+    <section>
+      <p class="kicker">02 · Cadrage</p>
+      <h2>Lot 1 — périmètre</h2>
+      <table>
+        <thead><tr><th>In</th><th>Out</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              Flux LIMS → ERP pour 2 types de résultats ; reprises sur erreur ;
+              journalisation ; alerte (mail) si échec répété ; doc d’exploitation ; critères d’acceptation.
+            </td>
+            <td>
+              Refonte ERP / LIMS ; UI métier ; autres flux ; formation large ; run 24/7.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        Inputs client reçus (specs API LIMS, accès bac à sable ERP) en 4 jours — cadrage 1,5 j·h.
+        Total pré-vente : <strong>2,75 j·h</strong> (≤ 3).
+      </p>
+    </section>
+
+    <section>
+      <p class="kicker">03 · Effort A</p>
+      <h2>Estimation interne (avec socle)</h2>
+      <table>
+        <thead><tr><th>Activité</th><th>j·h</th></tr></thead>
+        <tbody>
+          <tr><td>Découverte + évaluation</td><td>1,25</td></tr>
+          <tr><td>Cadrage</td><td>1,5</td></tr>
+          <tr><td>Build + tests + doc + recette lot 1</td><td>10</td></tr>
+          <tr><td><strong>Total A</strong></td><td><strong>12,75</strong> → arrondi chiffrage <strong>13 j·h</strong></td></tr>
+        </tbody>
+      </table>
+      <p>Plancher du type (Exp ×3) = 13 × 3 × 1&nbsp;000&nbsp;€ = <strong>39 k€</strong>. P<sub>cible</sub> = 13 × 4 × 1&nbsp;000 = <strong>52 k€</strong>.</p>
+    </section>
+
+    <section>
+      <p class="kicker">04 · Prix</p>
+      <h2>Application de la formule</h2>
+      <blockquote>
+        Exploitation : cible ×4, plancher ×3.<br />
+        P<sub>cible</sub> = 13 × 4 × 1&nbsp;000&nbsp;€ = <strong>52 k€ HT</strong><br />
+        P<sub>min</sub> = 13 × 3 × 1&nbsp;000&nbsp;€ = <strong>39 k€ HT</strong>
+      </blockquote>
+      <table>
+        <thead><tr><th>Élément</th><th>Valeur</th></tr></thead>
+        <tbody>
+          <tr><td>Type</td><td>Exploitation</td></tr>
+          <tr><td>Coef cible / plancher</td><td>× 4 / × 3</td></tr>
+          <tr><td>A</td><td>13 j·h</td></tr>
+          <tr><td><strong>P<sub>cible</sub></strong></td><td><strong>52 k€ HT</strong></td></tr>
+          <tr><td><strong>P<sub>min</sub></strong></td><td><strong>39 k€ HT</strong></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <p class="kicker">05 · Budget client C</p>
+      <h2>Trois scénarios</h2>
+      <p>En fin de cadrage, le responsable SI indique une enveloppe.</p>
+      <p class="note">
+        Gain net / personne = ordre de grandeur Phase 0 : forfait retenu × 50&nbsp;% (partage binôme)
+        × ~0,55 (reste après cotisations + IR, frais légers déjà nets) ≈ <strong>forfait × 0,275</strong>.
+        Pas un conseil fiscal — dépend du véhicule (portage, SAS…).
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>C annoncé</th>
+            <th>vs bande 39–52 k€</th>
+            <th>Décision Tanoa</th>
+            <th>Gain net / pers. (estim.)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>60 k€</strong></td>
+            <td>C ≥ P<sub>cible</sub></td>
+            <td>Proposer <strong>52 k€</strong>.</td>
+            <td><strong>~14 k€</strong> (sur 52)</td>
+          </tr>
+          <tr>
+            <td><strong>40 k€</strong></td>
+            <td>P<sub>min</sub> ≤ C &lt; P<sub>cible</sub></td>
+            <td>
+              Compresser au plancher <strong>39 k€</strong> (scope inchangé) <em>ou</em>
+              réduire le lot (1 type de résultat) pour un P′ cible plus bas.
+            </td>
+            <td><strong>~11 k€</strong> (sur 39)</td>
+          </tr>
+          <tr>
+            <td><strong>30 k€</strong></td>
+            <td>C &lt; P<sub>min</sub></td>
+            <td>
+              Réduire le scope jusqu’à P<sub>min</sub>′ ≤ 30 (ex. A′ ≈ 10 → P<sub>min</sub>′ = 30 k€)
+              ou <strong>no-go</strong> — pas vendre à 30 k€ sur A = 13.
+            </td>
+            <td><strong>~8 k€</strong> si P′ = 30 ; sinon 0</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">Suite du case study : scénario C = 60 k€ → proposition à 52 k€ (~14 k€ nets / pers.).</p>
+    </section>
+
+    <section>
+      <p class="kicker">06 · Côté client</p>
+      <h2>Ce qui apparaît dans la proposition</h2>
+      <table>
+        <thead><tr><th>On montre</th><th>On ne montre jamais</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              Lot 1 : flux LIMS→ERP (2 types), reprises, alerte mail, doc, critères d’acceptation ;
+              forfait <strong>52&nbsp;000&nbsp;€ HT</strong> ;
+              jalons 40&nbsp;% / 60&nbsp;%.
+            </td>
+            <td>13 j·h, TJM, « on va 4× plus vite », coefficient, plancher.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <p class="kicker">07 · Suite</p>
+      <h2>Signature &amp; facturation</h2>
+      <table>
+        <thead><tr><th>Événement</th><th>Montant</th></tr></thead>
+        <tbody>
+          <tr><td>Signature (40&nbsp;%)</td><td>20,8 k€ HT</td></tr>
+          <tr><td>Recette lot 1 (60&nbsp;%)</td><td>31,2 k€ HT</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Pendant le delivery : un 3ᵉ type de résultat demandé → <strong>avenant</strong>
+        (recalcul A avenant × 4 × 1&nbsp;000), pas d’absorption silencieuse.
+      </p>
+    </section>
+
+    <section>
+      <p class="kicker">08 · Apprentissage</p>
+      <h2>Après coup (fictif)</h2>
+      <table>
+        <thead><tr><th>Mesure</th><th>Valeur</th></tr></thead>
+        <tbody>
+          <tr><td>A réel final</td><td>14 j·h (légère dérive +0,25 vs estimé 13)</td></tr>
+          <tr><td>Forfait</td><td>52 k€ accepté</td></tr>
+          <tr><td>Coef implicite</td><td>52&nbsp;000 ÷ (14 × 1&nbsp;000) ≈ <strong>3,7</strong></td></tr>
+          <tr><td>Type</td><td>Exploitation (cible ×4)</td></tr>
+          <tr>
+            <td>Lecture</td>
+            <td>×4 un peu tendu sur A réel, mais accepté. On garde ×4 ; surveiller la dérive d’estimation A.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <p class="kicker">Synthèse</p>
+      <h2>En une vue</h2>
+      <table>
+        <thead><tr><th>Étape</th><th>Résultat</th></tr></thead>
+        <tbody>
+          <tr><td>Filtre</td><td>Go · Exploitation</td></tr>
+          <tr><td>Coef cible / plancher</td><td>× 4 / × 3</td></tr>
+          <tr><td>A</td><td>13 j·h</td></tr>
+          <tr><td>P<sub>cible</sub> / P<sub>min</sub></td><td>52 / 39 k€</td></tr>
+          <tr><td>Gain net / pers. (estim.)</td><td>~14 k€ (sur 52) · ~11 k€ (sur 39)</td></tr>
+          <tr><td>C</td><td>60 k€ → on propose 52</td></tr>
+          <tr><td>Client voit</td><td>Livrable + forfait + jalons</td></tr>
+          <tr><td>Client ne voit pas</td><td>j·h, TJM, coef</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="foot">
+      <span>TANOA SYSTEMS · CASE STUDY CHIFFRAGE</span>
+      <span>USAGE INTERNE · NON RÉFÉRENCÉ</span>
+    </footer>
+  </article>
+</body>
+</html>

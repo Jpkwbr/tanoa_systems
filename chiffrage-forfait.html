@@ -96,30 +96,35 @@
           <strong>Estimer A</strong> — j·h <em>réels</em> avec le socle, y compris découverte + cadrage.
         </li>
         <li>
-          <strong>Choisir le coefficient</strong> selon le type de mission (grille 02) :
+          <strong>Choisir les coefficients</strong> selon le type de mission (grille 02) :
           <table>
-            <thead><tr><th>Type</th><th>Coefficient</th><th>Quand</th></tr></thead>
+            <thead><tr><th>Type</th><th>Cible</th><th>Plancher</th><th>Quand</th></tr></thead>
             <tbody>
               <tr>
                 <td><strong>Investissement</strong></td>
                 <td><strong>× 3</strong></td>
-                <td>La mission enrichit surtout le patrimoine (composants, outillage, conventions) — levier partiel sur le runtime existant</td>
+                <td><strong>× 2</strong></td>
+                <td>Enrichit surtout le patrimoine — levier partiel sur le runtime</td>
               </tr>
               <tr>
                 <td><strong>Exploitation</strong></td>
                 <td><strong>× 4</strong></td>
-                <td>La mission tire pleinement parti du socle (bus, services, alerting…) — écart max vs ESN sans patrimoine</td>
+                <td><strong>× 3</strong></td>
+                <td>Tire pleinement parti du socle — écart max vs ESN</td>
               </tr>
             </tbody>
           </table>
-          Si les deux sont réels : prendre le <strong>dominant</strong> ; si l’exploitation est nette → <strong>× 4</strong>.
-          Ces valeurs sont des <strong>hypothèses de départ</strong> à valider sur les missions.
+          Si les deux sont réels : type <strong>dominant</strong> ; exploitation nette → grille Exploitation.
+          Hypothèses de départ à valider sur les missions.
         </li>
         <li>
           <strong>Fixer le forfait</strong> —
           <blockquote style="margin: 0.5rem 0;">
-            Forfait = <strong>A × coefficient × 1&nbsp;000&nbsp;€</strong>
+            P<sub>cible</sub> = A × coef<sub>cible</sub> × 1&nbsp;000&nbsp;€<br />
+            P<sub>min</sub> = A × coef<sub>plancher</sub> × 1&nbsp;000&nbsp;€
           </blockquote>
+          On propose d’abord P<sub>cible</sub>. Le budget C peut compresser jusqu’à P<sub>min</sub>
+          (idéalement en réduisant le scope). En dessous de P<sub>min</sub> → no-go ou re-découpage.
         </li>
         <li>
           <strong>Afficher au client</strong>
@@ -144,12 +149,12 @@
       </ol>
       <table>
         <thead>
-          <tr><th>A (j·h)</th><th>Investissement (×3)</th><th>Exploitation (×4)</th></tr>
+          <tr><th>A (j·h)</th><th>Inv cible ×3</th><th>Inv min ×2</th><th>Exp cible ×4</th><th>Exp min ×3</th></tr>
         </thead>
         <tbody>
-          <tr><td>9</td><td>27 k€</td><td>36 k€</td></tr>
-          <tr><td>15</td><td>45 k€</td><td>60 k€</td></tr>
-          <tr><td>21</td><td>63 k€</td><td>84 k€</td></tr>
+          <tr><td>9</td><td>27 k€</td><td>18 k€</td><td>36 k€</td><td>27 k€</td></tr>
+          <tr><td>13</td><td>39 k€</td><td>26 k€</td><td>52 k€</td><td>39 k€</td></tr>
+          <tr><td>15</td><td>45 k€</td><td>30 k€</td><td>60 k€</td><td>45 k€</td></tr>
         </tbody>
       </table>
     </section>
@@ -158,8 +163,8 @@
       <p class="kicker">Apprentissage</p>
       <h2>Évaluer le coefficient</h2>
       <p>
-        Le vrai levier de chiffrage Phase 0 : <strong>mesurer si ×3 / ×4 tiennent</strong>
-        selon le type Investissement / Exploitation.
+        Le vrai levier Phase 0 : mesurer si les <strong>cibles ×3 / ×4</strong> et les
+        <strong>planchers ×2 / ×3</strong> tiennent selon le type.
       </p>
       <p>Après chaque mission (signée ou non) :</p>
       <ul>
@@ -167,14 +172,13 @@
         <li><strong>A réel</strong> — j·h effectivement passés (pré-vente + delivery).</li>
         <li><strong>Forfait</strong> — prix proposé / accepté / refusé.</li>
         <li><strong>Coefficient implicite</strong> — forfait ÷ (A × 1&nbsp;000&nbsp;€).</li>
-        <li><strong>Lecture</strong> — comparer à 3 ou 4 selon le type ;
-          accepté trop facilement → coef peut monter ;
-          refusé sur le prix (périmètre OK) → baisser un cran ou découper le lot ;
-          dérapage de A → revoir l’estimation, pas seulement le coef.</li>
+        <li><strong>Lecture</strong> — comparer à la cible et au plancher du type ;
+          accepté trop facilement → cible peut monter ;
+          refusé sur le prix → compresser vers le plancher <em>ou</em> réduire le lot ;
+          sous le plancher → no-go ; dérapage de A → revoir l’estimation.</li>
       </ul>
       <p class="note">
-        Après 2–3 missions, recalibrer ×3 / ×4 par type.
-        C’est ça l’objet d’apprentissage — pas d’inventer un B ESN.
+        Après 2–3 missions, recalibrer cibles et planchers par type.
       </p>
     </section>
 
@@ -182,8 +186,8 @@
       <p class="kicker">Budget client</p>
       <h2>Intégrer C dans l’équation</h2>
       <p>
-        On calcule d’abord <strong>P = A × coefficient × 1&nbsp;000&nbsp;€</strong> (coef 3 ou 4).
-        Le budget client <strong>C</strong> (s’il est connu) sert ensuite à trancher — pas à fixer le prix tout seul.
+        On calcule <strong>P<sub>cible</sub></strong> (×3 ou ×4) et <strong>P<sub>min</sub></strong> (×2 Inv / ×3 Exp).
+        Le budget <strong>C</strong> sert à trancher entre les deux — pas à fixer le prix tout seul.
       </p>
       <table>
         <thead>
@@ -191,31 +195,31 @@
         </thead>
         <tbody>
           <tr>
-            <td><strong>C ≥ P</strong></td>
-            <td>Proposer <strong>P</strong> (pas remonter jusqu’à C « parce qu’il y a de la place » sans valeur ajoutée au scope).</td>
+            <td><strong>C ≥ P<sub>cible</sub></strong></td>
+            <td>Proposer <strong>P<sub>cible</sub></strong> (ne pas gonfler jusqu’à C sans élargir le scope).</td>
           </tr>
           <tr>
-            <td><strong>A × 1&nbsp;000&nbsp;€ ≤ C &lt; P</strong></td>
+            <td><strong>P<sub>min</sub> ≤ C &lt; P<sub>cible</sub></strong></td>
             <td>
-              1) Réduire le <strong>périmètre / lots</strong> pour que le nouveau P′ ≤ C ; ou<br />
-              2) Accepter une marge plus basse <em>en conscience</em> (référence Phase 0, fit exceptionnel) ; ou<br />
-              3) Refuser poliment si le ticket ne vaut pas le dérangement CDI.
+              1) Réduire le <strong>périmètre / lots</strong> pour un nouveau P′ ≤ C ; ou<br />
+              2) Compresser jusqu’au <strong>plancher du type</strong> (Inv ×2 / Exp ×3) ; ou<br />
+              3) Refuser si le ticket ne vaut pas le dérangement CDI.
             </td>
           </tr>
           <tr>
-            <td><strong>C &lt; A × 1&nbsp;000&nbsp;€</strong></td>
-            <td>No-go ou lot minimal redécoupé — en dessous du plancher on travaille à perte.</td>
+            <td><strong>C &lt; P<sub>min</sub></strong></td>
+            <td>No-go ou lot redécoupé — pas descendre sous le plancher du type.</td>
           </tr>
           <tr>
             <td><strong>C inconnu</strong></td>
-            <td>Proposer P. La réaction du client (ok / trop cher) alimente l’apprentissage du coefficient.</td>
+            <td>Proposer P<sub>cible</sub>. La réaction alimente l’apprentissage cible / plancher.</td>
           </tr>
         </tbody>
       </table>
       <ul>
-        <li>Demander C en découverte / cadrage si possible (« vous avez une enveloppe ? ») — sans ancrer le devis dessus.</li>
-        <li>Ne pas annoncer P puis le baisser jusqu’à C <strong>sans</strong> changer le scope (avenant / re-cadrage).</li>
-        <li>Après coup : si C était connu et P accepté/refusé → noter le coefficient implicite pour recalibrer ×3 / ×4.</li>
+        <li>Demander C en découverte / cadrage si possible — sans ancrer le devis dessus.</li>
+        <li>Ne pas baisser sous P<sub>min</sub> du type sans réduire le scope.</li>
+        <li>Après coup : noter le coef implicite vs cible et plancher.</li>
       </ul>
     </section>
 
@@ -231,7 +235,7 @@
     <section>
       <p class="kicker">Exemple</p>
       <h2>Flux outil métier ↔ SI + file d’attente</h2>
-      <p class="note">Signal vert, type <strong>Exploitation</strong> (socle bus / flux) → coefficient <strong>× 4</strong>.</p>
+      <p class="note">Exploitation → cible <strong>× 4</strong>, plancher <strong>× 3</strong>.</p>
 
       <h3>Effort A</h3>
       <table>
@@ -245,16 +249,16 @@
       </table>
 
       <h3>Prix</h3>
-      <p>
-        Forfait = 9 × 4 × 1&nbsp;000&nbsp;€ = <strong>36 k€ HT</strong>.
-      </p>
-      <ul>
-        <li>Client : livrable + critères + forfait — sans voir les 9 j·h.</li>
-        <li>Nous : 4&nbsp;000&nbsp;€ / j·h effectif — marge = exploitation du socle.</li>
-        <li>Pré-vente (3 j·h) absorbée dans le forfait.</li>
-      </ul>
+      <table>
+        <thead><tr><th></th><th>Coef</th><th>Forfait</th></tr></thead>
+        <tbody>
+          <tr><td>P<sub>cible</sub></td><td>× 4</td><td><strong>36 k€ HT</strong></td></tr>
+          <tr><td>P<sub>min</sub></td><td>× 3</td><td><strong>27 k€ HT</strong></td></tr>
+        </tbody>
+      </table>
+      <p>Proposition initiale : <strong>36 k€</strong>. Si C = 30 k€ → compresser au plancher 27 k€ <em>ou</em> réduire le lot.</p>
 
-      <h3>Facturation (après signature)</h3>
+      <h3>Facturation (si 36 k€ signés)</h3>
       <ul>
         <li>40&nbsp;% à la signature → 14,4 k€</li>
         <li>60&nbsp;% à la recette du lot → 21,6 k€</li>
