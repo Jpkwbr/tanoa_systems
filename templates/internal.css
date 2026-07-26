@@ -101,6 +101,8 @@ h1 {
   line-height: 1.15;
 }
 .lede { margin: 0 0 1.5rem; color: var(--muted); max-width: 38rem; font-size: 0.95rem; }
+.lede .name { color: var(--ink); font-weight: 650; }
+.lede .name span { color: var(--lagoon); }
 
 .kicker {
   margin: 0 0 0.3rem;
