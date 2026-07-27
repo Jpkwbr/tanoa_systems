@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tanoa Systems — Calculateur chiffrage (interne)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="templates/internal.css" />
+  <style>
+    .calc-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.75rem 0 1rem;
+    }
+    .calc-toolbar button,
+    .btn-row {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.4rem 0.75rem;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    .calc-toolbar button:hover,
+    .btn-row:hover { border-color: var(--lagoon); color: var(--lagoon); }
+    .calc-toolbar button.primary {
+      background: var(--lagoon);
+      border-color: var(--lagoon);
+      color: #fff;
+    }
+    .params {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+      gap: 0.75rem 1rem;
+      margin: 0.75rem 0 1.25rem;
+    }
+    .params label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .params input,
+    .lines input,
+    .lines select {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.85rem;
+      padding: 0.35rem 0.45rem;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .lines { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .lines th {
+      text-align: left;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      padding: 0.4rem 0.35rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .lines td { padding: 0.35rem; vertical-align: middle; border-bottom: 1px solid var(--line); }
+    .lines td.num { font-family: "IBM Plex Mono", monospace; white-space: nowrap; }
+    .lines .col-label { min-width: 10rem; }
+    .lines .col-a, .lines .col-as { width: 5.5rem; }
+    .lines .col-type { width: 7.5rem; }
+    .lines .col-pi { width: 5.5rem; }
+    .lines .col-act { width: 2.5rem; }
+    .lines button.btn-row {
+      padding: 0.2rem 0.45rem;
+      font-size: 0.75rem;
+    }
+    .results {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+      gap: 0.65rem;
+      margin: 1rem 0;
+    }
+    .result-card {
+      background: var(--paper-deep);
+      border-left: 3px solid var(--lagoon);
+      padding: 0.65rem 0.75rem;
+    }
+    .result-card.digue { border-left-color: #a33; }
+    .result-card.plancher { border-left-color: #b8860b; }
+    .result-card.cible { border-left-color: var(--forge); }
+    .result-card .lbl {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    .result-card .val {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-top: 0.15rem;
+    }
+    .warn {
+      margin: 0.5rem 0;
+      padding: 0.55rem 0.75rem;
+      background: #f8e8e4;
+      border-left: 3px solid #a33;
+      font-size: 0.85rem;
+    }
+    .ok-note {
+      margin: 0.5rem 0;
+      padding: 0.55rem 0.75rem;
+      background: var(--lagoon-wash);
+      border-left: 3px solid var(--lagoon);
+      font-size: 0.85rem;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+      gap: 0.5rem 1rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82rem;
+      margin: 0.75rem 0;
+    }
+    .meta-grid span { color: var(--muted); }
+    @media (max-width: 640px) {
+      .lines .col-type { display: none; }
+      .page { padding: 1.25rem 1rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <header class="top">
+      <div class="brand">Tanoa <span>Systems</span></div>
+      <div class="badge">Document interne · outil</div>
+    </header>
+
+    <h1>Calculateur chiffrage</h1>
+    <p class="lede">
+      Prix = A<sub>sans</sub> × taux. Digue = 2 × A. Jamais afficher A / A<sub>sans</sub> au client.
+    </p>
+    <p class="note">
+      Aligné sur <a href="chiffrage-forfait.html">chiffrage-forfait</a> ·
+      ex. <a href="case-study-chiffrage.html">case study</a> ·
+      délai <a href="delai-livraison.html">delai-livraison</a>.
+      Données locales navigateur uniquement.
+    </p>
+
+    <section>
+      <p class="kicker">Paramètres</p>
+      <h2>Références Phase 0</h2>
+      <div class="params">
+        <label>Taux (€ / j·h)
+          <input type="number" id="rate" value="1000" min="1" step="50" />
+        </label>
+        <label>Négociation (× Σ A<sub>sans</sub>)
+          <input type="number" id="nego" value="0.85" min="0.5" max="1" step="0.01" />
+        </label>
+        <label>Digue (× Σ A)
+          <input type="number" id="dikeMult" value="2" min="1" max="5" step="0.1" />
+        </label>
+        <label>C — j·h / semaine
+          <input type="number" id="capC" value="4" min="1" step="0.5" />
+        </label>
+        <label>M — semaines client
+          <input type="number" id="mClient" value="2" min="0" step="0.5" />
+        </label>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">Pré-vente</p>
+      <h2>Hors delivery (×&nbsp;1)</h2>
+      <div class="params" style="grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));">
+        <label>A<sub>prévente</sub> (j·h)
+          <input type="number" id="prevA" value="0" min="0" step="0.5" />
+        </label>
+        <label>P<sub>prévente</sub>
+          <input type="text" id="prevP" readonly tabindex="-1" />
+        </label>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">Delivery</p>
+      <h2>Lignes (services + déploiement)</h2>
+      <div class="calc-toolbar">
+        <button type="button" class="primary" id="btnAdd">+ Ligne</button>
+        <button type="button" id="btnDeploy">+ Déploiement / validation</button>
+        <button type="button" id="btnCase">Charger case study</button>
+        <button type="button" id="btnClear">Vider</button>
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="lines">
+          <thead>
+            <tr>
+              <th class="col-label">Ligne</th>
+              <th class="col-type">Type</th>
+              <th class="col-a">A</th>
+              <th class="col-as">A<sub>sans</sub></th>
+              <th class="col-pi">P<sub>i</sub></th>
+              <th class="col-act"></th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">Résultat</p>
+      <h2>Totaux &amp; niveaux</h2>
+      <div id="alerts"></div>
+      <div class="meta-grid" id="meta"></div>
+      <div class="results">
+        <div class="result-card cible">
+          <div class="lbl">P<sub>cible</sub></div>
+          <div class="val" id="pCible">—</div>
+        </div>
+        <div class="result-card plancher">
+          <div class="lbl">P<sub>plancher</sub></div>
+          <div class="val" id="pPlancher">—</div>
+        </div>
+        <div class="result-card digue">
+          <div class="lbl">P<sub>digue</sub></div>
+          <div class="val" id="pDigue">—</div>
+        </div>
+        <div class="result-card">
+          <div class="lbl">Délai estimé</div>
+          <div class="val" id="pDelay">—</div>
+        </div>
+      </div>
+      <p class="note">
+        Proposer P<sub>cible</sub>. Négocier jusqu’à P<sub>plancher</sub> (idéalement en réduisant le scope).
+        Sous P<sub>plancher</sub> → re-scope ou refuser. Sous P<sub>digue</sub> → no-go.
+      </p>
+    </section>
+
+    <footer class="foot">
+      <span>TANOA SYSTEMS · CALCULATEUR CHIFFRAGE</span>
+      <span>USAGE INTERNE · NON PUBLIC</span>
+    </footer>
+  </article>
+
+  <script>
+    (function () {
+      var tbody = document.getElementById("tbody");
+      var RATE_KEY = "tanoa-chiffrage-calc";
+
+      function money(n) {
+        if (!isFinite(n)) return "—";
+        var k = n / 1000;
+        if (Math.abs(k - Math.round(k)) < 0.05 && Math.abs(n) >= 1000) {
+          return (Math.round(k * 10) / 10) + " k€";
+        }
+        return Math.round(n).toLocaleString("fr-FR") + " €";
+      }
+
+      function num(el) {
+        var v = parseFloat(el.value);
+        return isFinite(v) ? v : 0;
+      }
+
+      function addRow(data) {
+        data = data || { label: "", type: "service", a: "", asans: "" };
+        var tr = document.createElement("tr");
+        tr.innerHTML =
+          '<td class="col-label"><input type="text" class="f-label" placeholder="Service / brique" /></td>' +
+          '<td class="col-type"><select class="f-type">' +
+          '<option value="service">Service</option>' +
+          '<option value="deploy">Déploiement / validation</option>' +
+          "</select></td>" +
+          '<td class="col-a"><input type="number" class="f-a" min="0" step="0.5" placeholder="0" /></td>' +
+          '<td class="col-as"><input type="number" class="f-as" min="0" step="0.5" placeholder="0" /></td>' +
+          '<td class="col-pi num f-pi">—</td>' +
+          '<td class="col-act"><button type="button" class="btn-row f-del" title="Supprimer">×</button></td>';
+        tbody.appendChild(tr);
+        tr.querySelector(".f-label").value = data.label || "";
+        tr.querySelector(".f-type").value = data.type || "service";
+        tr.querySelector(".f-a").value = data.a !== "" && data.a != null ? data.a : "";
+        tr.querySelector(".f-as").value = data.asans !== "" && data.asans != null ? data.asans : "";
+        tr.querySelector(".f-del").addEventListener("click", function () {
+          tr.remove();
+          recalc();
+        });
+        tr.querySelectorAll("input, select").forEach(function (el) {
+          el.addEventListener("input", recalc);
+          el.addEventListener("change", recalc);
+        });
+        return tr;
+      }
+
+      function loadCase() {
+        document.getElementById("prevA").value = "2.5";
+        document.getElementById("capC").value = "4";
+        document.getElementById("mClient").value = "2";
+        tbody.innerHTML = "";
+        addRow({ label: "Déploiement / validation", type: "deploy", a: 2, asans: 6 });
+        addRow({ label: "alert_engine (conf)", type: "service", a: 1, asans: 10 });
+        addRow({ label: "subscriptions (conf)", type: "service", a: 1, asans: 8 });
+        addRow({ label: "alert producer", type: "service", a: 4, asans: 12 });
+        addRow({ label: "notifier Teams", type: "service", a: 5, asans: 5 });
+        recalc();
+      }
+
+      function clearAll() {
+        document.getElementById("prevA").value = "0";
+        tbody.innerHTML = "";
+        addRow({ type: "deploy", label: "Déploiement / validation" });
+        addRow({ type: "service" });
+        recalc();
+      }
+
+      function recalc() {
+        var rate = num(document.getElementById("rate"));
+        var nego = num(document.getElementById("nego"));
+        var dikeMult = num(document.getElementById("dikeMult"));
+        var capC = num(document.getElementById("capC"));
+        var mClient = num(document.getElementById("mClient"));
+        var prevA = num(document.getElementById("prevA"));
+        var prevP = prevA * rate;
+        document.getElementById("prevP").value = money(prevP);
+
+        var sumA = 0;
+        var sumAsans = 0;
+        var rows = tbody.querySelectorAll("tr");
+        rows.forEach(function (tr) {
+          var a = parseFloat(tr.querySelector(".f-a").value);
+          var asans = parseFloat(tr.querySelector(".f-as").value);
+          if (!isFinite(a)) a = 0;
+          if (!isFinite(asans)) asans = 0;
+          sumA += a;
+          sumAsans += asans;
+          tr.querySelector(".f-pi").textContent = money(asans * rate);
+        });
+
+        var pDeliveryRaw = sumAsans * rate;
+        var digueDelivery = dikeMult * sumA * rate;
+        var pDeliveryCible = Math.max(pDeliveryRaw, digueDelivery);
+        var pDeliveryPlancher = Math.max(nego * sumAsans * rate, digueDelivery);
+
+        var pCible = prevP + pDeliveryCible;
+        var pPlancher = prevP + pDeliveryPlancher;
+        var pDigue = prevP + digueDelivery;
+
+        var coef = sumA > 0 ? sumAsans / sumA : 0;
+        var liberated = Math.max(0, sumAsans - sumA);
+        var weeksBuild = capC > 0 ? Math.ceil(sumA / capC) : 0;
+        var delay = weeksBuild + mClient;
+
+        document.getElementById("pCible").textContent = money(pCible);
+        document.getElementById("pPlancher").textContent = money(pPlancher);
+        document.getElementById("pDigue").textContent = money(pDigue);
+        document.getElementById("pDelay").textContent =
+          sumA > 0 ? delay + " sem." : "—";
+
+        document.getElementById("meta").innerHTML =
+          "<div><span>Σ A delivery</span><br>" + (Math.round(sumA * 10) / 10) + " j·h</div>" +
+          "<div><span>Σ A<sub>sans</sub></span><br>" + (Math.round(sumAsans * 10) / 10) + " j·h</div>" +
+          "<div><span>P delivery (brut)</span><br>" + money(pDeliveryRaw) + "</div>" +
+          "<div><span>Coef ΣA<sub>sans</sub>/ΣA</span><br>" + (sumA > 0 ? coef.toFixed(2) : "—") + "</div>" +
+          "<div><span>Capacité libérée</span><br>" + (Math.round(liberated * 10) / 10) + " j·h</div>" +
+          "<div><span>Build (ceil ΣA/C)</span><br>" + weeksBuild + " sem.</div>";
+
+        var alerts = [];
+        rows.forEach(function (tr, i) {
+          var a = parseFloat(tr.querySelector(".f-a").value) || 0;
+          var asans = parseFloat(tr.querySelector(".f-as").value) || 0;
+          var label = tr.querySelector(".f-label").value || ("Ligne " + (i + 1));
+          if (asans > 0 && a > asans) {
+            alerts.push("« " + label + " » : A &gt; A<sub>sans</sub> — vérifier le chiffrage.");
+          }
+        });
+        if (sumAsans > 0 && sumAsans < dikeMult * sumA) {
+          alerts.push(
+            "Σ A<sub>sans</sub> &lt; " + dikeMult + " × Σ A → P<sub>cible</sub> / P<sub>plancher</sub> remontés à la digue delivery (" +
+            money(digueDelivery) + "). Envisager remonter A<sub>sans</sub>, réduire le scope, ou no-go."
+          );
+        }
+        if (sumA === 0 && prevA === 0) {
+          alerts = [];
+        }
+
+        var box = document.getElementById("alerts");
+        if (alerts.length) {
+          box.innerHTML = alerts.map(function (a) {
+            return '<div class="warn">' + a + "</div>";
+          }).join("");
+        } else if (sumAsans > 0) {
+          box.innerHTML =
+            '<div class="ok-note">Bande utile proposition : <strong>' +
+            money(pPlancher) + "</strong> – <strong>" + money(pCible) +
+            "</strong>. Digue no-go : " + money(pDigue) + ".</div>";
+        } else {
+          box.innerHTML = "";
+        }
+
+        try {
+          localStorage.setItem(RATE_KEY, JSON.stringify({
+            rate: rate, nego: nego, dikeMult: dikeMult, capC: capC, mClient: mClient, prevA: prevA,
+            rows: Array.prototype.map.call(rows, function (tr) {
+              return {
+                label: tr.querySelector(".f-label").value,
+                type: tr.querySelector(".f-type").value,
+                a: tr.querySelector(".f-a").value,
+                asans: tr.querySelector(".f-as").value
+              };
+            })
+          }));
+        } catch (e) {}
+      }
+
+      function restore() {
+        try {
+          var raw = localStorage.getItem(RATE_KEY);
+          if (!raw) return false;
+          var s = JSON.parse(raw);
+          if (s.rate != null) document.getElementById("rate").value = s.rate;
+          if (s.nego != null) document.getElementById("nego").value = s.nego;
+          if (s.dikeMult != null) document.getElementById("dikeMult").value = s.dikeMult;
+          if (s.capC != null) document.getElementById("capC").value = s.capC;
+          if (s.mClient != null) document.getElementById("mClient").value = s.mClient;
+          if (s.prevA != null) document.getElementById("prevA").value = s.prevA;
+          tbody.innerHTML = "";
+          if (s.rows && s.rows.length) {
+            s.rows.forEach(function (r) { addRow(r); });
+          } else {
+            return false;
+          }
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      document.getElementById("btnAdd").addEventListener("click", function () {
+        addRow({ type: "service" });
+        recalc();
+      });
+      document.getElementById("btnDeploy").addEventListener("click", function () {
+        addRow({ type: "deploy", label: "Déploiement / validation" });
+        recalc();
+      });
+      document.getElementById("btnCase").addEventListener("click", loadCase);
+      document.getElementById("btnClear").addEventListener("click", clearAll);
+
+      ["rate", "nego", "dikeMult", "capC", "mClient", "prevA"].forEach(function (id) {
+        document.getElementById(id).addEventListener("input", recalc);
+      });
+
+      if (!restore()) {
+        clearAll();
+      } else {
+        recalc();
+      }
+    })();
+  </script>
+</body>
+</html>
