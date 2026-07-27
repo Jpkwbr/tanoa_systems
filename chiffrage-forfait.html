@@ -22,65 +22,228 @@
       Processus pour fixer le prix d’une mission au forfait.
       Le socle accélère la livraison ; le client paie le <strong>livrable</strong>, pas nos heures réelles.
     </p>
-      <p class="note">
-      Orienté <strong>Phase 0</strong> : le coefficient ci-dessous est une <strong>hypothèse de départ</strong>
-      à confronter aux missions réelles (temps passé vs forfait accepté / refusé).
-      Illustration : <a href="case-study-chiffrage.html">case study</a> · flow : <a href="flow-client.html">flow-client</a>.
-      </p>
+    <p class="note">
+      Orienté <strong>Phase 0</strong> : hypothèses à confronter aux missions réelles.
+      Illustration : <a href="case-study-chiffrage.html">case study (Boomerang)</a> ·
+      flow : <a href="flow-client.html">flow-client</a>.
+    </p>
 
     <section>
       <p class="kicker">En une phrase</p>
       <h2>Stratégie</h2>
       <blockquote>
-        On vend un résultat au forfait. On ne facture pas nos jours réels :
-        on applique un coefficient sur l’effort réel pour garder une marge de productivité
-        (sélectivité + socle + environnement maîtrisé).
+        On vend un résultat au forfait.
+        Le prix s’ancre sur <strong>A<sub>sans</sub></strong> (sans la brique métier, encore sur l’infra).
+        <strong>A</strong> ne sert qu’à la <strong>digue économique ×&nbsp;2</strong> — pas à fixer le devis.
+        Pré-vente à <strong>×&nbsp;1</strong>.
+        Ligne transverse <strong>déploiement / validation</strong> : A + A<sub>sans</sub> (dans le delivery).
+        On négocie sur le scope / A<sub>sans</sub>, pas en descendant vers la digue.
       </blockquote>
       <ul>
-        <li><strong>Pas</strong> de TJM public × jours réels (terrain des ESN / régie).</li>
-        <li><strong>Jamais afficher au client</strong> la charge en j·h, ni un TJM, ni un décompte de jours — ni dans la proposition, ni à l’oral, ni sur la vitrine / fiche offre. Uniquement : livrable, lots, critères d’acceptation, prix forfait HT (et jalons de facturation).</li>
-        <li><strong>~1&nbsp;000&nbsp;€ / j·h</strong> = référence <em>interne</em> (cadrage, avenants hors scope), pas le tarif de vente affiché.</li>
-        <li>Découverte et cadrage : <strong>non facturés à part</strong>, mais <strong>inclus dans l’effort A</strong> — avec un <strong>plafond de charge</strong> (voir ci-dessous).</li>
+        <li><strong>Pas</strong> de TJM public × jours réels.</li>
+        <li><strong>Jamais afficher</strong> A, A<sub>sans</sub>, j·h, TJM — uniquement lots, critères, prix HT, jalons.</li>
+        <li><strong>~1&nbsp;000&nbsp;€ / j·h</strong> = référence interne.</li>
+        <li>Pré-vente : <strong>×&nbsp;1</strong> sur A<sub>prévente</sub> (hors delivery).</li>
+        <li>Déploiement / validation : ligne <strong>transverse delivery</strong> (A + A<sub>sans</sub>) — pas absorbée dans la conf d’un service.</li>
       </ul>
+    </section>
+
+    <section>
+      <p class="kicker">Principe</p>
+      <h2>Prix = A<sub>sans</sub></h2>
+      <p>
+        Les lignes « quasi conf » (engine, subscriptions…) ont un A bas.
+        Les chiffrer via A les écrase. On ancre le prix sur
+        <strong>ce que le service aurait coûté sans la brique</strong>.
+      </p>
+      <blockquote style="margin: 0.5rem 0;">
+        P<sub>i</sub> = A<sub>sans,i</sub> × 1&nbsp;000&nbsp;€
+        &nbsp;&nbsp;(services <em>et</em> ligne déploiement / validation)<br />
+        P<sub>prévente</sub> = A<sub>prévente</sub> × 1 × 1&nbsp;000&nbsp;€<br />
+        P<sub>delivery</sub> = Σ P<sub>i</sub><br />
+        P<sub>brut</sub> = P<sub>prévente</sub> + P<sub>delivery</sub>
+      </blockquote>
+      <p>
+        Inv / Exp = filtre de <strong>fit</strong>.
+        Pour le <strong>prix</strong> : A<sub>sans,i</sub> ; pour la <strong>digue</strong> : A<sub>i</sub>
+        (y compris déploiement / validation).
+      </p>
+    </section>
+
+    <section>
+      <p class="kicker">Transverse</p>
+      <h2>Déploiement / validation</h2>
+      <p>
+        Mise en place d’environnement, install runtime, smoke tests, recette technique —
+        travail de <strong>delivery</strong>, pas de pré-vente.
+        Souvent oublié ou fondu dans « conf engine » : à chiffrer en <strong>ligne dédiée</strong>.
+      </p>
+      <table>
+        <thead><tr><th></th><th>Pré-vente</th><th>Déploiement / validation</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Nature</td>
+            <td>Coût commercial</td>
+            <td>Delivery (transverse)</td>
+          </tr>
+          <tr>
+            <td>A / A<sub>sans</sub></td>
+            <td>A seulement → ×1</td>
+            <td><strong>A et A<sub>sans</sub></strong> → P = A<sub>sans</sub> × 1k</td>
+          </tr>
+          <tr>
+            <td>Digue ×2</td>
+            <td>Hors Σ A delivery</td>
+            <td><strong>Dans</strong> Σ A<sub>i</sub></td>
+          </tr>
+          <tr>
+            <td>A<sub>sans</sub></td>
+            <td>—</td>
+            <td>
+              Même mise en place / validation <strong>sans</strong> playbooks,
+              patterns d’env, harness smoke Forge
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">
+        Déploiement <em>initial</em> du lot = dans le forfait.
+        Run / exploitation courante = hors build (sauf lot ops borné à part).
+      </p>
+    </section>
+
+    <section>
+      <p class="kicker">Digue</p>
+      <h2>Plancher économique (×&nbsp;2)</h2>
+      <blockquote style="margin: 0.5rem 0;">
+        P<sub>delivery</sub> ≥ 2 × Σ A<sub>i</sub> × 1&nbsp;000&nbsp;€<br />
+        Si Σ A<sub>sans,i</sub> &lt; 2 × Σ A<sub>i</sub> → remonter P<sub>delivery</sub> au plancher
+        (ou no-go si C ne suit pas).
+      </blockquote>
+      <p>
+        Le ×2 n’est <strong>ni</strong> un objectif de marge, <strong>ni</strong> une valorisation de la Forge.
+        C’est une <strong>digue économique</strong>, introduite pour la Phase 0 afin de protéger le modèle.
+        Il garantit que le prix du delivery reste au moins deux fois supérieur à la charge réelle estimée, afin de couvrir :
+      </p>
+      <ul>
+        <li>les aléas de réalisation ;</li>
+        <li>les périodes non facturables (prospection, administration, R&amp;D, formation…) ;</li>
+        <li>l’investissement continu dans Kontiki Forge ;</li>
+        <li>une marge minimale viable en solo / binôme Phase 0.</li>
+      </ul>
+      <p class="note">
+        Hypothèse de départ à confronter aux missions réelles et à ajuster si nécessaire.
+        <strong>La digue n’est pas le plancher de négociation</strong> : on ne « descend » pas vers 2×A
+        pour faire passer un deal — on réduit le scope (donc A<sub>sans</sub>) ou on refuse.
+      </p>
+    </section>
+
+    <section>
+      <p class="kicker">Estimations</p>
+      <h2>A et A<sub>sans</sub></h2>
+      <table>
+        <thead><tr><th>Grandeur</th><th>Rôle</th><th>Définition</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>A<sub>i</sub></strong></td>
+            <td>Digue / marge</td>
+            <td>Charge réelle avec infra + brique (j·h). Ne fixe pas le prix.</td>
+          </tr>
+          <tr>
+            <td><strong>A<sub>sans,i</sub></strong></td>
+            <td>Prix</td>
+            <td>
+              Même service <strong>sans</strong> la brique métier,
+              <strong>encore sur l’infra</strong> Kontiki.
+              Pas « reconstruire toute la Forge » — le composant / capacité livrée pour ce client.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <thead><tr><th>Exemple</th><th>A</th><th>A<sub>sans</sub></th><th>P<sub>i</sub></th></tr></thead>
+        <tbody>
+          <tr><td>Tout à builder (métier)</td><td>5</td><td>5</td><td>5 k€ (lot peut remonter à la digue ×2)</td></tr>
+          <tr><td>Producer avec pattern</td><td>4</td><td>12</td><td>12 k€</td></tr>
+          <tr><td>Engine réutilisé (conf)</td><td>1</td><td>20</td><td>20 k€ — A bas n’écrase plus</td></tr>
+          <tr><td>Déploiement / validation</td><td>2</td><td>6</td><td>6 k€ — transverse delivery</td></tr>
+        </tbody>
+      </table>
+      <blockquote>
+        A<sub>sans</sub> honnête est le vrai métier du chiffrage.
+        Sous-estimer A<sub>sans</sub> sur le capital conf = sous-vendre la Forge.
+      </blockquote>
+    </section>
+
+    <section>
+      <p class="kicker">Cible / planchers</p>
+      <h2>Trois niveaux</h2>
+      <blockquote style="margin: 0.5rem 0;">
+        P<sub>cible</sub> = A<sub>prévente</sub>×1k + max(Σ A<sub>sans,i</sub>, 2 × Σ A<sub>i</sub>) × 1k<br />
+        P<sub>plancher</sub> = A<sub>prévente</sub>×1k + max(0,85 × Σ A<sub>sans,i</sub>, 2 × Σ A<sub>i</sub>) × 1k<br />
+        P<sub>digue</sub> = A<sub>prévente</sub>×1k + 2 × Σ A<sub>i</sub> × 1k
+      </blockquote>
+      <table>
+        <thead><tr><th>Niveau</th><th>Rôle</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>P<sub>cible</sub></strong></td>
+            <td>Proposition initiale (ancrage A<sub>sans</sub>).</td>
+          </tr>
+          <tr>
+            <td><strong>P<sub>plancher</sub></strong></td>
+            <td>
+              Plancher <em>commercial</em> de négociation (~15&nbsp;% sous Σ A<sub>sans</sub>,
+              sans descendre sous la digue). Au-delà : réduire le scope, pas le prix « au feeling ».
+            </td>
+          </tr>
+          <tr>
+            <td><strong>P<sub>digue</sub></strong></td>
+            <td>No-go absolu. Pas une cible de discussion.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        On propose P<sub>cible</sub>. Négo entre P<sub>cible</sub> et P<sub>plancher</sub>
+        (idéalement en réduisant le scope / A<sub>sans</sub>).
+        Sous P<sub>plancher</sub> → re-scope ou refuser. Sous P<sub>digue</sub> → no-go.
+      </p>
+      <p class="note">0,85 = hypothèse Phase 0 ; à recalibrer après missions.</p>
     </section>
 
     <section>
       <p class="kicker">Pré-vente</p>
       <h2>Plafonds découverte &amp; cadrage</h2>
-      <p>
-        Sinon le pré-vente mange la marge (et le CDI). Pas de cadrage profond avant un go grille 02 ;
-        pas de devis ferme sans inputs client.
-      </p>
       <table>
         <thead>
           <tr><th>Étape</th><th>Charge max (binôme)</th><th>Si dépassé</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>Découverte (appel + notes)</td>
+            <td>Découverte</td>
             <td><strong>0,5–1 j·h</strong></td>
-            <td>Stop / 2ᵉ appel seulement si fit déjà probable</td>
+            <td>Stop / 2ᵉ appel si fit probable</td>
           </tr>
           <tr>
             <td>Évaluation (grille 02)</td>
             <td><strong>~0,5 j·h</strong></td>
-            <td>Go / no-go / go conditionnel — pas de re-cadrage</td>
+            <td>Go / no-go — pas de re-cadrage</td>
           </tr>
           <tr>
-            <td>Cadrage (avant devis)</td>
-            <td><strong>1–2 j·h</strong> (max <strong>3</strong> si inputs lourds)</td>
-            <td>Pause : inputs manquants, ou reporter — ne pas « creuser » gratuitement</td>
+            <td>Cadrage</td>
+            <td><strong>1–2 j·h</strong> (max <strong>3</strong>)</td>
+            <td>Pause si inputs manquants</td>
           </tr>
           <tr>
             <td><strong>Total pré-vente</strong></td>
             <td><strong>≤ 3 j·h</strong> (idéal ≤ 2)</td>
-            <td>No-go, ou forfait qui absorbe vraiment, ou pause</td>
+            <td>No-go / forfait qui absorbe / pause</td>
           </tr>
         </tbody>
       </table>
+      <p>Ligne pré-vente à <strong>×&nbsp;1</strong> (~1&nbsp;000&nbsp;€/j·h).</p>
       <blockquote>
-        Règle rapide : pré-vente ≤ <strong>~10–15&nbsp;%</strong> du lot 1 envisagé
-        (ex. lot 1 ~20 j·h → pré-vente max ~2–3 j·h).
+        Pré-vente ≤ <strong>~10–15&nbsp;%</strong> du lot 1 envisagé.
       </blockquote>
     </section>
 
@@ -88,194 +251,126 @@
       <p class="kicker">Processus</p>
       <h2>Étapes (Phase 0)</h2>
       <ol>
+        <li><strong>Filtrer</strong> — signaux + grille 02.</li>
+        <li><strong>Découper</strong> — services + ligne transverse <strong>déploiement / validation</strong>
+          (capital réutilisé tel quel inclus).</li>
         <li>
-          <strong>Filtrer</strong> — signaux verts + grille d’évaluation.
-          Ne pas cadrer en profondeur un no-fit.
+          <strong>Par ligne delivery</strong> — A<sub>i</sub> (digue) et A<sub>sans,i</sub> (prix).
+          P<sub>i</sub> = A<sub>sans,i</sub> × 1k.
         </li>
+        <li><strong>Pré-vente</strong> ×&nbsp;1 (hors delivery).</li>
         <li>
-          <strong>Estimer A</strong> — j·h <em>réels</em> avec le socle, y compris découverte + cadrage.
+          <strong>Fixer</strong> P<sub>cible</sub>, P<sub>plancher</sub>, P<sub>digue</sub>.
         </li>
-        <li>
-          <strong>Choisir les coefficients</strong> selon le type de mission (grille 02) :
-          <table>
-            <thead><tr><th>Type</th><th>Cible</th><th>Plancher</th><th>Quand</th></tr></thead>
-            <tbody>
-              <tr>
-                <td><strong>Investissement</strong></td>
-                <td><strong>× 3</strong></td>
-                <td><strong>× 2</strong></td>
-                <td>Enrichit surtout le patrimoine — levier partiel sur le runtime</td>
-              </tr>
-              <tr>
-                <td><strong>Exploitation</strong></td>
-                <td><strong>× 4</strong></td>
-                <td><strong>× 3</strong></td>
-                <td>Tire pleinement parti du socle — écart max vs ESN</td>
-              </tr>
-            </tbody>
-          </table>
-          Si les deux sont réels : type <strong>dominant</strong> ; exploitation nette → grille Exploitation.
-          Hypothèses de départ à valider sur les missions.
-        </li>
-        <li>
-          <strong>Fixer le forfait</strong> —
-          <blockquote style="margin: 0.5rem 0;">
-            P<sub>cible</sub> = A × coef<sub>cible</sub> × 1&nbsp;000&nbsp;€<br />
-            P<sub>min</sub> = A × coef<sub>plancher</sub> × 1&nbsp;000&nbsp;€
-          </blockquote>
-          On propose d’abord P<sub>cible</sub>. Le budget C peut compresser jusqu’à P<sub>min</sub>
-          (idéalement en réduisant le scope). En dessous de P<sub>min</sub> → no-go ou re-découpage.
-        </li>
-        <li>
-          <strong>Afficher au client</strong>
-          <table>
-            <thead><tr><th>On montre</th><th>On ne montre jamais</th></tr></thead>
-            <tbody>
-              <tr>
-                <td>Lots, critères d’acceptation, prix forfait HT (et jalons de facturation)</td>
-                <td>Charge j·h, TJM, décompte de jours</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
-        <li>
-          <strong>Proposition signée</strong> — jalons de facturation
-          (ex. 40&nbsp;% signature / 60&nbsp;% recette du lot).
-        </li>
-        <li>
-          <strong>Livrer / recetter</strong> — hors scope → avenant
-          (référence interne ~1&nbsp;000&nbsp;€ / j·h).
-        </li>
+        <li><strong>Client</strong> — lots, critères, prix HT, jalons.</li>
+        <li><strong>Signature</strong> — jalons (ex. 40&nbsp;% / 60&nbsp;%).</li>
+        <li><strong>Avenant</strong> — mêmes règles.</li>
       </ol>
-      <table>
-        <thead>
-          <tr><th>A (j·h)</th><th>Inv cible ×3</th><th>Inv min ×2</th><th>Exp cible ×4</th><th>Exp min ×3</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>9</td><td>27 k€</td><td>18 k€</td><td>36 k€</td><td>27 k€</td></tr>
-          <tr><td>13</td><td>39 k€</td><td>26 k€</td><td>52 k€</td><td>39 k€</td></tr>
-          <tr><td>15</td><td>45 k€</td><td>30 k€</td><td>60 k€</td><td>45 k€</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <p class="kicker">Apprentissage</p>
-      <h2>Évaluer le coefficient</h2>
-      <p>
-        Le vrai levier Phase 0 : mesurer si les <strong>cibles ×3 / ×4</strong> et les
-        <strong>planchers ×2 / ×3</strong> tiennent selon le type.
-      </p>
-      <p>Après chaque mission (signée ou non) :</p>
-      <ul>
-        <li><strong>Type</strong> — Investissement / Exploitation / mixte (dominant).</li>
-        <li><strong>A réel</strong> — j·h effectivement passés (pré-vente + delivery).</li>
-        <li><strong>Forfait</strong> — prix proposé / accepté / refusé.</li>
-        <li><strong>Coefficient implicite</strong> — forfait ÷ (A × 1&nbsp;000&nbsp;€).</li>
-        <li><strong>Lecture</strong> — comparer à la cible et au plancher du type ;
-          accepté trop facilement → cible peut monter ;
-          refusé sur le prix → compresser vers le plancher <em>ou</em> réduire le lot ;
-          sous le plancher → no-go ; dérapage de A → revoir l’estimation.</li>
-      </ul>
-      <p class="note">
-        Après 2–3 missions, recalibrer cibles et planchers par type.
-      </p>
-    </section>
-
-    <section>
-      <p class="kicker">Budget client</p>
-      <h2>Intégrer C dans l’équation</h2>
-      <p>
-        On calcule <strong>P<sub>cible</sub></strong> (×3 ou ×4) et <strong>P<sub>min</sub></strong> (×2 Inv / ×3 Exp).
-        Le budget <strong>C</strong> sert à trancher entre les deux — pas à fixer le prix tout seul.
-      </p>
-      <table>
-        <thead>
-          <tr><th>Situation</th><th>Action</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>C ≥ P<sub>cible</sub></strong></td>
-            <td>Proposer <strong>P<sub>cible</sub></strong> (ne pas gonfler jusqu’à C sans élargir le scope).</td>
-          </tr>
-          <tr>
-            <td><strong>P<sub>min</sub> ≤ C &lt; P<sub>cible</sub></strong></td>
-            <td>
-              1) Réduire le <strong>périmètre / lots</strong> pour un nouveau P′ ≤ C ; ou<br />
-              2) Compresser jusqu’au <strong>plancher du type</strong> (Inv ×2 / Exp ×3) ; ou<br />
-              3) Refuser si le ticket ne vaut pas le dérangement CDI.
-            </td>
-          </tr>
-          <tr>
-            <td><strong>C &lt; P<sub>min</sub></strong></td>
-            <td>No-go ou lot redécoupé — pas descendre sous le plancher du type.</td>
-          </tr>
-          <tr>
-            <td><strong>C inconnu</strong></td>
-            <td>Proposer P<sub>cible</sub>. La réaction alimente l’apprentissage cible / plancher.</td>
-          </tr>
-        </tbody>
-      </table>
-      <ul>
-        <li>Demander C en découverte / cadrage si possible — sans ancrer le devis dessus.</li>
-        <li>Ne pas baisser sous P<sub>min</sub> du type sans réduire le scope.</li>
-        <li>Après coup : noter le coef implicite vs cible et plancher.</li>
-      </ul>
-    </section>
-
-    <section>
-      <p class="kicker">Plus tard</p>
-      <h2>Autre ancrage externe</h2>
-      <p>
-        Devis concurrent cité par le client : même logique que C (comparer à P, ajuster scope ou refuser).
-        Ce n’est pas une étape obligatoire du chiffrage.
-      </p>
     </section>
 
     <section>
       <p class="kicker">Exemple</p>
-      <h2>Flux outil métier ↔ SI + file d’attente</h2>
-      <p class="note">Exploitation → cible <strong>× 4</strong>, plancher <strong>× 3</strong>.</p>
+      <h2>Boomerang — conf réutilisée + services mission</h2>
+      <p class="note">Détail : <a href="case-study-chiffrage.html">case study</a>.</p>
 
-      <h3>Effort A</h3>
       <table>
-        <thead><tr><th>Activité</th><th>j·h</th></tr></thead>
+        <thead>
+          <tr><th>Ligne</th><th>A</th><th>A<sub>sans</sub></th><th>P<sub>i</sub></th></tr>
+        </thead>
         <tbody>
-          <tr><td>Découverte + évaluation</td><td>1</td></tr>
-          <tr><td>Cadrage</td><td>2</td></tr>
-          <tr><td>Build lot 1</td><td>6</td></tr>
-          <tr><td><strong>Total A</strong></td><td><strong>9</strong></td></tr>
+          <tr><td>Pré-vente</td><td>2,5</td><td>—</td><td>2,5 k€</td></tr>
+          <tr><td>Déploiement / validation (transverse)</td><td>2</td><td>6</td><td>6 k€</td></tr>
+          <tr><td>alert_engine (tel quel, conf)</td><td>1</td><td>20</td><td>20 k€</td></tr>
+          <tr><td>subscriptions (tel quel, conf)</td><td>1</td><td>8</td><td>8 k€</td></tr>
+          <tr><td>alert producer (à écrire)</td><td>4</td><td>12</td><td>12 k€</td></tr>
+          <tr><td>notifier Teams (à écrire)</td><td>5</td><td>5</td><td>5 k€</td></tr>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td><strong>15,5</strong></td>
+            <td>ΣA<sub>sans</sub> = 51</td>
+            <td>delivery 51 k€ · <strong>P<sub>cible</sub> = 53,5 → 54 k€</strong></td>
+          </tr>
         </tbody>
       </table>
-
-      <h3>Prix</h3>
       <table>
-        <thead><tr><th></th><th>Coef</th><th>Forfait</th></tr></thead>
+        <thead><tr><th>Niveau</th><th>Montant</th></tr></thead>
         <tbody>
-          <tr><td>P<sub>cible</sub></td><td>× 4</td><td><strong>36 k€ HT</strong></td></tr>
-          <tr><td>P<sub>min</sub></td><td>× 3</td><td><strong>27 k€ HT</strong></td></tr>
+          <tr><td>P<sub>cible</sub></td><td><strong>54 k€</strong></td></tr>
+          <tr><td>P<sub>plancher</sub> (0,85 × 51 + 2,5)</td><td><strong>~46 k€</strong></td></tr>
+          <tr><td>P<sub>digue</sub> (2 × 13 + 2,5)</td><td><strong>28,5 k€</strong> — no-go, pas négo</td></tr>
         </tbody>
       </table>
-      <p>Proposition initiale : <strong>36 k€</strong>. Si C = 30 k€ → compresser au plancher 27 k€ <em>ou</em> réduire le lot.</p>
+      <p>
+        Négo dans la bande 46–54 k€. La conf engine reste de la conf métier ;
+        le déploiement n’y est plus caché.
+      </p>
 
-      <h3>Facturation (si 36 k€ signés)</h3>
+      <h3>Facturation (si 54 k€ signés)</h3>
       <ul>
-        <li>40&nbsp;% à la signature → 14,4 k€</li>
-        <li>60&nbsp;% à la recette du lot → 21,6 k€</li>
+        <li>40&nbsp;% signature → 21,6 k€</li>
+        <li>60&nbsp;% recette → 32,4 k€</li>
       </ul>
+    </section>
+
+    <section>
+      <p class="kicker">Apprentissage</p>
+      <h2>Après mission</h2>
+      <ul>
+        <li><strong>Par service</strong> — A réel vs estimé ; A<sub>sans</sub> ; P<sub>i</sub>.</li>
+        <li><strong>Lot</strong> — forfait ; marge = P<sub>delivery</sub> ÷ (ΣA × 1k) (doit rester ≥ 2).</li>
+        <li><strong>Lecture</strong> — A<sub>sans</sub> trop bas sur conf → sous-vente ;
+          compression sous P<sub>plancher</sub> → revoir la discipline de négo ;
+          dérive d’A → revoir la charge, pas brader A<sub>sans</sub>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="kicker">Budget client</p>
+      <h2>Intégrer C</h2>
+      <table>
+        <thead><tr><th>Situation</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>C ≥ P<sub>cible</sub></strong></td>
+            <td>Proposer P<sub>cible</sub>.</td>
+          </tr>
+          <tr>
+            <td><strong>P<sub>plancher</sub> ≤ C &lt; P<sub>cible</sub></strong></td>
+            <td>Réduire scope / A<sub>sans</sub>, ou compresser jusqu’au plancher commercial, ou refuser.</td>
+          </tr>
+          <tr>
+            <td><strong>P<sub>digue</sub> ≤ C &lt; P<sub>plancher</sub></strong></td>
+            <td>
+              Pas une zone de « petit effort » : re-scope sérieux jusqu’à un nouveau P<sub>cible</sub>′ ≤ C,
+              ou no-go. Ne pas vendre le lot initial à prix digue.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>C &lt; P<sub>digue</sub></strong></td>
+            <td>No-go (ou lot radicalement redécoupé).</td>
+          </tr>
+          <tr>
+            <td><strong>C inconnu</strong></td>
+            <td>Proposer P<sub>cible</sub> ; calibrer les A<sub>sans</sub> ensuite.</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section>
       <p class="kicker">À éviter</p>
       <h2>Anti-patterns</h2>
       <ul>
-        <li>Aligner le devis sur A × 1&nbsp;000&nbsp;€ « parce qu’on va vite » (oublier le coefficient).</li>
-        <li>Afficher un TJM, une charge en j·h ou un nombre de jours au client.</li>
-        <li>Inventer un « prix marché ESN » qu’on ne connaît pas pour justifier le devis.</li>
-        <li>Facturer découverte / cadrage à part (sauf offre cadrage payant décidée explicitement plus tard).</li>
-        <li>Cadrer en profondeur avant un go grille 02, ou dépasser les plafonds pré-vente.</li>
-        <li>Continuer un cadrage sans inputs client (à la place : pause / relance).</li>
-        <li>Baisser le prix pour « passer » un no-fit.</li>
+        <li>Prix = f(A) (écrase le capital conf).</li>
+        <li>Traiter la digue ×2 comme plancher de négociation.</li>
+        <li>Omettre déploiement / validation (ou le fondre dans « conf engine »).</li>
+        <li>Traiter déploiement comme pré-vente (×1) — c’est du delivery.</li>
+        <li>Omettre engine / subscriptions « parce que c’est juste de la conf ».</li>
+        <li>A<sub>sans</sub> = « sans Kontiki ».</li>
+        <li>A<sub>sans</sub> tiré vers A pour « passer » le devis.</li>
+        <li>Afficher A / A<sub>sans</sub> / j·h au client.</li>
+        <li>Pré-vente en ×2 ou ×0.</li>
+        <li>Signer sous P<sub>digue</sub>.</li>
       </ul>
     </section>
 

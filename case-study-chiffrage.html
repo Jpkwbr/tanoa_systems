@@ -19,215 +19,236 @@
 
     <h1>Case study — chiffrage</h1>
     <p class="lede">
-      Exemple fictif Phase 0 appliquant les règles de
-      <a href="chiffrage-forfait.html">chiffrage-forfait.html</a> : filtre, A, coefficient Inv/Exp, budget C, affichage client.
+      Boomerang : capital réutilisé + producer + notifier +
+      <strong>déploiement / validation</strong> (transverse).
+      Prix = <strong>A<sub>sans</sub></strong> ; digue ×2 ≠ plancher de négo.
+      Process : <a href="chiffrage-forfait.html">chiffrage-forfait</a>.
     </p>
-    <p class="note">Société et chiffres inventés. Référencé depuis la <a href="index.html">feuille de route</a>.</p>
+    <p class="note">
+      Chiffres inventés. Capital :
+      <a href="https://github.com/kontiki-org/boomerang" target="_blank" rel="noreferrer">Boomerang</a>.
+      <a href="index.html">Feuille de route</a>.
+    </p>
 
     <section>
       <p class="kicker">Contexte</p>
-      <h2>Client : NutriLab (PME industrielle)</h2>
+      <h2>Client : Atelier Nord (PME industrielle)</h2>
       <p>
-        NutriLab a un <strong>ERP</strong> et un <strong>outil LIMS</strong> (labo). Aujourd’hui les résultats d’analyse
-        partent en CSV par e-mail, puis quelqu’un les ressaisit dans l’ERP. Ça casse souvent ;
-        personne n’est alerté tant qu’un commercial ne s’en plaint.
-      </p>
-      <p>
-        Contact entrant via le binôme commercial. Appel découverte 40 min.
-        Décideur technique : le responsable SI (accessible).
+        Défauts automates / SCADA via API → alertes actionnables sur
+        <strong>Microsoft Teams</strong>. On déploie Boomerang (engine + subscriptions),
+        on branche un producer, on écrit un notifier Teams.
       </p>
     </section>
 
     <section>
       <p class="kicker">01 · Filtre</p>
-      <h2>Signaux &amp; go / no-go</h2>
+      <h2>Go</h2>
       <table>
-        <thead><tr><th>Signal</th><th>Lecture</th></tr></thead>
+        <thead><tr><th>Lecture</th><th>Décision</th></tr></thead>
         <tbody>
-          <tr><td>Applis qui doivent se parler (LIMS ↔ ERP)</td><td>Vert</td></tr>
-          <tr><td>Flux / reprises / fiabilité</td><td>Vert</td></tr>
-          <tr><td>Alerte quand un flux demande une action</td><td>Vert</td></tr>
-          <tr><td>Forfaitable, lot 1 bornable</td><td>Oui</td></tr>
-          <tr><td>Dispo CDI Phase 0</td><td>OK pour un lot ~15–30 j·h facturés</td></tr>
+          <tr><td>Alerte ops, forfaitable, fit Boomerang</td><td>Vert</td></tr>
+          <tr><td>Exploitation</td><td>Engine + subscriptions tels quels</td></tr>
+          <tr><td>Investissement</td><td>Notifier Teams (mission)</td></tr>
+          <tr><td><strong>Go / no-go</strong></td><td><strong>Go</strong></td></tr>
         </tbody>
       </table>
-      <table>
-        <thead><tr><th>Principes</th><th>Décision</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><strong>Exploitation</strong></td>
-            <td>Oui — connecteur, bus/événements, alertes : tire pleinement parti du socle</td>
-          </tr>
-          <tr>
-            <td><strong>Investissement</strong></td>
-            <td>Faible sur ce lot (pas d’enrichissement majeur du patrimoine)</td>
-          </tr>
-          <tr>
-            <td><strong>Type retenu pour le coef</strong></td>
-            <td><strong>Exploitation → × 4</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Go / no-go</strong></td>
-            <td><strong>Go</strong> — cadrage léger autorisé</td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="note">Charge filtre : découverte 0,75 j·h + évaluation 0,5 j·h ≈ 1,25 j·h (sous plafonds).</p>
+      <p class="note">Pré-vente totale : <strong>2,5 j·h</strong>.</p>
     </section>
 
     <section>
-      <p class="kicker">02 · Cadrage</p>
-      <h2>Lot 1 — périmètre</h2>
+      <p class="kicker">02 · Périmètre</p>
+      <h2>Lot 1</h2>
       <table>
         <thead><tr><th>In</th><th>Out</th></tr></thead>
         <tbody>
           <tr>
             <td>
-              Flux LIMS → ERP pour 2 types de résultats ; reprises sur erreur ;
-              journalisation ; alerte (mail) si échec répété ; doc d’exploitation ; critères d’acceptation.
+              Déploiement / validation env ;
+              conf Boomerang (engine + subscriptions) ;
+              producer API → <code>alert.normalized</code> ;
+              notifier Teams ; doc ; critères.
             </td>
-            <td>
-              Refonte ERP / LIMS ; UI métier ; autres flux ; formation large ; run 24/7.
-            </td>
+            <td>Autres canaux ; UI ; multi-sites ; run 24/7.</td>
           </tr>
         </tbody>
       </table>
+    </section>
+
+    <section>
+      <p class="kicker">03 · Architecture</p>
+      <h2>Réutilisé vs écrit</h2>
+      <pre style="font-family:IBM Plex Mono,monospace;font-size:0.82rem;line-height:1.45;overflow-x:auto;background:var(--paper-deep);padding:0.85rem 1rem;border-left:3px solid var(--forge);">
+API défauts ──► [alert producer] ──alert.normalized──► [alert_engine]
+                                                              │
+                                                     [subscriptions]
+                                                              │
+                                                      [notifier Teams]
+                                                              ▼
+                                                           Teams
+</pre>
+      <table>
+        <thead><tr><th>Composant</th><th>Statut</th></tr></thead>
+        <tbody>
+          <tr><td>Déploiement / validation</td><td>Transverse delivery — env, install, smoke, recette tech</td></tr>
+          <tr><td>alert_engine</td><td>Boomerang tel quel — conf</td></tr>
+          <tr><td>subscriptions</td><td>Boomerang tel quel — conf</td></tr>
+          <tr><td>alert producer</td><td>À écrire (pattern existant)</td></tr>
+          <tr><td>notifier Teams</td><td>À écrire (canal neuf)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <p class="kicker">04 · Chiffrage</p>
+      <h2>P<sub>i</sub> = A<sub>sans</sub> × 1&nbsp;000&nbsp;€</h2>
       <p>
-        Inputs client reçus (specs API LIMS, accès bac à sable ERP) en 4 jours — cadrage 1,5 j·h.
-        Total pré-vente : <strong>2,75 j·h</strong> (≤ 3).
-      </p>
-    </section>
-
-    <section>
-      <p class="kicker">03 · Effort A</p>
-      <h2>Estimation interne (avec socle)</h2>
-      <table>
-        <thead><tr><th>Activité</th><th>j·h</th></tr></thead>
-        <tbody>
-          <tr><td>Découverte + évaluation</td><td>1,25</td></tr>
-          <tr><td>Cadrage</td><td>1,5</td></tr>
-          <tr><td>Build + tests + doc + recette lot 1</td><td>10</td></tr>
-          <tr><td><strong>Total A</strong></td><td><strong>12,75</strong> → arrondi chiffrage <strong>13 j·h</strong></td></tr>
-        </tbody>
-      </table>
-      <p>Plancher du type (Exp ×3) = 13 × 3 × 1&nbsp;000&nbsp;€ = <strong>39 k€</strong>. P<sub>cible</sub> = 13 × 4 × 1&nbsp;000 = <strong>52 k€</strong>.</p>
-    </section>
-
-    <section>
-      <p class="kicker">04 · Prix</p>
-      <h2>Application de la formule</h2>
-      <blockquote>
-        Exploitation : cible ×4, plancher ×3.<br />
-        P<sub>cible</sub> = 13 × 4 × 1&nbsp;000&nbsp;€ = <strong>52 k€ HT</strong><br />
-        P<sub>min</sub> = 13 × 3 × 1&nbsp;000&nbsp;€ = <strong>39 k€ HT</strong>
-      </blockquote>
-      <table>
-        <thead><tr><th>Élément</th><th>Valeur</th></tr></thead>
-        <tbody>
-          <tr><td>Type</td><td>Exploitation</td></tr>
-          <tr><td>Coef cible / plancher</td><td>× 4 / × 3</td></tr>
-          <tr><td>A</td><td>13 j·h</td></tr>
-          <tr><td><strong>P<sub>cible</sub></strong></td><td><strong>52 k€ HT</strong></td></tr>
-          <tr><td><strong>P<sub>min</sub></strong></td><td><strong>39 k€ HT</strong></td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <p class="kicker">05 · Budget client C</p>
-      <h2>Trois scénarios</h2>
-      <p>En fin de cadrage, le responsable SI indique une enveloppe.</p>
-      <p class="note">
-        Gain net / personne = ordre de grandeur Phase 0 : forfait retenu × 50&nbsp;% (partage binôme)
-        × ~0,55 (reste après cotisations + IR, frais légers déjà nets) ≈ <strong>forfait × 0,275</strong>.
-        Pas un conseil fiscal — dépend du véhicule (portage, SAS…).
+        A = digue. A<sub>sans</sub> = prix.
+        Négo sur P<sub>plancher</sub> (~0,85 × Σ A<sub>sans</sub>), pas sur P<sub>digue</sub> (2×ΣA).
       </p>
       <table>
         <thead>
+          <tr><th>Ligne</th><th>A</th><th>A<sub>sans</sub></th><th>P<sub>i</sub></th></tr>
+        </thead>
+        <tbody>
           <tr>
-            <th>C annoncé</th>
-            <th>vs bande 39–52 k€</th>
-            <th>Décision Tanoa</th>
-            <th>Gain net / pers. (estim.)</th>
+            <td>Pré-vente</td>
+            <td>2,5</td><td>—</td><td>2,5 k€</td>
           </tr>
+          <tr>
+            <td>
+              <strong>Déploiement / validation</strong>
+              <span style="font-size:0.88em;opacity:0.85"> — transverse (env, smoke, recette tech)</span>
+            </td>
+            <td>2</td><td>6</td><td><strong>6 k€</strong></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>alert_engine</strong>
+              <span style="font-size:0.88em;opacity:0.85"> — tel quel, conf</span>
+            </td>
+            <td>1</td><td>20</td><td><strong>20 k€</strong></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>subscriptions</strong>
+              <span style="font-size:0.88em;opacity:0.85"> — tel quel, conf</span>
+            </td>
+            <td>1</td><td>8</td><td><strong>8 k€</strong></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>alert producer</strong>
+              <span style="font-size:0.88em;opacity:0.85"> — à écrire</span>
+            </td>
+            <td>4</td><td>12</td><td>12 k€</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>notifier Teams</strong>
+              <span style="font-size:0.88em;opacity:0.85"> — à écrire (A<sub>sans</sub>≈A)</span>
+            </td>
+            <td>5</td><td>5</td><td>5 k€</td>
+          </tr>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td><strong>15,5</strong></td>
+            <td>ΣA<sub>sans</sub>=51</td>
+            <td>delivery <strong>51 k€</strong> · <strong>P<sub>cible</sub> = 54 k€</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <thead><tr><th>Niveau</th><th>Montant</th><th>Rôle</th></tr></thead>
+        <tbody>
+          <tr><td>P<sub>cible</sub></td><td><strong>54 k€</strong></td><td>Proposition</td></tr>
+          <tr><td>P<sub>plancher</sub></td><td><strong>~46 k€</strong></td><td>Négo (0,85 × 51 + 2,5)</td></tr>
+          <tr><td>P<sub>digue</sub></td><td><strong>28,5 k€</strong></td><td>No-go (2 × 13 + 2,5)</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Capital conf (engine + subs) = 28 k€ ; déploiement = 6 k€ ;
+        à écrire = 17 k€. Bande utile : <strong>46–54 k€</strong>.
+      </p>
+    </section>
+
+    <section>
+      <p class="kicker">05 · Budget C</p>
+      <h2>Scénarios</h2>
+      <table>
+        <thead>
+          <tr><th>C</th><th>Décision</th><th>Net / pers. (×0,275)</th></tr>
         </thead>
         <tbody>
           <tr>
             <td><strong>60 k€</strong></td>
-            <td>C ≥ P<sub>cible</sub></td>
-            <td>Proposer <strong>52 k€</strong>.</td>
-            <td><strong>~14 k€</strong> (sur 52)</td>
+            <td>Proposer <strong>54 k€</strong></td>
+            <td>~15 k€</td>
           </tr>
           <tr>
-            <td><strong>40 k€</strong></td>
-            <td>P<sub>min</sub> ≤ C &lt; P<sub>cible</sub></td>
-            <td>
-              Compresser au plancher <strong>39 k€</strong> (scope inchangé) <em>ou</em>
-              réduire le lot (1 type de résultat) pour un P′ cible plus bas.
-            </td>
-            <td><strong>~11 k€</strong> (sur 39)</td>
+            <td><strong>47 k€</strong></td>
+            <td>Dans la bande plancher (~46) — compresser ou réduire A<sub>sans</sub></td>
+            <td>~13 k€</td>
           </tr>
           <tr>
-            <td><strong>30 k€</strong></td>
-            <td>C &lt; P<sub>min</sub></td>
-            <td>
-              Réduire le scope jusqu’à P<sub>min</sub>′ ≤ 30 (ex. A′ ≈ 10 → P<sub>min</sub>′ = 30 k€)
-              ou <strong>no-go</strong> — pas vendre à 30 k€ sur A = 13.
-            </td>
-            <td><strong>~8 k€</strong> si P′ = 30 ; sinon 0</td>
+            <td><strong>35 k€</strong></td>
+            <td>Sous P<sub>plancher</sub>, au-dessus de la digue → re-scope ou no-go</td>
+            <td>selon P′</td>
+          </tr>
+          <tr>
+            <td><strong>25 k€</strong></td>
+            <td>Sous P<sub>digue</sub> → <strong>no-go</strong></td>
+            <td>0</td>
           </tr>
         </tbody>
       </table>
-      <p class="note">Suite du case study : scénario C = 60 k€ → proposition à 52 k€ (~14 k€ nets / pers.).</p>
+      <p class="note">Suite : C = 60 → proposition 54 k€.</p>
     </section>
 
     <section>
-      <p class="kicker">06 · Côté client</p>
-      <h2>Ce qui apparaît dans la proposition</h2>
+      <p class="kicker">06 · Client</p>
+      <h2>Proposition</h2>
       <table>
         <thead><tr><th>On montre</th><th>On ne montre jamais</th></tr></thead>
         <tbody>
           <tr>
             <td>
-              Lot 1 : flux LIMS→ERP (2 types), reprises, alerte mail, doc, critères d’acceptation ;
-              forfait <strong>52&nbsp;000&nbsp;€ HT</strong> ;
-              jalons 40&nbsp;% / 60&nbsp;%.
+              Défauts → Teams ; doc ; critères ;
+              <strong>54&nbsp;000&nbsp;€ HT</strong> ; jalons 40/60.
             </td>
-            <td>13 j·h, TJM, « on va 4× plus vite », coefficient, plancher.</td>
+            <td>A, A<sub>sans</sub>, détail lignes internes, j·h.</td>
           </tr>
         </tbody>
       </table>
     </section>
 
     <section>
-      <p class="kicker">07 · Suite</p>
-      <h2>Signature &amp; facturation</h2>
+      <p class="kicker">07 · Facturation</p>
+      <h2>Jalons</h2>
       <table>
         <thead><tr><th>Événement</th><th>Montant</th></tr></thead>
         <tbody>
-          <tr><td>Signature (40&nbsp;%)</td><td>20,8 k€ HT</td></tr>
-          <tr><td>Recette lot 1 (60&nbsp;%)</td><td>31,2 k€ HT</td></tr>
+          <tr><td>Signature 40&nbsp;%</td><td>21,6 k€</td></tr>
+          <tr><td>Recette 60&nbsp;%</td><td>32,4 k€</td></tr>
         </tbody>
       </table>
-      <p>
-        Pendant le delivery : un 3ᵉ type de résultat demandé → <strong>avenant</strong>
-        (recalcul A avenant × 4 × 1&nbsp;000), pas d’absorption silencieuse.
-      </p>
+      <p>2ᵉ canal → avenant (nouvel A<sub>sans</sub> notifier). Engine/subs souvent déjà payés / conf seule.</p>
     </section>
 
     <section>
-      <p class="kicker">08 · Apprentissage</p>
-      <h2>Après coup (fictif)</h2>
+      <p class="kicker">08 · Après coup</p>
+      <h2>Apprentissage (fictif)</h2>
       <table>
         <thead><tr><th>Mesure</th><th>Valeur</th></tr></thead>
         <tbody>
-          <tr><td>A réel final</td><td>14 j·h (légère dérive +0,25 vs estimé 13)</td></tr>
-          <tr><td>Forfait</td><td>52 k€ accepté</td></tr>
-          <tr><td>Coef implicite</td><td>52&nbsp;000 ÷ (14 × 1&nbsp;000) ≈ <strong>3,7</strong></td></tr>
-          <tr><td>Type</td><td>Exploitation (cible ×4)</td></tr>
+          <tr><td>Σ A réel</td><td>16 j·h (déploiement +0,5)</td></tr>
+          <tr><td>Forfait</td><td>54 k€</td></tr>
+          <tr><td>Marge delivery</td><td>(54 − 2,5) ÷ 13,5 ≈ <strong>3,8</strong> (≥ 2)</td></tr>
           <tr>
             <td>Lecture</td>
-            <td>×4 un peu tendu sur A réel, mais accepté. On garde ×4 ; surveiller la dérive d’estimation A.</td>
+            <td>
+              Ligne déploiement utile (ne plus la fondre dans engine).
+              A<sub>sans</sub> conf OK ; notifier un peu dérivé.
+            </td>
           </tr>
         </tbody>
       </table>
@@ -237,16 +258,14 @@
       <p class="kicker">Synthèse</p>
       <h2>En une vue</h2>
       <table>
-        <thead><tr><th>Étape</th><th>Résultat</th></tr></thead>
+        <thead><tr><th></th><th></th></tr></thead>
         <tbody>
-          <tr><td>Filtre</td><td>Go · Exploitation</td></tr>
-          <tr><td>Coef cible / plancher</td><td>× 4 / × 3</td></tr>
-          <tr><td>A</td><td>13 j·h</td></tr>
-          <tr><td>P<sub>cible</sub> / P<sub>min</sub></td><td>52 / 39 k€</td></tr>
-          <tr><td>Gain net / pers. (estim.)</td><td>~14 k€ (sur 52) · ~11 k€ (sur 39)</td></tr>
-          <tr><td>C</td><td>60 k€ → on propose 52</td></tr>
-          <tr><td>Client voit</td><td>Livrable + forfait + jalons</td></tr>
-          <tr><td>Client ne voit pas</td><td>j·h, TJM, coef</td></tr>
+          <tr><td>Règle</td><td>P = A<sub>sans</sub> · négo ≥ P<sub>plancher</sub> · digue 2×A</td></tr>
+          <tr><td>Transverse</td><td>Déploiement / validation : A=2, A<sub>sans</sub>=6 → 6 k€</td></tr>
+          <tr><td>Conf Boomerang</td><td>engine 20 + subs 8 = 28 k€</td></tr>
+          <tr><td>À écrire</td><td>producer 12 + notifier 5 = 17 k€</td></tr>
+          <tr><td>P<sub>cible</sub> / plancher / digue</td><td><strong>54 / ~46 / 28,5 k€</strong></td></tr>
+          <tr><td>Client voit</td><td>Défauts → Teams + forfait</td></tr>
         </tbody>
       </table>
     </section>
