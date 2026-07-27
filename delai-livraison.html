@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tanoa Systems — Délai de livraison (interne)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="templates/internal.css" />
+</head>
+<body>
+  <article class="page">
+    <header class="top">
+      <div class="brand">Tanoa <span>Systems</span></div>
+      <div class="badge">Document interne</div>
+    </header>
+
+    <h1>Délai de livraison</h1>
+    <p class="lede">
+      Fixer le <strong>calendrier client</strong> à partir de la charge réelle <strong>A</strong>.
+      Le prix reste ancré sur A<sub>sans</sub> (<a href="chiffrage-forfait.html">chiffrage-forfait</a>) —
+      ne pas mélanger les deux.
+    </p>
+    <p class="note">
+      Phase 0 · hypothèses à recalibrer.
+      Illustration : <a href="case-study-chiffrage.html">case study</a>.
+    </p>
+
+    <section>
+      <p class="kicker">En une phrase</p>
+      <h2>Règle</h2>
+      <blockquote>
+        <strong>Prix = A<sub>sans</sub></strong> · <strong>Délai = A → calendrier</strong>.
+        Le client voit des <em>semaines</em> (conditionnées aux inputs), jamais des j·h.
+      </blockquote>
+    </section>
+
+    <section>
+      <p class="kicker">Formule</p>
+      <h2>Phase 0</h2>
+      <blockquote style="margin: 0.5rem 0;">
+        Délai<sub>semaines</sub> = ceil( Σ A<sub>delivery</sub> / C ) + M<sub>client</sub>
+      </blockquote>
+      <table>
+        <thead><tr><th>Symbole</th><th>Sens</th><th>Phase 0</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Σ A<sub>delivery</sub></strong></td>
+            <td>Charge réelle du lot (hors pré-vente)</td>
+            <td>Somme des A<sub>i</sub> du chiffrage</td>
+          </tr>
+          <tr>
+            <td><strong>C</strong></td>
+            <td>Capacité nette / semaine sur ce lot</td>
+            <td>Solo focus ≈ <strong>3–4</strong> j·h/sem · binôme ≈ <strong>6–8</strong></td>
+          </tr>
+          <tr>
+            <td><strong>M<sub>client</sub></strong></td>
+            <td>Attentes inputs, accès, recette, allers-retours</td>
+            <td>Typiquement <strong>+1 à +2</strong> semaines</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">
+        C et M<sub>client</sub> = hypothèses de départ. Si le lot est le seul chantier et les inputs
+        sont déjà là : C haut, M<sub>client</sub> bas.
+      </p>
+    </section>
+
+    <section>
+      <p class="kicker">Affichage</p>
+      <h2>Côté client</h2>
+      <table>
+        <thead><tr><th>On montre</th><th>On ne montre jamais</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              Délai en semaines (ou date cible) ;
+              point de départ (kickoff / réception des inputs) ;
+              hypothèses (accès, jeux d’essai, délai de recette client).
+            </td>
+            <td>A, j·h, C, M<sub>client</sub>, découpage interne.</td>
+          </tr>
+        </tbody>
+      </table>
+      <blockquote>
+        Exemple : « Livraison du lot 1 sous <strong>6 semaines</strong> à compter de la réception
+        des accès API et du canal Teams de test. »
+      </blockquote>
+    </section>
+
+    <section>
+      <p class="kicker">Garde-fous</p>
+      <h2>À ne pas faire</h2>
+      <ul>
+        <li>Calculer le délai avec <strong>A<sub>sans</sub></strong> (allonge artificiellement quand la Forge est efficace).</li>
+        <li>Promettre un délai sans conditionner aux <strong>inputs client</strong>.</li>
+        <li>Afficher une charge en j·h « pour justifier » le calendrier.</li>
+        <li>Oublier de <strong>recalculer</strong> le délai si avenant (ΔA).</li>
+        <li>Confondre délai de build et engagement de run / support.</li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="kicker">Exemple</p>
+      <h2>Lot type (13 j·h delivery)</h2>
+      <table>
+        <thead><tr><th>Hypothèse</th><th>Calcul</th><th>Délai annoncé</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Solo, C = 4, M = 2</td>
+            <td>ceil(13/4) + 2 = 4 + 2</td>
+            <td><strong>6 semaines</strong></td>
+          </tr>
+          <tr>
+            <td>Binôme focus, C = 7, M = 1</td>
+            <td>ceil(13/7) + 1 = 2 + 1</td>
+            <td><strong>3 semaines</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="foot">
+      <span>TANOA SYSTEMS · DÉLAI DE LIVRAISON</span>
+      <span>USAGE INTERNE</span>
+    </footer>
+  </article>
+</body>
+</html>

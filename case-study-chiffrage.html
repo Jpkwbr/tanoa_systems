@@ -22,7 +22,9 @@
       Boomerang : capital réutilisé + producer + notifier +
       <strong>déploiement / validation</strong> (transverse).
       Prix = <strong>A<sub>sans</sub></strong> ; digue ×2 ≠ plancher de négo.
-      Process : <a href="chiffrage-forfait.html">chiffrage-forfait</a>.
+      Délai = <strong>A → calendrier</strong>
+      (<a href="delai-livraison.html">delai-livraison</a>).
+      Process prix : <a href="chiffrage-forfait.html">chiffrage-forfait</a>.
     </p>
     <p class="note">
       Chiffres inventés. Capital :
@@ -126,7 +128,7 @@ API défauts ──► [alert producer] ──alert.normalized──► [alert_e
               <strong>alert_engine</strong>
               <span style="font-size:0.88em;opacity:0.85"> — tel quel, conf</span>
             </td>
-            <td>1</td><td>20</td><td><strong>20 k€</strong></td>
+            <td>1</td><td>10</td><td><strong>10 k€</strong></td>
           </tr>
           <tr>
             <td>
@@ -152,22 +154,24 @@ API défauts ──► [alert producer] ──alert.normalized──► [alert_e
           <tr>
             <td><strong>Total</strong></td>
             <td><strong>15,5</strong></td>
-            <td>ΣA<sub>sans</sub>=51</td>
-            <td>delivery <strong>51 k€</strong> · <strong>P<sub>cible</sub> = 54 k€</strong></td>
+            <td>ΣA<sub>sans</sub>=41</td>
+            <td>delivery <strong>41 k€</strong> · <strong>P<sub>cible</sub> = 44 k€</strong></td>
           </tr>
         </tbody>
       </table>
       <table>
         <thead><tr><th>Niveau</th><th>Montant</th><th>Rôle</th></tr></thead>
         <tbody>
-          <tr><td>P<sub>cible</sub></td><td><strong>54 k€</strong></td><td>Proposition</td></tr>
-          <tr><td>P<sub>plancher</sub></td><td><strong>~46 k€</strong></td><td>Négo (0,85 × 51 + 2,5)</td></tr>
+          <tr><td>P<sub>cible</sub></td><td><strong>44 k€</strong></td><td>Proposition</td></tr>
+          <tr><td>P<sub>plancher</sub></td><td><strong>~37 k€</strong></td><td>Négo (0,85 × 41 + 2,5)</td></tr>
           <tr><td>P<sub>digue</sub></td><td><strong>28,5 k€</strong></td><td>No-go (2 × 13 + 2,5)</td></tr>
         </tbody>
       </table>
       <p>
-        Capital conf (engine + subs) = 28 k€ ; déploiement = 6 k€ ;
-        à écrire = 17 k€. Bande utile : <strong>46–54 k€</strong>.
+        Capital conf (engine + subs) = <strong>18 k€</strong> ;
+        déploiement = 6 k€ ; à écrire = 17 k€.
+        A<sub>sans</sub> engine = capacité d’alerting de <em>ce</em> lot (≈10), pas tout Boomerang.
+        Bande utile : <strong>37–44 k€</strong>.
       </p>
     </section>
 
@@ -180,17 +184,17 @@ API défauts ──► [alert producer] ──alert.normalized──► [alert_e
         </thead>
         <tbody>
           <tr>
-            <td><strong>60 k€</strong></td>
-            <td>Proposer <strong>54 k€</strong></td>
-            <td>~15 k€</td>
+            <td><strong>50 k€</strong></td>
+            <td>Proposer <strong>44 k€</strong></td>
+            <td>~12 k€</td>
           </tr>
           <tr>
-            <td><strong>47 k€</strong></td>
-            <td>Dans la bande plancher (~46) — compresser ou réduire A<sub>sans</sub></td>
-            <td>~13 k€</td>
+            <td><strong>38 k€</strong></td>
+            <td>Dans la bande plancher (~37) — compresser ou réduire A<sub>sans</sub></td>
+            <td>~10 k€</td>
           </tr>
           <tr>
-            <td><strong>35 k€</strong></td>
+            <td><strong>32 k€</strong></td>
             <td>Sous P<sub>plancher</sub>, au-dessus de la digue → re-scope ou no-go</td>
             <td>selon P′</td>
           </tr>
@@ -201,11 +205,33 @@ API défauts ──► [alert producer] ──alert.normalized──► [alert_e
           </tr>
         </tbody>
       </table>
-      <p class="note">Suite : C = 60 → proposition 54 k€.</p>
+      <p class="note">Suite : C = 50 → proposition 44 k€ · délai ci-dessous.</p>
     </section>
 
     <section>
-      <p class="kicker">06 · Client</p>
+      <p class="kicker">06 · Délai</p>
+      <h2>Calendrier (pas A<sub>sans</sub>)</h2>
+      <p>
+        Formule : <a href="delai-livraison.html">delai-livraison</a> —
+        Délai = ceil(Σ A<sub>delivery</sub> / C) + M<sub>client</sub>.
+      </p>
+      <table>
+        <thead><tr><th></th><th>Valeur</th></tr></thead>
+        <tbody>
+          <tr><td>Σ A<sub>delivery</sub></td><td>13 j·h (hors pré-vente 2,5)</td></tr>
+          <tr><td>C (solo focus Phase 0)</td><td>4 j·h / semaine</td></tr>
+          <tr><td>M<sub>client</sub></td><td>+2 sem. (accès API, canal Teams test, recette)</td></tr>
+          <tr><td><strong>Délai</strong></td><td>ceil(13/4) + 2 = <strong>6 semaines</strong></td></tr>
+        </tbody>
+      </table>
+      <p>
+        Annonce client : « Lot 1 sous <strong>6 semaines</strong> à compter de la réception
+        des accès API et du canal Teams de test. »
+      </p>
+    </section>
+
+    <section>
+      <p class="kicker">07 · Client</p>
       <h2>Proposition</h2>
       <table>
         <thead><tr><th>On montre</th><th>On ne montre jamais</th></tr></thead>
@@ -213,41 +239,42 @@ API défauts ──► [alert producer] ──alert.normalized──► [alert_e
           <tr>
             <td>
               Défauts → Teams ; doc ; critères ;
-              <strong>54&nbsp;000&nbsp;€ HT</strong> ; jalons 40/60.
+              <strong>44&nbsp;000&nbsp;€ HT</strong> ; jalons 40/60 ;
+              <strong>délai 6 semaines</strong> (sous conditions d’inputs).
             </td>
-            <td>A, A<sub>sans</sub>, détail lignes internes, j·h.</td>
+            <td>A, A<sub>sans</sub>, C, M<sub>client</sub>, j·h, détail lignes internes.</td>
           </tr>
         </tbody>
       </table>
     </section>
 
     <section>
-      <p class="kicker">07 · Facturation</p>
+      <p class="kicker">08 · Facturation</p>
       <h2>Jalons</h2>
       <table>
         <thead><tr><th>Événement</th><th>Montant</th></tr></thead>
         <tbody>
-          <tr><td>Signature 40&nbsp;%</td><td>21,6 k€</td></tr>
-          <tr><td>Recette 60&nbsp;%</td><td>32,4 k€</td></tr>
+          <tr><td>Signature 40&nbsp;%</td><td>17,6 k€</td></tr>
+          <tr><td>Recette 60&nbsp;%</td><td>26,4 k€</td></tr>
         </tbody>
       </table>
       <p>2ᵉ canal → avenant (nouvel A<sub>sans</sub> notifier). Engine/subs souvent déjà payés / conf seule.</p>
     </section>
 
     <section>
-      <p class="kicker">08 · Après coup</p>
+      <p class="kicker">09 · Après coup</p>
       <h2>Apprentissage (fictif)</h2>
       <table>
         <thead><tr><th>Mesure</th><th>Valeur</th></tr></thead>
         <tbody>
           <tr><td>Σ A réel</td><td>16 j·h (déploiement +0,5)</td></tr>
-          <tr><td>Forfait</td><td>54 k€</td></tr>
-          <tr><td>Marge delivery</td><td>(54 − 2,5) ÷ 13,5 ≈ <strong>3,8</strong> (≥ 2)</td></tr>
+          <tr><td>Forfait</td><td>44 k€</td></tr>
+          <tr><td>Marge delivery</td><td>(44 − 2,5) ÷ 13,5 ≈ <strong>3,1</strong> (≥ 2)</td></tr>
           <tr>
             <td>Lecture</td>
             <td>
-              Ligne déploiement utile (ne plus la fondre dans engine).
-              A<sub>sans</sub> conf OK ; notifier un peu dérivé.
+              A<sub>sans</sub> engine recalibré (capacité lot, pas plateforme entière) — devis plus tenable.
+              Ligne déploiement utile ; notifier un peu dérivé.
             </td>
           </tr>
         </tbody>
@@ -262,10 +289,11 @@ API défauts ──► [alert producer] ──alert.normalized──► [alert_e
         <tbody>
           <tr><td>Règle</td><td>P = A<sub>sans</sub> · négo ≥ P<sub>plancher</sub> · digue 2×A</td></tr>
           <tr><td>Transverse</td><td>Déploiement / validation : A=2, A<sub>sans</sub>=6 → 6 k€</td></tr>
-          <tr><td>Conf Boomerang</td><td>engine 20 + subs 8 = 28 k€</td></tr>
+          <tr><td>Conf Boomerang</td><td>engine 10 + subs 8 = 18 k€</td></tr>
           <tr><td>À écrire</td><td>producer 12 + notifier 5 = 17 k€</td></tr>
-          <tr><td>P<sub>cible</sub> / plancher / digue</td><td><strong>54 / ~46 / 28,5 k€</strong></td></tr>
-          <tr><td>Client voit</td><td>Défauts → Teams + forfait</td></tr>
+          <tr><td>P<sub>cible</sub> / plancher / digue</td><td><strong>44 / ~37 / 28,5 k€</strong></td></tr>
+          <tr><td>Délai</td><td><strong>6 semaines</strong> (C=4, M=2)</td></tr>
+          <tr><td>Client voit</td><td>Défauts → Teams + forfait + délai</td></tr>
         </tbody>
       </table>
     </section>

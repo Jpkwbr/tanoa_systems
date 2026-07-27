@@ -25,6 +25,7 @@
     <p class="note">
       Orienté <strong>Phase 0</strong> : hypothèses à confronter aux missions réelles.
       Illustration : <a href="case-study-chiffrage.html">case study (Boomerang)</a> ·
+      délai : <a href="delai-livraison.html">delai-livraison</a> ·
       flow : <a href="flow-client.html">flow-client</a>.
     </p>
 
@@ -165,7 +166,7 @@
         <tbody>
           <tr><td>Tout à builder (métier)</td><td>5</td><td>5</td><td>5 k€ (lot peut remonter à la digue ×2)</td></tr>
           <tr><td>Producer avec pattern</td><td>4</td><td>12</td><td>12 k€</td></tr>
-          <tr><td>Engine réutilisé (conf)</td><td>1</td><td>20</td><td>20 k€ — A bas n’écrase plus</td></tr>
+          <tr><td>Engine réutilisé (conf)</td><td>1</td><td>10</td><td>10 k€ — capacité client, pas « tout Boomerang »</td></tr>
           <tr><td>Déploiement / validation</td><td>2</td><td>6</td><td>6 k€ — transverse delivery</td></tr>
         </tbody>
       </table>
@@ -280,35 +281,35 @@
         <tbody>
           <tr><td>Pré-vente</td><td>2,5</td><td>—</td><td>2,5 k€</td></tr>
           <tr><td>Déploiement / validation (transverse)</td><td>2</td><td>6</td><td>6 k€</td></tr>
-          <tr><td>alert_engine (tel quel, conf)</td><td>1</td><td>20</td><td>20 k€</td></tr>
+          <tr><td>alert_engine (tel quel, conf)</td><td>1</td><td>10</td><td>10 k€</td></tr>
           <tr><td>subscriptions (tel quel, conf)</td><td>1</td><td>8</td><td>8 k€</td></tr>
           <tr><td>alert producer (à écrire)</td><td>4</td><td>12</td><td>12 k€</td></tr>
           <tr><td>notifier Teams (à écrire)</td><td>5</td><td>5</td><td>5 k€</td></tr>
           <tr>
             <td><strong>Total</strong></td>
             <td><strong>15,5</strong></td>
-            <td>ΣA<sub>sans</sub> = 51</td>
-            <td>delivery 51 k€ · <strong>P<sub>cible</sub> = 53,5 → 54 k€</strong></td>
+            <td>ΣA<sub>sans</sub> = 41</td>
+            <td>delivery 41 k€ · <strong>P<sub>cible</sub> = 43,5 → 44 k€</strong></td>
           </tr>
         </tbody>
       </table>
       <table>
         <thead><tr><th>Niveau</th><th>Montant</th></tr></thead>
         <tbody>
-          <tr><td>P<sub>cible</sub></td><td><strong>54 k€</strong></td></tr>
-          <tr><td>P<sub>plancher</sub> (0,85 × 51 + 2,5)</td><td><strong>~46 k€</strong></td></tr>
+          <tr><td>P<sub>cible</sub></td><td><strong>44 k€</strong></td></tr>
+          <tr><td>P<sub>plancher</sub> (0,85 × 41 + 2,5)</td><td><strong>~37 k€</strong></td></tr>
           <tr><td>P<sub>digue</sub> (2 × 13 + 2,5)</td><td><strong>28,5 k€</strong> — no-go, pas négo</td></tr>
         </tbody>
       </table>
       <p>
-        Négo dans la bande 46–54 k€. La conf engine reste de la conf métier ;
-        le déploiement n’y est plus caché.
+        Négo dans la bande 37–44 k€. A<sub>sans</sub> engine = effort pour la capacité
+        d’alerting de <em>ce</em> lot, pas la réécriture complète de Boomerang.
       </p>
 
-      <h3>Facturation (si 54 k€ signés)</h3>
+      <h3>Facturation (si 44 k€ signés)</h3>
       <ul>
-        <li>40&nbsp;% signature → 21,6 k€</li>
-        <li>60&nbsp;% recette → 32,4 k€</li>
+        <li>40&nbsp;% signature → 17,6 k€</li>
+        <li>60&nbsp;% recette → 26,4 k€</li>
       </ul>
     </section>
 
