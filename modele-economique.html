@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tanoa Systems — Modèle économique (interne)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="templates/internal.css" />
+  <style>
+    .cycle {
+      margin: 0.75rem 0;
+      padding: 0.85rem 1rem;
+      background: var(--paper-deep);
+      border-left: 3px solid var(--forge);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: var(--ink);
+      white-space: pre;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <header class="top">
+      <div class="brand">Tanoa <span>Systems</span></div>
+      <div class="top-right">
+        <div class="badge" data-i18n="badge"></div>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <h1 data-i18n="title"></h1>
+    <p class="lede" data-i18n="lede"></p>
+    <p class="note" data-i18n-html="refs"></p>
+
+    <section>
+      <p class="kicker" data-i18n="fund.kicker"></p>
+      <h2 data-i18n="fund.title"></h2>
+      <p data-i18n="fund.p1"></p>
+      <p data-i18n-html="fund.p2"></p>
+      <blockquote data-i18n-html="fund.quote"></blockquote>
+      <p data-i18n="fund.dual"></p>
+      <ul>
+        <li data-i18n="fund.l1"></li>
+        <li data-i18n="fund.l2"></li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="asset.kicker"></p>
+      <h2 data-i18n="asset.title"></h2>
+      <p data-i18n="asset.p1"></p>
+      <p data-i18n-html="asset.p2"></p>
+      <ul>
+        <li data-i18n="asset.l1"></li>
+        <li data-i18n="asset.l2"></li>
+        <li data-i18n="asset.l3"></li>
+        <li data-i18n="asset.l4"></li>
+        <li data-i18n="asset.l5"></li>
+        <li data-i18n="asset.l6"></li>
+        <li data-i18n="asset.l7"></li>
+        <li data-i18n="asset.l8"></li>
+        <li data-i18n="asset.l9"></li>
+        <li data-i18n="asset.l10"></li>
+      </ul>
+      <p data-i18n-html="asset.close"></p>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="buy.kicker"></p>
+      <h2 data-i18n="buy.title"></h2>
+      <p data-i18n="buy.p1"></p>
+      <p data-i18n-html="buy.p2"></p>
+      <p data-i18n="buy.p3"></p>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="rev.kicker"></p>
+      <h2 data-i18n="rev.title"></h2>
+      <p data-i18n-html="rev.p1"></p>
+      <p data-i18n="rev.p2"></p>
+      <p data-i18n-html="rev.p3"></p>
+      <p data-i18n="rev.progress"></p>
+      <ul>
+        <li data-i18n="rev.l1"></li>
+        <li data-i18n="rev.l2"></li>
+        <li data-i18n="rev.l3"></li>
+        <li data-i18n="rev.l4"></li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="sel.kicker"></p>
+      <h2 data-i18n="sel.title"></h2>
+      <p data-i18n="sel.intro"></p>
+      <ol>
+        <li data-i18n="sel.1"></li>
+        <li data-i18n-html="sel.2"></li>
+        <li data-i18n-html="sel.3"></li>
+      </ol>
+      <p data-i18n-html="sel.exp"></p>
+      <p data-i18n="sel.close"></p>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="out.kicker"></p>
+      <h2 data-i18n="out.title"></h2>
+      <p data-i18n="out.intro"></p>
+      <ul>
+        <li data-i18n="out.l1"></li>
+        <li data-i18n="out.l2"></li>
+        <li data-i18n="out.l3"></li>
+        <li data-i18n="out.l4"></li>
+        <li data-i18n="out.l5"></li>
+      </ul>
+      <p data-i18n-html="out.after"></p>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="role.kicker"></p>
+      <h2 data-i18n="role.title"></h2>
+      <p data-i18n="role.intro"></p>
+      <ul>
+        <li data-i18n="role.l1"></li>
+        <li data-i18n="role.l2"></li>
+        <li data-i18n="role.l3"></li>
+        <li data-i18n="role.l4"></li>
+        <li data-i18n="role.l5"></li>
+        <li data-i18n="role.l6"></li>
+      </ul>
+      <p data-i18n="role.close"></p>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="growth.kicker"></p>
+      <h2 data-i18n="growth.title"></h2>
+      <p data-i18n="growth.p1"></p>
+      <p data-i18n-html="growth.p2"></p>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="cycle.kicker"></p>
+      <h2 data-i18n="cycle.title"></h2>
+      <pre class="cycle" data-i18n="cycle.body"></pre>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="moat.kicker"></p>
+      <h2 data-i18n="moat.title"></h2>
+      <p data-i18n="moat.intro"></p>
+      <ul>
+        <li data-i18n="moat.l1"></li>
+        <li data-i18n="moat.l2"></li>
+        <li data-i18n="moat.l3"></li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="ind.kicker"></p>
+      <h2 data-i18n="ind.title"></h2>
+      <p data-i18n="ind.p1"></p>
+      <p data-i18n="ind.p2"></p>
+      <p data-i18n="ind.p3"></p>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="dec.kicker"></p>
+      <h2 data-i18n="dec.title"></h2>
+      <p data-i18n="dec.intro"></p>
+      <blockquote data-i18n-html="dec.quote"></blockquote>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="sum.kicker"></p>
+      <h2 data-i18n="sum.title"></h2>
+      <p data-i18n-html="sum.body"></p>
+    </section>
+
+    <section>
+      <p class="kicker" data-i18n="see.kicker"></p>
+      <h2 data-i18n="see.title"></h2>
+      <ul>
+        <li data-i18n-html="see.1"></li>
+        <li data-i18n-html="see.2"></li>
+        <li data-i18n-html="see.3"></li>
+        <li data-i18n-html="see.4"></li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <span data-i18n="foot.left"></span>
+      <span data-i18n="foot.right"></span>
+    </footer>
+  </article>
+
+  <script>
+    (function () {
+      var STRINGS = {
+        fr: {
+          "badge": "Document interne",
+          "title": "Modèle économique",
+          "lede": "Expliciter le modèle pour que positionnement, sélection des missions, chiffrage et développement de la Forge suivent la même logique.",
+          "refs": "Réflexions liées : marché (sandbox) · <a href=\"principes-fondateurs.html\">principes fondateurs</a> · <a href=\"chiffrage-forfait.html\">chiffrage</a> · <a href=\"signaux-fit.html\">signaux de fit</a>.",
+          "fund.kicker": "Fondation",
+          "fund.title": "Principe fondamental",
+          "fund.p1": "Tanoa Systems est une société de développement logiciel qui investit continuellement dans son propre système de production.",
+          "fund.p2": "Son objectif n’est pas uniquement de livrer des logiciels. Son objectif est de <strong>faire croître un actif de production</strong> qui permettra de produire certains types de systèmes toujours plus efficacement.",
+          "fund.quote": "<strong>Les missions financent la Forge. La Forge rend les missions suivantes plus rentables.</strong>",
+          "fund.dual": "Chaque mission est donc simultanément :",
+          "fund.l1": "une prestation pour un client ;",
+          "fund.l2": "un investissement dans l’entreprise (exploitation et/ou enrichissement de la Forge).",
+          "asset.kicker": "Capital",
+          "asset.title": "L’actif principal",
+          "asset.p1": "L’actif principal de Tanoa n’est pas son temps de développement.",
+          "asset.p2": "L’actif est <span class=\"forge-name\">Kontiki <span>Forge</span></span>, c’est-à-dire l’ensemble du système de production :",
+          "asset.l1": "framework Kontiki ;",
+          "asset.l2": "composants réutilisables ;",
+          "asset.l3": "patterns d’architecture ;",
+          "asset.l4": "connecteurs ;",
+          "asset.l5": "modèles de spécification ;",
+          "asset.l6": "méthodes et conventions ;",
+          "asset.l7": "outils de test et harness ;",
+          "asset.l8": "outils internes ;",
+          "asset.l9": "assistants IA (levier interne, secondaire) ;",
+          "asset.l10": "retour d’expérience.",
+          "asset.close": "Chaque mission <strong>pertinente</strong> augmente la valeur de cet actif — soit en l’exploitant pleinement, soit en l’enrichissant quand c’est justifié.",
+          "buy.kicker": "Offre",
+          "buy.title": "Ce que le client achète",
+          "buy.p1": "Le client n’achète jamais Kontiki Forge.",
+          "buy.p2": "Il achète un <strong>livrable borné</strong> qui répond à une douleur durable (échanges entre applications, chaînes de traitement, petite plateforme opérationnelle). Pas un framework, pas une licence, pas une hotline.",
+          "buy.p3": "La Forge reste invisible et constitue uniquement l’avantage concurrentiel interne de Tanoa.",
+          "rev.kicker": "Revenus",
+          "rev.title": "Le modèle de revenus",
+          "rev.p1": "Le modèle privilégie les <strong>projets au forfait</strong>.",
+          "rev.p2": "En régie, les gains de productivité bénéficient principalement au client.",
+          "rev.p3": "Au forfait, ils deviennent un avantage économique pour Tanoa — <strong>à condition</strong> que le prix reste ancré sur la valeur et le périmètre convenus, pas sur le coût de revient Forge. Sinon les gains repartent au client (régie déguisée) ou en baisse de prix.",
+          "rev.progress": "Plus la Forge progresse :",
+          "rev.l1": "plus le coût réel de développement diminue ;",
+          "rev.l2": "plus les délais diminuent ;",
+          "rev.l3": "plus la qualité augmente ;",
+          "rev.l4": "plus la marge progresse (si le forfait tient sur la valeur).",
+          "sel.kicker": "Sélection",
+          "sel.title": "La sélection des missions",
+          "sel.intro": "Une mission doit :",
+          "sel.1": "résoudre un problème réel et durable du client (douleurs du marché cible) ;",
+          "sel.2": "être adaptée au système de production de Tanoa (fit Forge — sinon un script ou une ESN suffisent autant) ;",
+          "sel.3": "<strong>exploiter</strong> la Forge et/ou l’<strong>enrichir</strong> de façon réutilisable quand la mission le justifie.",
+          "sel.exp": "Une mission d’<strong>exploitation</strong> pure (sans nouvel actif Forge) reste valide si le fit et la rentabilité tiennent. On ne refuse pas une première mission payée au seul motif qu’elle n’investit pas.",
+          "sel.close": "Elle est donc évaluée sur le fit, la rentabilité, et — quand c’est pertinent — sa capacité à créer des actifs réutilisables.",
+          "out.kicker": "Limites",
+          "out.title": "Hors modèle",
+          "out.intro": "Ce qui casse l’économie Tanoa :",
+          "out.l1": "régie comme modèle principal ;",
+          "out.l2": "support / astreinte / hotline illimitée ;",
+          "out.l3": "forfait calé sur le coût Forge au lieu de la valeur ;",
+          "out.l4": "missions hors fit pour « remplir le pipeline » ;",
+          "out.l5": "vendre ou licencier la Forge.",
+          "out.after": "Après livraison : rodage borné et lots métier / socle — pas de hotline.",
+          "role.kicker": "Forge",
+          "role.title": "Le rôle de la Forge",
+          "role.intro": "La Forge permet progressivement de :",
+          "role.l1": "produire plus vite ;",
+          "role.l2": "produire avec moins d’erreurs ;",
+          "role.l3": "standardiser davantage ;",
+          "role.l4": "mieux exploiter l’IA en interne ;",
+          "role.l5": "réduire le coût des évolutions ;",
+          "role.l6": "maintenir une architecture homogène.",
+          "role.close": "Le coût marginal de production diminue au fil des missions.",
+          "growth.kicker": "Échelle",
+          "growth.title": "La croissance",
+          "growth.p1": "La croissance repose avant tout sur l’amélioration continue du système de production.",
+          "growth.p2": "L’objectif est qu’une <strong>petite équipe</strong> puisse réaliser des projets normalement accessibles à des équipes plus importantes — en <strong>filtrant</strong> dur (volume volontairement limité), pas en absorbant n’importe quel ticket.",
+          "cycle.kicker": "Boucle",
+          "cycle.title": "Le cercle vertueux",
+          "cycle.body": "Mission (fit)\n    ↓\nRevenu (forfait sur la valeur)\n    ↓\nInvestissement dans la Forge\n    ↓\nAmélioration du système de production\n    ↓\nProductivité accrue\n    ↓\nCoût réel plus faible\n    ↓\nMarge plus élevée\n    ↓\nMeilleure sélection des missions\n    ↺",
+          "moat.kicker": "Avantage",
+          "moat.title": "Le véritable avantage concurrentiel",
+          "moat.intro": "Il repose sur la combinaison de :",
+          "moat.l1": "un système de production qui s’améliore continuellement ;",
+          "moat.l2": "une sélection rigoureuse des missions ;",
+          "moat.l3": "un modèle au forfait qui transforme les gains de productivité en avantage économique.",
+          "ind.kicker": "Doctrine",
+          "ind.title": "Une logique industrielle",
+          "ind.p1": "Une ESN vend principalement du temps.",
+          "ind.p2": "Tanoa investit dans son outil de production afin de fabriquer certains types de systèmes de manière toujours plus efficace.",
+          "ind.p3": "La Forge est l’usine qui permet de produire les livrables.",
+          "dec.kicker": "Pilotage",
+          "dec.title": "Principe de décision",
+          "dec.intro": "Toute décision stratégique devrait répondre positivement à la question :",
+          "dec.quote": "<strong>Cette décision augmente-t-elle durablement la valeur de notre système de production — ou au moins la rentabilité des missions où ce système est un avantage ?</strong>",
+          "sum.kicker": "Synthèse",
+          "sum.title": "Résumé",
+          "sum.body": "<strong>Tanoa Systems</strong> livre au forfait des systèmes d’intégration et de traitement tenables, tout en utilisant chaque mission pour exploiter et, quand c’est justifié, renforcer <span class=\"forge-name\">Kontiki <span>Forge</span></span>. L’amélioration continue de cet actif accroît productivité, qualité et réutilisation — permettant à une petite équipe sélective de tenir des forfaits avec un avantage économique durable, sans vendre le framework ni dériver en régie ou en hotline.",
+          "see.kicker": "Liens",
+          "see.title": "Documents liés",
+          "see.1": "<a href=\"principes-fondateurs.html\">Principes fondateurs</a> — doctrine Exploitation / Investissement",
+          "see.2": "<a href=\"signaux-fit.html\">Signaux de fit</a> — filtrer les missions",
+          "see.3": "<a href=\"chiffrage-forfait.html\">Chiffrage forfait</a> — prix ancré sur la valeur",
+          "see.4": "<a href=\"index.html\">Feuille de route</a> — catalogue des documents",
+          "foot.left": "TANOA SYSTEMS · MODÈLE ÉCONOMIQUE",
+          "foot.right": "USAGE INTERNE · NON PUBLIC"
+        },
+        en: {
+          "badge": "Internal document",
+          "title": "Economic model",
+          "lede": "Make the model explicit so positioning, mission selection, pricing, and Forge development follow the same logic.",
+          "refs": "Related thinking: market (sandbox) · <a href=\"principes-fondateurs.html\">founding principles</a> · <a href=\"chiffrage-forfait.html\">pricing</a> · <a href=\"signaux-fit.html\">fit signals</a>.",
+          "fund.kicker": "Foundation",
+          "fund.title": "Core principle",
+          "fund.p1": "Tanoa Systems is a software company that continuously invests in its own production system.",
+          "fund.p2": "The goal is not only to ship software. The goal is to <strong>grow a production asset</strong> that makes certain kinds of systems ever more efficient to build.",
+          "fund.quote": "<strong>Missions fund the Forge. The Forge makes the next missions more profitable.</strong>",
+          "fund.dual": "Every mission is therefore both:",
+          "fund.l1": "a deliverable for a client;",
+          "fund.l2": "an investment in the company (exploiting and/or enriching the Forge).",
+          "asset.kicker": "Capital",
+          "asset.title": "The primary asset",
+          "asset.p1": "Tanoa’s primary asset is not developer time.",
+          "asset.p2": "The asset is <span class=\"forge-name\">Kontiki <span>Forge</span></span> — the full production system:",
+          "asset.l1": "Kontiki framework;",
+          "asset.l2": "reusable components;",
+          "asset.l3": "architecture patterns;",
+          "asset.l4": "connectors;",
+          "asset.l5": "specification models;",
+          "asset.l6": "methods and conventions;",
+          "asset.l7": "test tools and harness;",
+          "asset.l8": "internal tooling;",
+          "asset.l9": "AI assistants (internal lever, secondary);",
+          "asset.l10": "lessons learned.",
+          "asset.close": "Every <strong>relevant</strong> mission increases that asset’s value — by fully exploiting it, or by enriching it when justified.",
+          "buy.kicker": "Offer",
+          "buy.title": "What the client buys",
+          "buy.p1": "The client never buys Kontiki Forge.",
+          "buy.p2": "They buy a <strong>bounded deliverable</strong> that addresses a lasting pain (application exchanges, processing chains, a small operational platform). Not a framework, not a license, not a hotline.",
+          "buy.p3": "The Forge stays invisible and is only Tanoa’s internal competitive advantage.",
+          "rev.kicker": "Revenue",
+          "rev.title": "Revenue model",
+          "rev.p1": "The preferred model is <strong>fixed-scope projects</strong>.",
+          "rev.p2": "Under time & materials, productivity gains mostly benefit the client.",
+          "rev.p3": "Under fixed scope, they become an economic advantage for Tanoa — <strong>provided</strong> price stays anchored on value and agreed perimeter, not on Forge cost basis. Otherwise gains flow back to the client (disguised T&M) or into price cuts.",
+          "rev.progress": "As the Forge improves:",
+          "rev.l1": "real development cost falls;",
+          "rev.l2": "lead times shrink;",
+          "rev.l3": "quality rises;",
+          "rev.l4": "margin improves (if the fixed price holds on value).",
+          "sel.kicker": "Selection",
+          "sel.title": "Mission selection",
+          "sel.intro": "A mission must:",
+          "sel.1": "solve a real, lasting client problem (target-market pains);",
+          "sel.2": "fit Tanoa’s production system (Forge fit — otherwise a script or a classic IT firm is enough);",
+          "sel.3": "<strong>exploit</strong> the Forge and/or <strong>enrich</strong> it in a reusable way when the mission justifies it.",
+          "sel.exp": "A pure <strong>exploitation</strong> mission (no new Forge asset) remains valid if fit and profitability hold. We do not decline a first paid mission only because it does not invest.",
+          "sel.close": "So we assess fit, profitability, and — when relevant — the ability to create reusable assets.",
+          "out.kicker": "Boundaries",
+          "out.title": "Out of model",
+          "out.intro": "What breaks Tanoa’s economics:",
+          "out.l1": "time & materials as the main model;",
+          "out.l2": "unlimited support / on-call / hotline;",
+          "out.l3": "fixed price set from Forge cost instead of value;",
+          "out.l4": "off-fit missions to “fill the pipeline”;",
+          "out.l5": "selling or licensing the Forge.",
+          "out.after": "After delivery: bounded burn-in and business / foundation lots — not a hotline.",
+          "role.kicker": "Forge",
+          "role.title": "The Forge’s role",
+          "role.intro": "Over time the Forge lets us:",
+          "role.l1": "ship faster;",
+          "role.l2": "ship with fewer errors;",
+          "role.l3": "standardize more;",
+          "role.l4": "use AI better internally;",
+          "role.l5": "lower the cost of change;",
+          "role.l6": "keep a homogeneous architecture.",
+          "role.close": "Marginal production cost falls across missions.",
+          "growth.kicker": "Scale",
+          "growth.title": "Growth",
+          "growth.p1": "Growth rests first on continuous improvement of the production system.",
+          "growth.p2": "The aim is that a <strong>small team</strong> can deliver work normally reserved for larger teams — by <strong>filtering</strong> hard (deliberately limited volume), not by taking every ticket.",
+          "cycle.kicker": "Loop",
+          "cycle.title": "Virtuous cycle",
+          "cycle.body": "Mission (fit)\n    ↓\nRevenue (fixed scope on value)\n    ↓\nInvestment in the Forge\n    ↓\nBetter production system\n    ↓\nHigher productivity\n    ↓\nLower real cost\n    ↓\nHigher margin\n    ↓\nBetter mission selection\n    ↺",
+          "moat.kicker": "Advantage",
+          "moat.title": "The real competitive advantage",
+          "moat.intro": "It rests on the combination of:",
+          "moat.l1": "a production system that keeps improving;",
+          "moat.l2": "rigorous mission selection;",
+          "moat.l3": "a fixed-scope model that turns productivity gains into economic advantage.",
+          "ind.kicker": "Doctrine",
+          "ind.title": "An industrial logic",
+          "ind.p1": "A classic IT services firm mainly sells time.",
+          "ind.p2": "Tanoa invests in its production tooling to build certain kinds of systems ever more efficiently.",
+          "ind.p3": "The Forge is the plant that produces the deliverables.",
+          "dec.kicker": "Steering",
+          "dec.title": "Decision principle",
+          "dec.intro": "Every strategic decision should answer yes to:",
+          "dec.quote": "<strong>Does this decision durably increase the value of our production system — or at least the profitability of missions where that system is an advantage?</strong>",
+          "sum.kicker": "Summary",
+          "sum.title": "In short",
+          "sum.body": "<strong>Tanoa Systems</strong> delivers fixed-scope, tenable integration and processing systems, while using every mission to exploit and, when justified, strengthen <span class=\"forge-name\">Kontiki <span>Forge</span></span>. Continuous improvement of that asset raises productivity, quality, and reuse — letting a selective small team hold fixed-scope work with a durable economic edge, without selling the framework or drifting into T&M or hotline.",
+          "see.kicker": "Links",
+          "see.title": "Related documents",
+          "see.1": "<a href=\"principes-fondateurs.html\">Founding principles</a> — Exploitation / Investment doctrine",
+          "see.2": "<a href=\"signaux-fit.html\">Fit signals</a> — filter missions",
+          "see.3": "<a href=\"chiffrage-forfait.html\">Fixed-scope pricing</a> — price anchored on value",
+          "see.4": "<a href=\"index.html\">Roadmap</a> — document catalog",
+          "foot.left": "TANOA SYSTEMS · ECONOMIC MODEL",
+          "foot.right": "INTERNAL USE · NOT PUBLIC"
+        }
+      };
+
+      var KEY = "tanoa-modele-eco-lang";
+      var TITLE = {
+        fr: "Tanoa Systems — Modèle économique (interne)",
+        en: "Tanoa Systems — Economic model (internal)"
+      };
+
+      function apply(lang) {
+        var dict = STRINGS[lang] || STRINGS.fr;
+        document.documentElement.lang = lang;
+        document.title = TITLE[lang] || TITLE.fr;
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          var k = el.getAttribute("data-i18n");
+          if (dict[k] != null) el.textContent = dict[k];
+        });
+        document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+          var k = el.getAttribute("data-i18n-html");
+          if (dict[k] != null) el.innerHTML = dict[k];
+        });
+        document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+          btn.setAttribute("aria-pressed", btn.getAttribute("data-lang") === lang ? "true" : "false");
+        });
+        try { localStorage.setItem(KEY, lang); } catch (e) {}
+      }
+
+      function detect() {
+        try {
+          var s = localStorage.getItem(KEY) || localStorage.getItem("tanoa-lang");
+          if (s === "en" || s === "fr") return s;
+        } catch (e) {}
+        return ((navigator.language || "fr").toLowerCase().indexOf("fr") === 0) ? "fr" : "en";
+      }
+
+      document.querySelectorAll(".lang-switch button").forEach(function (btn) {
+        btn.addEventListener("click", function () { apply(btn.getAttribute("data-lang")); });
+      });
+      apply(detect());
+    })();
+  </script>
+</body>
+</html>
